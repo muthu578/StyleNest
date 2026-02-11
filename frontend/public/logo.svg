@@ -1,0 +1,25 @@
+<svg width="600" height="200" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient Definition -->
+  <defs>
+    <linearGradient id="trendoraGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF2E93"/>
+      <stop offset="50%" stop-color="#7B2FF7"/>
+      <stop offset="100%" stop-color="#00C9A7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Hanger Hook -->
+  <path d="M120 40 Q110 25 125 20 Q145 20 135 40" stroke="url(#trendoraGradient)" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+  <!-- Hanger Line -->
+  <line x1="95" y1="60" x2="155" y2="60" stroke="url(#trendoraGradient)" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Shopping Bag Shape -->
+  <path d="M100 60 L150 60 L165 140 Q125 170 85 140 Z" fill="url(#trendoraGradient)"/>
+
+  <!-- Bag Handle -->
+  <path d="M115 80 Q125 65 135 80" stroke="white" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <!-- Brand Name -->
+  <text x="200" y="120" font-family="Poppins, Montserrat, sans-serif" font-size="72" font-weight="600" fill="url(#trendoraGradient)">Trendora</text>
+</svg>
