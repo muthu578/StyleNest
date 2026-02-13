@@ -11,8 +11,48 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'i.dummyjson.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'dummyjson.com',
+      },
+      {
+        protocol: 'https',
         hostname: 'images.unsplash.com',
       },
+      {
+        protocol: 'https',
+        hostname: '**.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.dummyjson.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'static-assets-web.flixcart.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.flixcart.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.pexels.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.pexels.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'robohash.org',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.robohash.org',
+      }
     ],
   },
 };

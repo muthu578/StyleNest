@@ -16,11 +16,11 @@ export interface User {
     id: number;
     username: string;
     email: string;
-    firstName: string;
-    lastName: string;
-    gender: string;
-    image: string;
-    token?: string;
+    firstName?: string;
+    lastName?: string;
+    gender?: string;
+    image?: string;
+    role?: string;
 }
 
 export interface CartItem extends Product {
@@ -29,7 +29,7 @@ export interface CartItem extends Product {
 
 export interface AuthState {
     user: User | null;
-    token: string | null;
+    token: string | null; // This will act as our accessToken in Redux
     loading: boolean;
     error: string | null;
 }

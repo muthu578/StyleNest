@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1770803671345,
+    "username": "Muthu",
+    "email": "muthu@test.com",
+    "passwordHash": "$2b$10$9dFUbQGJ.nqhNoEudAnfqOGPvpUQj9SMNuTPYm8dOBB8mb50gAfwy",
+    "firstName": "Muthu",
+    "image": "https://robohash.org/Muthu.png"
+  },
+  {
+    "id": 1770809223259,
+    "username": "mk",
+    "email": "muthu@gmail.com",
+    "passwordHash": "$2b$10$9VPAbYiHtDpJPZIpaZSVoejx20DktYK64fwWu7Pbm8Tj8xz6cE/Cm",
+    "firstName": "mk",
+    "image": "https://robohash.org/mk.png"
+  }
+]

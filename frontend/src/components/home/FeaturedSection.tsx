@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { getProducts } from '@/services/api';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Loader2 } from 'lucide-react';
+import { ArrowRight, Loader2, Sparkles, TrendingUp } from 'lucide-react';
 
 interface FeaturedSectionProps {
     title: string;
@@ -15,10 +15,10 @@ interface FeaturedSectionProps {
 }
 
 const CATEGORY_BANNERS: Record<string, string> = {
-    men: 'https://loremflickr.com/800/600/man,fashion/all',
-    women: 'https://loremflickr.com/800/600/woman,fashion/all',
-    kids: 'https://loremflickr.com/800/600/kid,fashion/all',
-    default: 'https://loremflickr.com/800/600/fashion/all',
+    men: 'https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=format&fit=crop&w=1600',
+    women: 'https://images.pexels.com/photos/1036622/pexels-photo-1036622.jpeg?auto=format&fit=crop&w=1600',
+    kids: 'https://images.pexels.com/photos/1619697/pexels-photo-1619697.jpeg?auto=format&fit=crop&w=1600',
+    default: 'https://images.pexels.com/photos/934070/pexels-photo-934070.jpeg?auto=format&fit=crop&w=1600',
 };
 
 const FeaturedSection: React.FC<FeaturedSectionProps> = ({ title, category, limit = 4 }) => {
@@ -44,8 +44,11 @@ const FeaturedSection: React.FC<FeaturedSectionProps> = ({ title, category, limi
 
     if (loading) {
         return (
-            <div className="py-12 px-4 md:px-8 max-w-7xl mx-auto flex justify-center items-center h-64">
-                <Loader2 className="h-8 w-8 animate-spin text-gray-500" />
+            <div className="py-24 px-4 max-w-7xl mx-auto flex justify-center items-center h-64">
+                <div className="flex flex-col items-center gap-4">
+                    <Loader2 className="h-10 w-10 animate-spin text-pink-500" />
+                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Curating Perfection...</p>
+                </div>
             </div>
         );
     }
@@ -57,59 +60,78 @@ const FeaturedSection: React.FC<FeaturedSectionProps> = ({ title, category, limi
     const bannerImage = CATEGORY_BANNERS[category || 'default'] || CATEGORY_BANNERS.default;
 
     return (
-        <section className="mb-16">
-            {/* Category Banner - Inspired by AJIO */}
-            <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden mb-12 group">
+        <section className="mb-32">
+            {/* Premium Category Banner */}
+            <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden mb-20 group">
                 <Image
                     src={bannerImage}
                     alt={`${title} Banner`}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover scale-105 group-hover:scale-100 transition-transform duration-[2s] ease-out"
                     priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex items-center px-8 md:px-16">
-                    <div className="max-w-xl text-white space-y-4">
-                        <span className="inline-block bg-yellow-400 text-black text-xs font-bold px-2 py-1 uppercase tracking-widest mb-2">
-                            New Season
-                        </span>
-                        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
-                            {title}
-                        </h2>
-                        <p className="text-lg md:text-xl text-gray-200 font-medium max-w-md">
-                            Discover the latest trends and elevate your style with our premium collection.
-                        </p>
-                        <div className="pt-4">
-                            <Link
-                                href={`/products${category ? `?category=${category}` : ''}`}
-                                className="inline-flex items-center bg-white text-black px-8 py-3 font-bold text-sm uppercase tracking-wide hover:bg-gray-100 transition-colors"
-                            >
-                                Shop Now
-                                <ArrowRight className="ml-2 h-4 w-4" />
-                            </Link>
+                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-transparent"></div>
+
+                <div className="absolute inset-0 flex items-center">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                        <div className="max-w-xl space-y-6 animate-fade-in">
+                            <div className="flex items-center gap-3">
+                                <Sparkles className="w-4 h-4 text-pink-500" />
+                                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-pink-500">
+                                    New Drops 2026
+                                </span>
+                            </div>
+
+                            <h2 className="text-5xl md:text-7xl font-black text-white leading-tight italic tracking-tighter uppercase">
+                                {title} <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-orange-300 not-italic">ESSENTIALS</span>
+                            </h2>
+
+                            <p className="text-gray-300 text-lg font-light max-w-md leading-relaxed border-l-2 border-white/20 pl-6 italic">
+                                Elevate your daily rotation with pieces that blend timeless elegance with contemporary edge.
+                            </p>
+
+                            <div className="pt-6">
+                                <Link
+                                    href={`/products${category ? `?category=${category}` : ''}`}
+                                    className="inline-flex items-center gap-4 bg-white hover:bg-pink-50 text-black px-10 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-all active:scale-95 group/btn"
+                                >
+                                    SURVEY THE COLLECTION
+                                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-2 transition-transform" />
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Product Grid */}
-            <div className="px-4 md:px-8 max-w-7xl mx-auto">
-                <div className="flex justify-between items-end mb-8 border-b border-gray-200 pb-4">
-                    <h3 className="text-2xl font-bold text-gray-900">Trending Now</h3>
-                    <Link href={`/products${category ? `?category=${category}` : ''}`} className="hidden md:flex items-center text-sm font-semibold text-gray-900 hover:text-gray-600 transition-colors">
-                        View All <ArrowRight className="ml-1 h-4 w-4" />
+            {/* Curated Product Display */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-gray-50 pb-8">
+                    <div className="space-y-2">
+                        <div className="flex items-center gap-2">
+                            <TrendingUp className="w-4 h-4 text-pink-600" />
+                            <span className="text-[10px] font-black text-pink-600 uppercase tracking-widest">Trending Choice</span>
+                        </div>
+                        <h3 className="text-3xl font-black text-gray-900 tracking-tight uppercase italic underline decoration-pink-500/10 underline-offset-8">
+                            Curated <span className="text-pink-600">Masterpieces</span>
+                        </h3>
+                    </div>
+                    <Link
+                        href={`/products${category ? `?category=${category}` : ''}`}
+                        className="group flex items-center gap-2 text-xs font-black uppercase tracking-widest text-gray-400 hover:text-black transition-colors"
+                    >
+                        Explore the wider range
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </Link>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
-                    {products.map((product) => (
-                        <ProductCard key={product.id} product={product} />
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+                    {products.map((product, index) => (
+                        <div key={product.id} className="animate-fade-in" style={{ animationDelay: `${index * 150}ms` }}>
+                            <ProductCard product={product} />
+                        </div>
                     ))}
-                </div>
-
-                <div className="mt-10 md:hidden flex justify-center">
-                    <Link href={`/products${category ? `?category=${category}` : ''}`} className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 transition-colors w-full">
-                        View All Products
-                    </Link>
                 </div>
             </div>
         </section>

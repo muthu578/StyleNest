@@ -2,151 +2,205 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { ShoppingBag, User, Search, Menu, X } from 'lucide-react';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { ShoppingBag, User, Search, Menu, X, Heart, ChevronDown } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/navigation';
 import { RootState } from '@/store/store';
-import Button from '@/components/ui/Button';
+import { logout } from '@/store/slices/authSlice';
+import { cn } from '@/lib/utils';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
     const { totalQuantity } = useSelector((state: RootState) => state.cart);
     const { user } = useSelector((state: RootState) => state.auth);
+    const dispatch = useDispatch();
+    const router = useRouter();
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+    const navLinks = [
+        { name: 'Men', href: '/products?category=men' },
+        { name: 'Women', href: '/products?category=women' },
+        { name: 'Kids', href: '/products?category=kids' },
+        { name: 'Home', href: '/products?category=home' },
+        { name: 'Beauty', href: '/products?category=beauty' },
+    ];
+
     return (
-        <nav className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center h-16">
-                    {/* Logo */}
-                    <div className="flex-shrink-0 flex items-center gap-2">
-                        <Link href="/" className="flex items-center gap-2 group">
-                            <Image src="/logo.svg" alt="Trendora" width={234} height={104} priority className="h-14 w-auto" />
+        <nav className={cn(
+            "fixed top-0 left-0 right-0 z-[100] h-20 bg-white/95 backdrop-blur-3xl border-b border-gray-100 flex items-center transition-all duration-300",
+            scrolled ? "shadow-lg shadow-black/5" : "shadow-none"
+        )}>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div className="flex justify-between items-center h-full">
+                    {/* Logo Area */}
+                    <div className="flex-shrink-0 flex items-center">
+                        <Link href="/" className="group relative">
+                            <div className={cn(
+                                "transition-all duration-500",
+                                scrolled ? "scale-90" : "scale-100"
+                            )}>
+                                <Image
+                                    src="/logo.svg"
+                                    alt="Trendora"
+                                    width={180}
+                                    height={60}
+                                    priority
+                                    className="h-10 w-auto"
+                                />
+                            </div>
                         </Link>
                     </div>
 
-                    {/* Desktop Navigation */}
-                    <div className="hidden md:flex space-x-8">
-                        <Link href="/products?category=men" className="text-gray-600 hover:text-black font-medium transition-colors">Men</Link>
-                        <Link href="/products?category=women" className="text-gray-600 hover:text-black font-medium transition-colors">Women</Link>
-                        <Link href="/products?category=kids" className="text-gray-600 hover:text-black font-medium transition-colors">Kids</Link>
-                        <Link href="/products?category=beauty" className="text-gray-600 hover:text-black font-medium transition-colors">Beauty</Link>
-                        <Link href="/products?category=home" className="text-gray-600 hover:text-black font-medium transition-colors">Home</Link>
-                        <Link href="/products" className="text-gray-600 hover:text-black font-medium transition-colors">All</Link>
+                    {/* Desktop Center Navigation */}
+                    <div className="hidden lg:flex items-center space-x-12">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.name}
+                                href={link.href}
+                                className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-900/60 hover:text-black transition-all relative group py-2"
+                            >
+                                {link.name}
+                                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-pink-500 transition-all duration-500 group-hover:w-full"></span>
+                            </Link>
+                        ))}
                     </div>
 
-                    {/* Icons & Actions */}
-                    <div className="hidden md:flex items-center space-x-6">
-                        {/* Search - Visual Only */}
+                    {/* Right Side Icons */}
+                    <div className="flex items-center space-x-4 sm:space-x-8">
+                        {/* Search icon */}
+                        <button className="p-2 text-gray-900/40 hover:text-black transition-colors hidden sm:block">
+                            <Search className="w-5 h-5 stroke-[1.5]" />
+                        </button>
+
+                        {/* Account icon with Dropdown */}
                         <div className="relative group">
-                            <Search className="h-5 w-5 text-gray-400 group-hover:text-black cursor-pointer transition-colors" />
+                            {user ? (
+                                <div className="flex items-center gap-3 cursor-pointer py-1 px-1">
+                                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-pink-500 to-orange-400 p-[1.5px] shadow-sm">
+                                        <div className="w-full h-full rounded-full bg-white p-[1px] overflow-hidden">
+                                            <Image
+                                                src={user.image || "https://robohash.org/muthu.png"}
+                                                alt="User"
+                                                width={36}
+                                                height={36}
+                                                className="object-cover"
+                                            />
+                                        </div>
+                                    </div>
+                                    <ChevronDown className="w-3 h-3 text-gray-400 transition-transform duration-500 group-hover:rotate-180" />
+
+                                    {/* Glassmorphism Dropdown */}
+                                    <div className="absolute right-0 top-full mt-4 w-64 bg-white/95 backdrop-blur-3xl border border-gray-100 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] rounded-[32px] py-6 px-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 translate-y-4 group-hover:translate-y-0 z-[110]">
+                                        <div className="px-5 py-3 mb-4 border-b border-gray-50 pb-6">
+                                            <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">{user.role || 'Member'}</p>
+                                            <p className="text-base font-black text-gray-900 truncate uppercase italic tracking-tighter">{user.username}</p>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <Link href="/profile" className="flex items-center gap-4 px-5 py-3.5 text-[11px] font-black uppercase tracking-widest text-gray-600 hover:text-black hover:bg-gray-50 rounded-2xl transition-all">
+                                                <User className="w-4 h-4" /> Account Details
+                                            </Link>
+                                            <Link href="/orders" className="flex items-center gap-4 px-5 py-3.5 text-[11px] font-black uppercase tracking-widest text-gray-600 hover:text-black hover:bg-gray-50 rounded-2xl transition-all">
+                                                <ShoppingBag className="w-4 h-4" /> Order History
+                                            </Link>
+                                            <Link href="/wishlist" className="flex items-center gap-4 px-5 py-3.5 text-[11px] font-black uppercase tracking-widest text-gray-600 hover:text-black hover:bg-gray-50 rounded-2xl transition-all">
+                                                <Heart className="w-4 h-4" /> My Wishlist
+                                            </Link>
+                                        </div>
+                                        <div className="mt-4 pt-4 border-t border-gray-50">
+                                            <button
+                                                onClick={() => {
+                                                    dispatch(logout());
+                                                    router.push('/login');
+                                                }}
+                                                className="w-full flex items-center gap-4 px-5 py-4 text-[11px] font-black uppercase tracking-widest text-red-500 hover:bg-red-50 rounded-2xl transition-all"
+                                            >
+                                                Sign out
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ) : (
+                                <Link href="/login" className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] text-gray-900/60 hover:text-black transition-all">
+                                    <User className="w-5 h-5 stroke-[1.5]" />
+                                    <span className="hidden sm:inline italic">Vault</span>
+                                </Link>
+                            )}
                         </div>
 
-                        {/* Account */}
-                        <div className="relative group">
-                            <Link href={user ? '/profile' : '/login'}>
-                                <User className="h-5 w-5 text-gray-400 group-hover:text-black cursor-pointer transition-colors" />
-                            </Link>
-                        </div>
-
-                        {/* Cart */}
-                        <Link href="/cart" className="relative group">
-                            <ShoppingBag className="h-5 w-5 text-gray-400 group-hover:text-black transition-colors" />
+                        {/* Cart icon */}
+                        <Link href="/cart" className="relative group p-2 text-gray-900/60 hover:text-black transition-all">
+                            <ShoppingBag className="w-5 h-5 stroke-[1.5] group-hover:scale-110 transition-transform duration-500" />
                             {totalQuantity > 0 && (
-                                <span className="absolute -top-2 -right-2 bg-black text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center">
+                                <span className="absolute -top-1 -right-1 bg-pink-500 text-white text-[9px] font-black h-5 w-5 rounded-full flex items-center justify-center border-2 border-white shadow-lg group-hover:animate-pulse">
                                     {totalQuantity}
                                 </span>
                             )}
                         </Link>
-                    </div>
 
-                    {/* Mobile menu button */}
-                    <div className="flex md:hidden items-center">
+                        {/* Mobile Menu button */}
                         <button
                             onClick={toggleMenu}
-                            className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                            className="lg:hidden p-2 text-gray-900/60 hover:text-black transition-all"
                         >
-                            <span className="sr-only">Open main menu</span>
-                            {isMenuOpen ? (
-                                <X className="block h-6 w-6" aria-hidden="true" />
-                            ) : (
-                                <Menu className="block h-6 w-6" aria-hidden="true" />
-                            )}
+                            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                         </button>
                     </div>
                 </div>
             </div>
 
-            {/* Mobile Menu */}
-            {isMenuOpen && (
-                <div className="md:hidden bg-white border-t border-gray-100">
-                    <div className="pt-2 pb-3 space-y-1 px-4">
+            {/* Mobile Navigation Overlay */}
+            <div className={cn(
+                "fixed inset-0 bg-white z-[90] lg:hidden transition-all duration-700 ease-in-out",
+                isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
+            )}>
+                <div className="pt-32 px-10 space-y-10">
+                    {navLinks.map((link, idx) => (
                         <Link
-                            href="/products?category=men"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                            key={link.name}
+                            href={link.href}
                             onClick={() => setIsMenuOpen(false)}
+                            className="block text-5xl font-black uppercase tracking-tighter italic text-gray-900 hover:text-pink-600 transition-colors"
+                            style={{ transitionDelay: `${idx * 100}ms` }}
                         >
-                            Men
+                            {link.name}
                         </Link>
-                        <Link
-                            href="/products?category=women"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Women
+                    ))}
+
+                    <div className="pt-12 border-t border-gray-100 space-y-8">
+                        {user ? (
+                            <div className="grid grid-cols-2 gap-6">
+                                <Link href="/profile" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-gray-400">Settings</Link>
+                                <Link href="/orders" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-gray-400">Orders</Link>
+                            </div>
+                        ) : (
+                            <Link href="/login" onClick={() => setIsMenuOpen(false)} className="text-xl font-black uppercase tracking-widest text-gray-900">Sign In / Join</Link>
+                        )}
+                        <Link href="/cart" onClick={() => setIsMenuOpen(false)} className="text-2xl font-black uppercase tracking-tighter flex items-center gap-4 italic group text-gray-900">
+                            Bag <span className="text-pink-600">({totalQuantity})</span>
+                            <ShoppingBag className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
                         </Link>
-                        <Link
-                            href="/products?category=kids"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Kids
-                        </Link>
-                        <Link
-                            href="/products?category=beauty"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Beauty
-                        </Link>
-                        <Link
-                            href="/products?category=home"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Home
-                        </Link>
-                        <Link
-                            href="/products"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            All Products
-                        </Link>
-                    </div>
-                    <div className="pt-4 pb-4 border-t border-gray-200 px-4">
-                        <div className="flex items-center justify-between mb-4">
-                            <Link href="/cart" className="flex items-center space-x-2 text-gray-700" onClick={() => setIsMenuOpen(false)}>
-                                <ShoppingBag className="h-6 w-6" />
-                                <span className="font-medium">Cart ({totalQuantity})</span>
-                            </Link>
-                        </div>
-                        <div className="mt-3">
-                            {user ? (
-                                <div className="flex items-center space-x-2">
-                                    <User className="h-6 w-6 text-gray-500" />
-                                    <span className="text-gray-900 font-medium">{user.username}</span>
-                                </div>
-                            ) : (
-                                <Link href="/login" onClick={() => setIsMenuOpen(false)}>
-                                    <Button className="w-full">Sign In</Button>
-                                </Link>
-                            )}
-                        </div>
                     </div>
                 </div>
-            )}
+            </div>
+
+            {/* Scroll Progress Bar */}
+            <div className="absolute bottom-0 left-0 h-[1px] bg-gray-100 w-full overflow-hidden">
+                <div
+                    className="h-full bg-gradient-to-r from-pink-500 to-orange-400 transition-all duration-300"
+                    style={{ width: `${Math.min(scrolled ? 100 : 0, 100)}%` }}
+                ></div>
+            </div>
         </nav>
     );
 };
