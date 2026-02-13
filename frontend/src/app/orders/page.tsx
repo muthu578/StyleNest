@@ -182,7 +182,7 @@ const OrdersPage = () => {
 
                 {/* Bottom Branding */}
                 <div className="mt-24 pt-12 border-t border-gray-100 flex flex-col items-center gap-6">
-                    <Image src="/logo.svg" alt="Trendora" width={180} height={60} className="h-10 w-auto opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500 cursor-pointer" />
+                    <Image src="/logo.svg" alt="Trendora" width={234} height={78} className="h-[52px] w-auto opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500 cursor-pointer" />
                     <div className="flex flex-wrap justify-center gap-x-10 gap-y-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">
                         <span className="hover:text-pink-500 cursor-pointer transition-colors">Returns & Refunds</span>
                         <span className="hover:text-pink-500 cursor-pointer transition-colors">Privacy Policy</span>

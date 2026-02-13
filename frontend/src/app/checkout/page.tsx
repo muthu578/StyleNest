@@ -155,7 +155,7 @@ const Checkout = () => {
                         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                         Back to Bag
                     </Link>
-                    <Image src="/logo.svg" alt="Trendora" width={100} height={40} className="h-8 w-auto" />
+                    <Image src="/logo.svg" alt="Trendora" width={130} height={52} className="h-[42px] w-auto" />
                     <div className="flex items-center gap-2">
                         <ShieldCheck className="w-4 h-4 text-green-500" />
                         <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Secure Payment</span>

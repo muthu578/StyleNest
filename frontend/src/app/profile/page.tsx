@@ -251,7 +251,7 @@ const ProfilePage = () => {
 
                 {/* Footer Logo Section */}
                 <div className="mt-20 pt-10 border-t border-gray-100 flex flex-col items-center opacity-30">
-                    <Image src="/logo.svg" alt="Trendora" width={120} height={40} className="grayscale mb-4" />
+                    <Image src="/logo.svg" alt="Trendora" width={156} height={52} className="h-[52px] w-auto grayscale mb-4" />
                     <p className="text-[10px] font-black text-gray-400 tracking-[0.3em] uppercase">Premium Lifestyle Retail</p>
                 </div>
             </div>

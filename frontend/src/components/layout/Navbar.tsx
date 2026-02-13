@@ -53,10 +53,10 @@ const Navbar = () => {
                                 <Image
                                     src="/logo.svg"
                                     alt="Trendora"
-                                    width={180}
-                                    height={60}
+                                    width={234}
+                                    height={78}
                                     priority
-                                    className="h-10 w-auto"
+                                    className="h-[60px] w-auto"
                                 />
                             </div>
                         </Link>

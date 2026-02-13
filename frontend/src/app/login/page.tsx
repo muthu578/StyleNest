@@ -38,7 +38,7 @@ const Login = () => {
             {/* Header */}
             <header className="px-6 py-4 border-b border-gray-50 flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-2">
-                    <Image src="/logo.svg" alt="Trendora" width={234} height={104} priority className="h-14 w-auto" />
+                    <Image src="/logo.svg" alt="Trendora" width={304} height={135} priority className="h-[73px] w-auto" />
                 </Link>
                 <Link href="/" className="text-xs font-bold text-gray-500 hover:text-black uppercase tracking-widest transition-colors">
                     Back to Store

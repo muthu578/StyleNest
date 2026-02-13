@@ -10,7 +10,7 @@ const Footer = () => {
                     {/* Brand Section */}
                     <div className="space-y-8 col-span-1 lg:col-span-1">
                         <Link href="/" className="inline-block">
-                            <Image src="/logo.svg" alt="Trendora" width={180} height={60} className="h-10 w-auto invert brightness-0 invert" />
+                            <Image src="/logo.svg" alt="Trendora" width={234} height={78} className="h-[52px] w-auto invert brightness-0 invert" />
                         </Link>
                         <p className="text-gray-500 text-sm font-medium leading-relaxed max-w-xs italic border-l-2 border-pink-500/30 pl-6">
                             Redefining the digital shopping experience through curated masterpieces and timeless fashion.
