@@ -1,0 +1,518 @@
+
+> frontend@0.1.0 test
+> jest src/app/orders/tests/OrdersPage.test.js --no-cache
+
+  console.error
+    Received `true` for a non-boolean attribute `fill`.
+    
+    If you want to write it to the DOM, pass a string instead: fill="true" or fill={value.toString()}.
+
+      at validateProperty (node_modules/react-dom/cjs/react-dom-client.development.js:3070:27)
+      at warnUnknownProperties (node_modules/react-dom/cjs/react-dom-client.development.js:3146:9)
+      at validatePropertiesInDevelopment (node_modules/react-dom/cjs/react-dom-client.development.js:19868:9)
+      at setInitialProperties (node_modules/react-dom/cjs/react-dom-client.development.js:20491:7)
+      at completeWork (node_modules/react-dom/cjs/react-dom-client.development.js:12662:18)
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at completeUnitOfWork (node_modules/react-dom/cjs/react-dom-client.development.js:17777:19)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom-client.development.js:17658:11)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom-client.development.js:17469:41)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom-client.development.js:17450:11)
+      at performWorkOnRoot (node_modules/react-dom/cjs/react-dom-client.development.js:16504:11)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-dom/cjs/react-dom-client.development.js:18957:7)
+      at performWorkUntilDeadline (node_modules/scheduler/cjs/scheduler.development.js:45:48)
+      at Timeout.task [as _onTimeout] (node_modules/jsdom/lib/jsdom/browser/Window.js:579:19)
+
+node.exe : FAIL src/app/orde
+rs/tests/OrdersPage.test.js
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
+    + CategoryInfo          
+    : NotSpecified: (FAIL   
+  src/app/or...ersPage.te   
+ st.js:String) [], Remot    
+eException
+    + FullyQualifiedErrorId 
+    : NativeCommandError
+ 
+  OrdersPage
+    ??? renders empty state 
+when no orders found (65 ms)
+    ?? renders orders list 
+(1020 ms)
+
+  ??? OrdersPage ??? 
+renders orders list
+
+    Found multiple elements 
+with the text: $99.99
+
+    Here are the matching 
+elements:
+
+    Ignored nodes: 
+comments, script, style
+    [36m<span>[39m
+      [0m$[0m
+      [0m99.99[0m
+    [36m</span>[39m
+
+    Ignored nodes: 
+comments, script, style
+    [36m<span[39m
+      [33mclass[39m=[32m"
+text-gray-900 
+font-bold"[39m
+    [36m>[39m
+      [0m$[0m
+      [0m99.99[0m
+    [36m</span>[39m
+
+    (If this is 
+intentional, then use the 
+`*AllBy*` variant of the 
+query (like 
+`queryAllByText`, 
+`getAllByText`, or 
+`findAllByText`)).
+
+    Ignored nodes: 
+comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[
+32m"bg-[#fafafa] 
+min-h-screen font-sans"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=
+[32m"bg-white border-b 
+border-gray-100"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39
+m=[32m"max-w-7xl mx-auto 
+px-4 sm:px-6 lg:px-8 
+py-10"[39m
+            [36m>[39m
+              [36m<div[39m
+                
+[33mclass[39m=[32m"flex 
+flex-col md:flex-row 
+md:items-end 
+justify-between gap-6"[39m
+              [36m>[39m
+                
+[36m<div[39m
+                  [33mclass
+[39m=[32m"space-y-2"[39m
+                [36m>[39m
+                  
+[36m<div[39m
+                    
+[33mclass[39m=[32m"flex 
+items-center gap-2 text-xs 
+font-bold text-pink-600 
+uppercase 
+tracking-[0.2em]"[39m
+                  
+[36m>[39m
+                    
+[36m<svg[39m
+                      [33ma
+ria-hidden[39m=[32m"true"
+[39m
+                      [33mc
+lass[39m=[32m"lucide 
+lucide-shopping-bag w-3 
+h-3"[39m
+                      [33mf
+ill[39m=[32m"none"[39m
+                      [33mh
+eight[39m=[32m"24"[39m
+                      [33ms
+troke[39m=[32m"currentColo
+r"[39m
+                      [33ms
+troke-linecap[39m=[32m"rou
+nd"[39m
+                      [33ms
+troke-linejoin[39m=[32m"ro
+und"[39m
+                      [33ms
+troke-width[39m=[32m"2"[3
+9m
+                      
+[33mviewBox[39m=[32m"0 0 
+24 24"[39m
+                      [33mw
+idth[39m=[32m"24"[39m
+                      [33mx
+mlns[39m=[32m"http://www.w
+3.org/2000/svg"[39m
+                    
+[36m>[39m
+                      
+[36m<path[39m
+                        
+[33md[39m=[32m"M16 10a4 
+4 0 0 1-8 0"[39m
+                      
+[36m/>[39m
+                      
+[36m<path[39m
+                        
+[33md[39m=[32m"M3.103 
+6.034h17.794"[39m
+                      
+[36m/>[39m
+                      
+[36m<path[39m
+                        
+[33md[39m=[32m"M3.4 
+5.467a2 2 0 0 0-.4 1.2V20a2 
+2 0 0 0 2 2h14a2 2 0 0 0 
+2-2V6.667a2 2 0 0 
+0-.4-1.2l-2-2.667A2 2 0 0 0 
+17 2H7a2 2 0 0 
+0-1.6.8z"[39m
+                      
+[36m/>[39m
+                    
+[36m</svg>[39m
+                    
+[36m<span>[39m
+                      
+[0mOrder History[0m
+                    
+[36m</span>[39m
+                  
+[36m</div>[39m
+                  
+[36m<h1[39m
+                    [33mcla
+ss[39m=[32m"text-4xl 
+font-black text-gray-900 
+tracking-tight italic"[39m
+                  
+[36m>[39m
+                    
+[0mYOUR [0m
+                    
+[36m<span[39m
+                      [33mc
+lass[39m=[32m"text-transpa
+rent bg-clip-text 
+bg-gradient-to-r 
+from-pink-500 to-orange-400 
+not-italic"[39m
+                    
+[36m>[39m
+                      
+[0mCOLLECTION[0m
+                    
+[36m</span>[39m
+                  
+[36m</h1>[39m
+                  
+[36m<p[39m
+                    [33mcla
+ss[39m=[32m"text-gray-500 
+font-medium"[39m
+                  
+[36m>[39m
+                    
+[0mManage and track your 
+premium fashion choices.[0m
+                  
+[36m</p>[39m
+                
+[36m</div>[39m
+                
+[36m<div[39m
+                  
+[33mclass[39m=[32m"flex 
+items-center bg-gray-50 
+p-1.5 rounded-2xl border 
+border-gray-100 
+focus-within:ring-2 focus-wi
+thin:ring-pink-500/20 
+transition-all w-full 
+md:w-96"[39m
+                [36m>[39m
+                  
+[36m<svg[39m
+                    [33mari
+a-hidden[39m=[32m"true"[3
+9m
+                    [33mcla
+ss[39m=[32m"lucide 
+lucide-search ml-3 h-5 w-5 
+text-gray-400"[39m
+                    [33mfil
+l[39m=[32m"none"[39m
+                    [33mhei
+ght[39m=[32m"24"[39m
+                    [33mstr
+oke[39m=[32m"currentColor"
+[39m
+                    [33mstr
+oke-linecap[39m=[32m"round
+"[39m
+                    [33mstr
+oke-linejoin[39m=[32m"roun
+d"[39m
+                    [33mstr
+oke-width[39m=[32m"2"[39m
+                    
+[33mviewBox[39m=[32m"0 0 
+24 24"[39m
+                    [33mwid
+th[39m=[32m"24"[39m
+                    [33mxml
+ns[39m=[32m"http://www.w3.
+org/2000/svg"[39m
+                  
+[36m>[39m
+                    
+[36m<path[39m
+                      
+[33md[39m=[32m"m21 
+21-4.34-4.34"[39m
+                    
+[36m/>[39m
+                    
+[36m<circle[39m
+                      
+[33mcx[39m=[32m"11"[39m
+                      
+[33mcy[39m=[32m"11"[39m
+                      
+[33mr[39m=[32m"8"[39m
+                    
+[36m/>[39m
+                  
+[36m</svg>[39m
+                  
+[36m<input[39m
+                    [33mcla
+ss[39m=[32m"flex-grow 
+bg-transparent border-none 
+outline-none px-3 py-2 
+text-sm font-medium 
+text-gray-900 placeholder:te
+xt-gray-400"[39m
+                    [33mpla
+ceholder[39m=[32m"Find an 
+order..."[39m
+                    [33mtyp
+e[39m=[32m"text"[39m
+                  
+[36m/>[39m
+                
+[36m</div>[39m
+              
+[36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=
+[32m"max-w-7xl mx-auto 
+px-4 sm:px-6 lg:px-8 
+py-12"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39
+m=[32m"space-y-10"[39m
+            [36m>[39m
+              [36m<div[39m
+                
+[33mclass[39m=[32m"group 
+animate-fade-in"[39m
+              [36m>[39m
+                
+[36m<div[39m
+                  [33mclass
+[39m=[32m"bg-white 
+rounded-[24px] 
+overflow-hidden border 
+border-gray-100 shadow-sm 
+hover:shadow-xl 
+hover:border-pink-100 
+transition-all 
+duration-500"[39m
+                [36m>[39m
+                  
+[36m<div[39m
+                    [33mcla
+ss[39m=[32m"bg-white px-8 
+py-6 border-b 
+border-gray-50 flex 
+flex-wrap items-center 
+justify-between gap-6"[39m
+                  
+[36m>[39m
+                    
+[36m<div[39m
+                      
+[33mclass[39m=[32m"flex 
+flex-wrap gap-10"[39m
+                    
+[36m>[39m
+                      
+[36m<div[39m
+                        [33
+mclass[39m=[32m"space-y-1"
+[39m
+                      
+[36m>[39m
+                        
+[36m<p[39m
+                          [
+33mclass[39m=[32m"text-[10
+px] font-black 
+text-gray-400 uppercase 
+tracking-widest"[39m
+                        
+[36m>[39m
+                          
+[0mOrder Placed[0m
+                        
+[36m</p>[39m
+                        
+[36m<div[39m
+                          
+[33mclass[39m=[32m"flex 
+items-center gap-2 
+text-gray-900 
+font-bold"[39m
+                        
+[36m>[39m
+                          
+[36m<svg[39m
+                            
+[33maria-hidden[39m=[32m"
+true"[39m
+                            
+[33mclass[39m=[32m"lucide
+ lucide-calendar w-4 h-4 
+text-pink-500"[39m
+                            
+[33mfill[39m=[32m"none"[
+39m
+                            
+[33mheight[39m=[32m"24"[
+39m
+                            
+[33mstroke[39m=[32m"curre
+ntColor"[39m
+                            
+[33mstroke-linecap[39m=[3
+2m"round"[39m
+                            
+[33mstroke-linejoin[39m=[
+32m"round"[39m
+                            
+[33mstroke-width[39m=[32m
+"2"[39m
+                            
+[33mviewBox[39m=[32m"0 0 
+24 24"[39m
+                            
+[33mwidth[39m=[32m"24"[3
+9m
+                            
+[33mxmlns[39m=[32m"http:/
+/www.w3.org/2000/svg"[39m
+                          
+[36m>[39m
+                            
+[36m<path[39m
+                            
+  [33md[39m=[32m"M8 
+2v4"[39m
+                            
+[36m/>...
+
+    [0m [90m 45 |[39m    
+     render([33m<[39m[33m
+OrdersPage[39m [33m/[39m
+[33m>[39m)[33m;[39m
+     [90m 46 |[39m
+    
+[31m[1m>[22m[39m[90m 
+47 |[39m         
+[36mawait[39m waitFor(() 
+[33m=>[39m {
+     [90m    |[39m        
+              
+[31m[1m^[22m[39m
+     [90m 48 |[39m        
+     expect(screen[33m.[39
+mgetByText([32m'Item 1'[39
+m))[33m.[39mtoBeInTheDocum
+ent()[33m;[39m
+     [90m 49 |[39m        
+     expect(screen[33m.[39
+mgetByText([32m'$99.99'[39
+m))[33m.[39mtoBeInTheDocum
+ent()[33m;[39m
+     [90m 50 |[39m        
+     expect(screen[33m.[39
+mgetByText([32m'Delivered'
+[39m))[33m.[39mtoBeInTheDo
+cument()[33m;[39m[0m
+
+      at waitForWrapper (nod
+e_modules/@testing-library/d
+om/dist/wait-for.js:163:27)
+      at Object.<anonymous> 
+(src/app/orders/tests/Orders
+Page.test.js:47:22)
+
+----------------------------|---------|----------|---------|---------|-------------------
+File                        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+----------------------------|---------|----------|---------|---------|-------------------
+All files                   |    1.81 |     6.25 |    6.25 |    1.81 |                   
+ auth                       |       0 |        0 |       0 |       0 |                   
+  AuthInit.tsx              |       0 |        0 |       0 |       0 | 1-32              
+ beauty                     |       0 |        0 |       0 |       0 |                   
+  BeautyLandingPage.tsx     |       0 |        0 |       0 |       0 | 1-246             
+ home                       |       0 |        0 |       0 |       0 |                   
+  CategoryShowcase.tsx      |       0 |        0 |       0 |       0 | 1-80              
+  FeaturedSection.tsx       |       0 |        0 |       0 |       0 | 1-141             
+ home_living                |       0 |        0 |       0 |       0 |                   
+  HomeLivingLandingPage.tsx |       0 |        0 |       0 |       0 | 1-266             
+ kids                       |       0 |        0 |       0 |       0 |                   
+  KidsLandingPage.tsx       |       0 |        0 |       0 |       0 | 1-258             
+ layout                     |       0 |        0 |       0 |       0 |                   
+  ConditionalLayout.tsx     |       0 |        0 |       0 |       0 | 1-24              
+  Footer.tsx                |       0 |        0 |       0 |       0 | 1-93              
+  Hero.tsx                  |       0 |        0 |       0 |       0 | 1-102             
+  Navbar.tsx                |       0 |        0 |       0 |       0 | 1-208             
+ men                        |       0 |        0 |       0 |       0 |                   
+  MenLandingPage.tsx        |       0 |        0 |       0 |       0 | 1-255             
+ product                    |       0 |        0 |       0 |       0 |                   
+  CategoryHeader.tsx        |       0 |        0 |       0 |       0 | 1-70              
+  FilterSidebar.tsx         |       0 |        0 |       0 |       0 | 1-147             
+  ProductCard.tsx           |       0 |        0 |       0 |       0 | 1-112             
+ ui                         |     100 |      100 |     100 |     100 |                   
+  Button.tsx                |     100 |      100 |     100 |     100 |                   
+ women                      |       0 |        0 |       0 |       0 |                   
+  WomenLandingPage.tsx      |       0 |        0 |       0 |       0 | 1-243             
+----------------------------|---------|----------|---------|---------|-------------------
+Test Suites: 1 failed, 1 
+total
+Tests:       1 failed, 1 
+passed, 2 total
+Snapshots:   0 total
+Time:        2.566 s
+Ran all test suites 
+matching src/app/orders/test
+s/OrdersPage.test.js.

@@ -3,6 +3,12 @@ import FeaturedSection from '@/components/home/FeaturedSection';
 import CategoryShowcase from '@/components/home/CategoryShowcase';
 import { ArrowRight, Sparkles, ShieldCheck, Globe, Star } from 'lucide-react';
 import Image from 'next/image';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Home | Trendora Premier Fashion",
+  description: "Welcome to Trendora, the apex of curated fashion. Discover our latest collections for Men, Women, and Kids. Beyond trends, timeless style.",
+};
 
 export default function Home() {
   return (
@@ -54,7 +60,7 @@ export default function Home() {
       </section>
 
       <div className="space-y-32 pb-32">
-        <FeaturedSection title="Curated Essentials" limit={4} />
+        <FeaturedSection title="Curated Essentials" limit={4} priority={true} />
         <FeaturedSection title="The Modern Voyager" category="men" limit={4} />
         <FeaturedSection title="Studio Feminine" category="women" limit={4} />
       </div>

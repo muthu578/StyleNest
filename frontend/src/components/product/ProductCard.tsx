@@ -46,6 +46,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 {/* Exclusive Glass Overlay on Hover */}
                 <div className="absolute inset-x-0 bottom-0 p-6 flex items-center justify-between translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-10">
                     <button
+                        aria-label={`Add ${product.title} to bag`}
                         onClick={handleAddToCart}
                         className="flex-grow mr-2 bg-white/80 backdrop-blur-xl border border-white/40 h-12 rounded-2xl flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-900 hover:bg-black hover:text-white transition-all shadow-xl"
                     >
@@ -53,6 +54,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                         ADD TO BAG
                     </button>
                     <button
+                        aria-label={isWishlisted ? `Remove ${product.title} from wishlist` : `Add ${product.title} to wishlist`}
                         onClick={handleToggleWishlist}
                         className={cn(
                             "w-12 h-12 rounded-2xl flex items-center justify-center backdrop-blur-xl border border-white/40 shadow-xl transition-all",

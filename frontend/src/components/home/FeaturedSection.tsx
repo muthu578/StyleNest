@@ -12,6 +12,7 @@ interface FeaturedSectionProps {
     title: string;
     category?: string;
     limit?: number;
+    priority?: boolean;
 }
 
 const CATEGORY_BANNERS: Record<string, string> = {
@@ -21,7 +22,7 @@ const CATEGORY_BANNERS: Record<string, string> = {
     default: 'https://images.pexels.com/photos/934070/pexels-photo-934070.jpeg?auto=format&fit=crop&w=1600',
 };
 
-const FeaturedSection: React.FC<FeaturedSectionProps> = ({ title, category, limit = 4 }) => {
+const FeaturedSection: React.FC<FeaturedSectionProps> = ({ title, category, limit = 4, priority = false }) => {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -68,7 +69,7 @@ const FeaturedSection: React.FC<FeaturedSectionProps> = ({ title, category, limi
                     alt={`${title} Banner`}
                     fill
                     className="object-cover scale-105 group-hover:scale-100 transition-transform duration-[2s] ease-out"
-                    priority
+                    priority={priority}
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-transparent"></div>
 

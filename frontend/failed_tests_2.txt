@@ -1,0 +1,12 @@
+
+FAIL src/app/register/tests/
+RegisterPage.test.js
+Summary of all failing tests
+FAIL src/app/register/tests/
+RegisterPage.test.js
+Test Suites: 1 failed, 26 
+passed, 27 total
+Tests:       1 failed, 43 
+passed, 44 total
+
+

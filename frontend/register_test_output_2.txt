@@ -1,0 +1,90 @@
+node.exe : PASS src/app/regi
+ster/tests/RegisterPage.test
+.js
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
+    + CategoryInfo          
+    : NotSpecified: (PASS   
+  src/app/re...terPage.te   
+ st.js:String) [], Remot    
+eException
+    + FullyQualifiedErrorId 
+    : NativeCommandError
+ 
+  Register Page
+    ??? renders register 
+form (53 ms)
+    ??? handles successful 
+registration (139 ms)
+    ??? shows error if 
+passwords do not match (45 
+ms)
+
+----------------------------|---------|----------|---------|---------|-------------------
+File                        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+----------------------------|---------|----------|---------|---------|-------------------
+All files                   |    4.94 |    15.62 |   10.34 |    4.94 |                   
+ app                        |       0 |        0 |       0 |       0 |                   
+  layout.tsx                |       0 |        0 |       0 |       0 | 1-44              
+  page.tsx                  |       0 |        0 |       0 |       0 | 1-87              
+ app/cart                   |       0 |        0 |       0 |       0 |                   
+  page.tsx                  |       0 |        0 |       0 |       0 | 1-188             
+ app/checkout               |       0 |        0 |       0 |       0 |                   
+  page.tsx                  |       0 |        0 |       0 |       0 | 1-297             
+ app/login                  |       0 |        0 |       0 |       0 |                   
+  page.tsx                  |       0 |        0 |       0 |       0 | 1-182             
+ app/orders                 |       0 |        0 |       0 |       0 |                   
+  page.tsx                  |       0 |        0 |       0 |       0 | 1-198             
+ app/products               |       0 |        0 |       0 |       0 |                   
+  page.tsx                  |       0 |        0 |       0 |       0 | 1-135             
+ app/products/[id]          |       0 |        0 |       0 |       0 |                   
+  page.tsx                  |       0 |        0 |       0 |       0 | 1-262             
+ app/profile                |       0 |        0 |       0 |       0 |                   
+  page.tsx                  |       0 |        0 |       0 |       0 | 1-269             
+ app/register               |   99.06 |    83.33 |     100 |   99.06 |                   
+  page.tsx                  |   99.06 |    83.33 |     100 |   99.06 | 46-47             
+ app/wishlist               |       0 |        0 |       0 |       0 |                   
+  page.tsx                  |       0 |        0 |       0 |       0 | 1-89              
+ components/auth            |       0 |        0 |       0 |       0 |                   
+  AuthInit.tsx              |       0 |        0 |       0 |       0 | 1-32              
+ components/beauty          |       0 |        0 |       0 |       0 |                   
+  BeautyLandingPage.tsx     |       0 |        0 |       0 |       0 | 1-246             
+ components/home            |       0 |        0 |       0 |       0 |                   
+  CategoryShowcase.tsx      |       0 |        0 |       0 |       0 | 1-80              
+  FeaturedSection.tsx       |       0 |        0 |       0 |       0 | 1-141             
+ components/home_living     |       0 |        0 |       0 |       0 |                   
+  HomeLivingLandingPage.tsx |       0 |        0 |       0 |       0 | 1-266             
+ components/kids            |       0 |        0 |       0 |       0 |                   
+  KidsLandingPage.tsx       |       0 |        0 |       0 |       0 | 1-258             
+ components/layout          |       0 |        0 |       0 |       0 |                   
+  ConditionalLayout.tsx     |       0 |        0 |       0 |       0 | 1-24              
+  Footer.tsx                |       0 |        0 |       0 |       0 | 1-93              
+  Hero.tsx                  |       0 |        0 |       0 |       0 | 1-102             
+  Navbar.tsx                |       0 |        0 |       0 |       0 | 1-208             
+ components/men             |       0 |        0 |       0 |       0 |                   
+  MenLandingPage.tsx        |       0 |        0 |       0 |       0 | 1-255             
+ components/product         |       0 |        0 |       0 |       0 |                   
+  CategoryHeader.tsx        |       0 |        0 |       0 |       0 | 1-70              
+  FilterSidebar.tsx         |       0 |        0 |       0 |       0 | 1-147             
+  ProductCard.tsx           |       0 |        0 |       0 |       0 | 1-112             
+ components/ui              |       0 |        0 |       0 |       0 |                   
+  Button.tsx                |       0 |        0 |       0 |       0 | 1-42              
+ components/women           |       0 |        0 |       0 |       0 |                   
+  WomenLandingPage.tsx      |       0 |        0 |       0 |       0 | 1-243             
+----------------------------|---------|----------|---------|---------|-------------------
+Test Suites: 1 passed, 1 
+total
+Tests:       3 passed, 3 
+total
+Snapshots:   0 total
+Time:        1.799 s, 
+estimated 3 s
+Ran all test suites 
+matching src/app/register/te
+sts/RegisterPage.test.js.

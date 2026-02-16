@@ -46,15 +46,15 @@ const Hero = () => {
 
                     {/* CTA Actions */}
                     <div className="flex flex-col sm:flex-row gap-8 pt-8 animate-slide-up" style={{ animationDelay: '400ms' }}>
-                        <Link href="/products">
-                            <button className="group/btn bg-white hover:bg-pink-50 text-black px-12 py-6 rounded-full font-black text-[11px] uppercase tracking-[0.3em] shadow-2xl transition-all active:scale-95 flex items-center gap-6">
+                        <Link href="/products" aria-label="Explore products collection">
+                            <button aria-label="Discover Pieces" className="group/btn bg-white hover:bg-pink-50 text-black px-12 py-6 rounded-full font-black text-[11px] uppercase tracking-[0.3em] shadow-2xl transition-all active:scale-95 flex items-center gap-6">
                                 DISCOVER PIECES
                                 <div className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center group-hover/btn:translate-x-2 transition-transform">
                                     <ArrowRight className="w-4 h-4" />
                                 </div>
                             </button>
                         </Link>
-                        <button className="flex items-center gap-6 group/video">
+                        <button aria-label="Watch fashion film" className="flex items-center gap-6 group/video">
                             <div className="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center group-hover/video:border-pink-500 group-hover/video:bg-pink-500/10 backdrop-blur-sm transition-all duration-700">
                                 <Play className="w-5 h-5 text-white fill-current" />
                             </div>

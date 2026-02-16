@@ -1,0 +1,214 @@
+'use client';
+
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '@/store/slices/authSlice';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { register } from '@/services/api';
+import { Mail, User, Lock, ArrowRight, Check } from 'lucide-react';
+
+const Register = () => {
+    const [formData, setFormData] = useState({
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+    });
+    const dispatch = useDispatch();
+    const router = useRouter();
+    const [error, setError] = useState('');
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError('');
+
+        if (formData.password !== formData.confirmPassword) {
+            setError('Passwords do not match');
+            return;
+        }
+
+        try {
+            const data = await register({
+                username: formData.username,
+                email: formData.email,
+                password: formData.password
+            });
+            const { accessToken, refreshToken, ...user } = data as any;
+            dispatch(loginSuccess({ user, accessToken, refreshToken }));
+            router.push('/');
+        } catch (err: any) {
+            setError(err.response?.data?.message || 'Registration failed');
+        }
+    };
+
+    return (
+        <div className="h-screen flex flex-col bg-white overflow-hidden font-sans">
+            {/* Header */}
+            <header className="px-6 py-4 border-b border-gray-50 flex items-center justify-between">
+                <Link href="/" className="flex items-center gap-2">
+                    <Image src="/logo.svg" alt="Trendora" width={304} height={135} priority className="h-[73px] w-auto" />
+                </Link>
+                <Link href="/" className="text-xs font-bold text-gray-500 hover:text-black uppercase tracking-widest transition-colors">
+                    Back to Store
+                </Link>
+            </header>
+
+            <div className="flex-grow flex flex-col lg:flex-row min-h-0">
+                {/* Left Side: Register Form */}
+                <div className="w-full lg:w-[45%] flex items-center justify-center p-6 lg:p-8 xl:p-12 relative bg-white overflow-y-auto no-scrollbar">
+                    <div className="w-full max-w-sm animate-fade-in">
+                        <div className="space-y-1 mb-6 text-center lg:text-left">
+                            <h2 className="text-3xl xl:text-4xl font-extrabold text-gray-900 tracking-tight">Create Account</h2>
+                            <p className="text-gray-500 text-base font-medium">Join us for a premium shopping experience.</p>
+                        </div>
+
+                        <form className="space-y-3" onSubmit={handleSubmit}>
+                            <div className="space-y-1">
+                                <label htmlFor="username" className="text-[10px] font-bold text-gray-700 ml-1 uppercase tracking-[0.2em]">Username</label>
+                                <div className="relative group">
+                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none group-focus-within:text-black text-gray-400 transition-colors">
+                                        <User className="h-4 w-4" />
+                                    </div>
+                                    <input
+                                        id="username"
+                                        name="username"
+                                        type="text"
+                                        required
+                                        placeholder="Pick a username"
+                                        className="block w-full pl-10 pr-4 py-2 bg-gray-50/50 border-2 border-gray-100 rounded-xl focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 transition-all outline-none text-sm text-gray-900 placeholder:text-gray-400 font-medium"
+                                        value={formData.username}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="space-y-1">
+                                <label htmlFor="email" className="text-[10px] font-bold text-gray-700 ml-1 uppercase tracking-[0.2em]">Email Address</label>
+                                <div className="relative group">
+                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none group-focus-within:text-black text-gray-400 transition-colors">
+                                        <Mail className="h-4 w-4" />
+                                    </div>
+                                    <input
+                                        id="email"
+                                        name="email"
+                                        type="email"
+                                        required
+                                        placeholder="Enter email"
+                                        className="block w-full pl-10 pr-4 py-2 bg-gray-50/50 border-2 border-gray-100 rounded-xl focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 transition-all outline-none text-sm text-gray-900 placeholder:text-gray-400 font-medium"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="space-y-1">
+                                <label htmlFor="password" className="text-[10px] font-bold text-gray-700 ml-1 uppercase tracking-[0.2em]">Password</label>
+                                <div className="relative group">
+                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none group-focus-within:text-black text-gray-400 transition-colors">
+                                        <Lock className="h-4 w-4" />
+                                    </div>
+                                    <input
+                                        id="password"
+                                        name="password"
+                                        type="password"
+                                        required
+                                        placeholder="••••••••"
+                                        className="block w-full pl-10 pr-4 py-2 bg-gray-50/50 border-2 border-gray-100 rounded-xl focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 transition-all outline-none text-sm text-gray-900 placeholder:text-gray-400 font-medium"
+                                        value={formData.password}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="space-y-1">
+                                <label htmlFor="confirmPassword" className="text-[10px] font-bold text-gray-700 ml-1 uppercase tracking-[0.2em]">Confirm Password</label>
+                                <div className="relative group">
+                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none group-focus-within:text-black text-gray-400 transition-colors">
+                                        <Check className="h-4 w-4" />
+                                    </div>
+                                    <input
+                                        id="confirmPassword"
+                                        name="confirmPassword"
+                                        type="password"
+                                        required
+                                        placeholder="••••••••"
+                                        className="block w-full pl-10 pr-4 py-2 bg-gray-50/50 border-2 border-gray-100 rounded-xl focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 transition-all outline-none text-sm text-gray-900 placeholder:text-gray-400 font-medium"
+                                        value={formData.confirmPassword}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                            </div>
+
+                            {error && <p className="text-red-500 text-xs font-semibold bg-red-50 p-2.5 rounded-lg border border-red-100 animate-pulse">{error}</p>}
+
+                            <button
+                                type="submit"
+                                className="w-full bg-black text-white py-3 rounded-xl font-bold text-base hover:bg-gray-800 hover:shadow-xl active:scale-[0.98] transition-all flex items-center justify-center gap-2 group mt-4"
+                            >
+                                CREATE ACCOUNT
+                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            </button>
+                        </form>
+
+                        <div className="mt-6 text-center">
+                            <p className="text-gray-500 text-sm font-medium">
+                                Already have an account?{' '}
+                                <Link href="/login" className="text-black font-bold hover:underline underline-offset-4 decoration-2 transition-all">
+                                    Sign In
+                                </Link>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Right Side: Lifestyle Image */}
+                <div className="hidden lg:block lg:w-[55%] relative overflow-hidden group">
+                    <Image
+                        src="https://images.pexels.com/photos/974911/pexels-photo-974911.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                        alt="Fashion Lifestyle"
+                        fill
+                        className="object-cover scale-105 group-hover:scale-100 transition-transform duration-[2s] ease-out"
+                        priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+
+                    <div className="absolute bottom-12 left-12 right-12 text-white max-w-md">
+                        <div className="flex items-center gap-2 mb-4">
+                            <div className="w-8 h-1 bg-pink-500 rounded-full"></div>
+                            <p className="text-[10px] font-bold tracking-[0.2em] uppercase opacity-90">Exclusive Access</p>
+                        </div>
+                        <h3 className="text-5xl xl:text-6xl font-black leading-[1] tracking-tighter mb-6 italic">
+                            JOIN THE <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-orange-300 not-italic">COMMUNITY</span>
+                        </h3>
+                        <p className="text-sm text-gray-200 font-medium leading-relaxed opacity-90 p-3 border-l-3 border-pink-500 bg-white/5 backdrop-blur-sm rounded-r-xl">
+                            Unlock exclusive collections, early access to sales, and a personalized style feed.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Bottom Promo Banner */}
+            <div className="w-full bg-pink-500 text-white py-2 px-4 text-center shadow-2xl relative z-10 overflow-hidden shrink-0">
+                <div className="flex items-center justify-center gap-8 animate-marquee whitespace-nowrap">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                        <div key={i} className="flex items-center gap-8">
+                            <span className="text-[10px] font-black tracking-[0.2em] uppercase flex items-center gap-2">
+                                SIGN UP AND GET 20% OFF FOR ALL STYLE-NEST COLLECTIONS <ArrowRight className="w-3 h-3" />
+                            </span>
+                            <span className="text-[10px] font-black tracking-[0.2em] uppercase opacity-50">•</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Register;

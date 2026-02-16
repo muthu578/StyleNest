@@ -79,7 +79,7 @@ const Navbar = () => {
                     {/* Right Side Icons */}
                     <div className="flex items-center space-x-4 sm:space-x-8">
                         {/* Search icon */}
-                        <button className="p-2 text-gray-900/40 hover:text-black transition-colors hidden sm:block">
+                        <button aria-label="Search" className="p-2 text-gray-900/40 hover:text-black transition-colors hidden sm:block">
                             <Search className="w-5 h-5 stroke-[1.5]" />
                         </button>
 
@@ -91,7 +91,7 @@ const Navbar = () => {
                                         <div className="w-full h-full rounded-full bg-white p-[1px] overflow-hidden">
                                             <Image
                                                 src={user.image || "https://robohash.org/muthu.png"}
-                                                alt="User"
+                                                alt={user.username}
                                                 width={36}
                                                 height={36}
                                                 className="object-cover"
@@ -107,18 +107,19 @@ const Navbar = () => {
                                             <p className="text-base font-black text-gray-900 truncate uppercase italic tracking-tighter">{user.username}</p>
                                         </div>
                                         <div className="space-y-1">
-                                            <Link href="/profile" className="flex items-center gap-4 px-5 py-3.5 text-[11px] font-black uppercase tracking-widest text-gray-600 hover:text-black hover:bg-gray-50 rounded-2xl transition-all">
+                                            <Link href="/profile" aria-label="View Profile" className="flex items-center gap-4 px-5 py-3.5 text-[11px] font-black uppercase tracking-widest text-gray-600 hover:text-black hover:bg-gray-50 rounded-2xl transition-all">
                                                 <User className="w-4 h-4" /> Account Details
                                             </Link>
-                                            <Link href="/orders" className="flex items-center gap-4 px-5 py-3.5 text-[11px] font-black uppercase tracking-widest text-gray-600 hover:text-black hover:bg-gray-50 rounded-2xl transition-all">
+                                            <Link href="/orders" aria-label="View Orders" className="flex items-center gap-4 px-5 py-3.5 text-[11px] font-black uppercase tracking-widest text-gray-600 hover:text-black hover:bg-gray-50 rounded-2xl transition-all">
                                                 <ShoppingBag className="w-4 h-4" /> Order History
                                             </Link>
-                                            <Link href="/wishlist" className="flex items-center gap-4 px-5 py-3.5 text-[11px] font-black uppercase tracking-widest text-gray-600 hover:text-black hover:bg-gray-50 rounded-2xl transition-all">
+                                            <Link href="/wishlist" aria-label="View Wishlist" className="flex items-center gap-4 px-5 py-3.5 text-[11px] font-black uppercase tracking-widest text-gray-600 hover:text-black hover:bg-gray-50 rounded-2xl transition-all">
                                                 <Heart className="w-4 h-4" /> My Wishlist
                                             </Link>
                                         </div>
                                         <div className="mt-4 pt-4 border-t border-gray-50">
                                             <button
+                                                aria-label="Sign Out"
                                                 onClick={() => {
                                                     dispatch(logout());
                                                     router.push('/login');
@@ -131,7 +132,7 @@ const Navbar = () => {
                                     </div>
                                 </div>
                             ) : (
-                                <Link href="/login" className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] text-gray-900/60 hover:text-black transition-all">
+                                <Link href="/login" aria-label="Login to your account" className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] text-gray-900/60 hover:text-black transition-all">
                                     <User className="w-5 h-5 stroke-[1.5]" />
                                     <span className="hidden sm:inline italic">Vault</span>
                                 </Link>
@@ -139,7 +140,7 @@ const Navbar = () => {
                         </div>
 
                         {/* Cart icon */}
-                        <Link href="/cart" className="relative group p-2 text-gray-900/60 hover:text-black transition-all">
+                        <Link href="/cart" aria-label={`View Cart with ${totalQuantity} items`} className="relative group p-2 text-gray-900/60 hover:text-black transition-all">
                             <ShoppingBag className="w-5 h-5 stroke-[1.5] group-hover:scale-110 transition-transform duration-500" />
                             {totalQuantity > 0 && (
                                 <span className="absolute -top-1 -right-1 bg-pink-500 text-white text-[9px] font-black h-5 w-5 rounded-full flex items-center justify-center border-2 border-white shadow-lg group-hover:animate-pulse">
@@ -150,6 +151,7 @@ const Navbar = () => {
 
                         {/* Mobile Menu button */}
                         <button
+                            aria-label="Toggle Mobile Menu"
                             onClick={toggleMenu}
                             className="lg:hidden p-2 text-gray-900/60 hover:text-black transition-all"
                         >

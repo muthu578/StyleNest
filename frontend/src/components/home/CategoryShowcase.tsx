@@ -42,6 +42,7 @@ const CategoryShowcase = () => {
                         <Link
                             key={category.name}
                             href={category.href}
+                            aria-label={`Shop ${category.name} collection`}
                             className="group relative flex flex-col animate-fade-in"
                             style={{ animationDelay: `${idx * 150}ms` }}
                         >
