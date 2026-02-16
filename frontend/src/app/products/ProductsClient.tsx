@@ -38,14 +38,9 @@ const ProductList = () => {
 
     const getPageTitle = () => {
         if (!category) return 'All Products';
-        switch (category) {
-            case 'men': return "Men's Fashion";
-            case 'women': return "Women's Fashion";
-            case 'kids': return "Kids' Fashion";
-            case 'beauty': return "Beauty & Personal Care";
-            case 'home': return "Home & Living";
-            default: return category.charAt(0).toUpperCase() + category.slice(1);
-        }
+        // Note: Specific categories (men, women, etc.) return early with unique landing pages.
+        // This title is for any other categories or filtered views.
+        return category.charAt(0).toUpperCase() + category.slice(1);
     };
 
     if (loading) {

@@ -1,0 +1,67 @@
+
+> frontend@0.1.0 test
+> jest --coverage --ci --reporters default --no-cache
+
+----------------------------|---------|----------|---------|---------|------------------------------------------
+File                        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                        
+----------------------------|---------|----------|---------|---------|------------------------------------------
+All files                   |   89.15 |     79.1 |   78.94 |   89.15 |                                          
+ app                        |   39.07 |       25 |      25 |   39.07 |                                          
+  layout.tsx                |       0 |        0 |       0 |       0 | 1-101                                    
+  page.tsx                  |     100 |      100 |     100 |     100 |                                          
+  robots.ts                 |       0 |        0 |       0 |       0 | 1-12                                     
+  sitemap.ts                |       0 |        0 |       0 |       0 | 1-32                                     
+ app/cart                   |     100 |      100 |      60 |     100 |                                          
+  CartClient.tsx            |     100 |      100 |      50 |     100 |                                          
+  page.tsx                  |     100 |      100 |     100 |     100 |                                          
+ app/checkout               |   94.82 |    76.19 |     100 |   94.82 |                                          
+  CheckoutClient.tsx        |   94.61 |       75 |     100 |   94.61 | 43-55,81-83                              
+  page.tsx                  |     100 |      100 |     100 |     100 |                                          
+ app/login                  |     100 |    77.77 |   83.33 |     100 |                                          
+  LoginClient.tsx           |     100 |       75 |      80 |     100 | 31-32                                    
+  page.tsx                  |     100 |      100 |     100 |     100 |                                          
+ app/orders                 |   99.52 |    88.88 |     100 |   99.52 |                                          
+  OrdersClient.tsx          |   99.49 |     87.5 |     100 |   99.49 | 20                                       
+  page.tsx                  |     100 |      100 |     100 |     100 |                                          
+ app/products               |   75.72 |       50 |      80 |   75.72 |                                          
+  ProductsClient.tsx        |   87.59 |    47.82 |     100 |   87.59 | 30,41-42,64-65,68-69,72-73,76-77,111-115 
+  page.tsx                  |    40.9 |      100 |      50 |    40.9 | 11-36                                    
+ app/products/[id]          |   13.95 |      100 |   33.33 |   13.95 |                                          
+  ProductDetailClient.tsx   |    7.14 |      100 |       0 |    7.14 | 17-250                                   
+  page.tsx                  |   48.97 |      100 |      50 |   48.97 | 12-36                                    
+ app/profile                |     100 |       50 |     100 |     100 |                                          
+  ProfileClient.tsx         |     100 |    42.85 |     100 |     100 | 36-38,71                                 
+  page.tsx                  |     100 |      100 |     100 |     100 |                                          
+ app/register               |   99.11 |    85.71 |     100 |   99.11 |                                          
+  RegisterClient.tsx        |   99.06 |    83.33 |     100 |   99.06 | 46-47                                    
+  page.tsx                  |     100 |      100 |     100 |     100 |                                          
+ app/wishlist               |     100 |      100 |     100 |     100 |                                          
+  WishlistClient.tsx        |     100 |      100 |     100 |     100 |                                          
+  page.tsx                  |     100 |      100 |     100 |     100 |                                          
+ components/auth            |     100 |      100 |     100 |     100 |                                          
+  AuthInit.tsx              |     100 |      100 |     100 |     100 |                                          
+ components/beauty          |   99.59 |     87.5 |     100 |   99.59 |                                          
+  BeautyLandingPage.tsx     |   99.59 |     87.5 |     100 |   99.59 | 66                                       
+ components/home            |   98.65 |    66.66 |     100 |   98.65 |                                          
+  CategoryShowcase.tsx      |     100 |      100 |     100 |     100 |                                          
+  FeaturedSection.tsx       |   97.88 |    61.53 |     100 |   97.88 | 37,58-59                                 
+ components/home_living     |   99.62 |     87.5 |     100 |   99.62 |                                          
+  HomeLivingLandingPage.tsx |   99.62 |     87.5 |     100 |   99.62 | 66                                       
+ components/kids            |   99.61 |     87.5 |     100 |   99.61 |                                          
+  KidsLandingPage.tsx       |   99.61 |     87.5 |     100 |   99.61 | 66                                       
+ components/layout          |     100 |    97.05 |     100 |     100 |                                          
+  ConditionalLayout.tsx     |     100 |       50 |     100 |     100 | 17                                       
+  Footer.tsx                |     100 |      100 |     100 |     100 |                                          
+  Hero.tsx                  |     100 |      100 |     100 |     100 |                                          
+  Navbar.tsx                |     100 |      100 |     100 |     100 |                                          
+ components/men             |    99.6 |     87.5 |     100 |    99.6 |                                          
+  MenLandingPage.tsx        |    99.6 |     87.5 |     100 |    99.6 | 66                                       
+ components/product         |   93.65 |    76.92 |      30 |   93.65 |                                          
+  CategoryHeader.tsx        |     100 |      100 |     100 |     100 |                                          
+  FilterSidebar.tsx         |   91.83 |      100 |   16.66 |   91.83 | 69-74,77-82                              
+  ProductCard.tsx           |    92.1 |       40 |   33.33 |    92.1 | 23-26,29-32,62                           
+ components/ui              |     100 |      100 |     100 |     100 |                                          
+  Button.tsx                |     100 |      100 |     100 |     100 |                                          
+ components/women           |   99.58 |     87.5 |     100 |   99.58 |                                          
+  WomenLandingPage.tsx      |   99.58 |     87.5 |     100 |   99.58 | 66                                       
+----------------------------|---------|----------|---------|---------|------------------------------------------

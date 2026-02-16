@@ -3,8 +3,8 @@ import RootLayout from '../layout';
 
 // Mock fonts
 jest.mock('next/font/google', () => ({
-    Geist: () => ({ variable: 'geist-sans' }),
-    Geist_Mono: () => ({ variable: 'geist-mono' }),
+    Outfit: () => ({ variable: 'font-outfit' }),
+    Inter: () => ({ variable: 'font-inter' }),
 }));
 
 // Mock Providers and Components

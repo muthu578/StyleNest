@@ -59,13 +59,28 @@ describe('CartPage', () => {
 
         render(<CartPage />);
 
-        // Find by looking for buttons that contain SVGs or just by their index in the rendered group
-        const productCardButtons = screen.getAllByRole('button');
-        // Based on the DOM, the plus/minus buttons are likely among the first ones per item
-        // But since we have only one item, let's look for them.
-        // Usually index 1 is minus, index 2 is plus (index 0 might be something else)
-        // Let's use a more robust search if possible, but for now index check
-        fireEvent.click(productCardButtons[1]); // Assuming plus is 1
+        // Get buttons. In the item card: index 0: minus, 1: plus, 2: remove
+        const buttons = screen.getAllByRole('button');
+
+        // Plus button (index 1)
+        fireEvent.click(buttons[1]);
         expect(mockDispatch).toHaveBeenCalledWith(updateQuantity({ id: 1, quantity: 3 }));
+
+        // Minus button (index 0)
+        fireEvent.click(buttons[0]);
+        expect(mockDispatch).toHaveBeenCalledWith(updateQuantity({ id: 1, quantity: 1 }));
+    });
+
+    it('dispatches removeFromCart when clicking remove', () => {
+        const mockItems = [
+            { id: 1, title: 'Item 1', price: 10, quantity: 2, thumbnail: '/test.jpg', brand: 'Brand' }
+        ];
+        useSelector.mockReturnValue({ items: mockItems, totalAmount: 20, totalQuantity: 2 });
+
+        render(<CartPage />);
+
+        const removeButton = screen.getByText(/Remove Item/i);
+        fireEvent.click(removeButton);
+        expect(mockDispatch).toHaveBeenCalledWith(removeFromCart(1));
     });
 });

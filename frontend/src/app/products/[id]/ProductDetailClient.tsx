@@ -33,7 +33,9 @@ const ProductDetail = () => {
                 setLoading(true);
                 const data = await getProductById(Number(id));
                 setProduct(data);
-                setSelectedImage(data.thumbnail);
+                if (data) {
+                    setSelectedImage(data.thumbnail);
+                }
             } catch (error) {
                 console.error('Error fetching product:', error);
             } finally {
@@ -104,7 +106,7 @@ const ProductDetail = () => {
                                     -{Math.round(product.discountPercentage)}% Exclusive
                                 </div>
                             )}
-                            <button className="absolute top-8 right-8 p-4 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white hover:text-black transition-all">
+                            <button aria-label="Share product" className="absolute top-8 right-8 p-4 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white hover:text-black transition-all">
                                 <Share2 className="w-4 h-4" />
                             </button>
                         </div>
@@ -181,6 +183,7 @@ const ProductDetail = () => {
                                     <div className="flex gap-4 pt-4">
                                         <Button
                                             onClick={handleAddToCart}
+                                            aria-label="Add to Bag"
                                             className="grow bg-white hover:bg-pink-50 text-black border-none rounded-2xl py-6 font-black tracking-[0.2em] text-[10px] shadow-xl transition-all active:scale-95 flex items-center justify-center gap-4"
                                         >
                                             RESERVE FOR SHIPMENT
@@ -188,6 +191,7 @@ const ProductDetail = () => {
                                         </Button>
                                         <Button
                                             onClick={handleToggleWishlist}
+                                            aria-label={isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
                                             className={`w-16 h-16 rounded-2xl border-none transition-all flex items-center justify-center bg-white/5 hover:bg-white/10 ${isWishlisted ? 'text-pink-500' : 'text-white'}`}
                                         >
                                             <Heart className={`w-5 h-5 ${isWishlisted ? 'fill-current' : ''}`} />

@@ -1,0 +1,10 @@
+
+> frontend@0.1.0 test
+> jest src/components/layout/tests/Navbar.test.js --coverage --collectCoverageFrom=src/components/layout/Navbar.tsx --ci --reporters default --no-cache
+
+------------|---------|----------|---------|---------|-------------------
+File        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+------------|---------|----------|---------|---------|-------------------
+All files   |     100 |      100 |   55.55 |     100 |                   
+ Navbar.tsx |     100 |      100 |   55.55 |     100 |                   
+------------|---------|----------|---------|---------|-------------------

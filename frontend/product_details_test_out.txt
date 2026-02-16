@@ -1,0 +1,12 @@
+
+> frontend@0.1.0 test
+> jest src/app/products/[id]/tests/ProductDetailsPage.test.js --coverage --ci --reporters default --no-cache
+
+No tests found, exiting with code 1
+Run with `--passWithNoTests` to exit with code 0
+In D:\mk_projects\StyleNest\frontend
+  583 files checked.
+  testMatch: **/tests/*.test.js - 28 matches
+  testPathIgnorePatterns: \\node_modules\\, \\.next\\ - 91 matches
+  testRegex:  - 0 matches
+Pattern: src/app/products/[id]/tests/ProductDetailsPage.test.js - 0 matches
