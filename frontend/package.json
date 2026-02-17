@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "jest"
+    "test": "node scripts/test-runner.js"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
