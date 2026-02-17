@@ -43,13 +43,20 @@ const BRANDS = [
     },
 ];
 
-const CATEGORIES = [
-    { name: 'Living Room', image: 'https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg?auto=format&fit=crop&w=800' },
-    { name: 'Bedroom', image: 'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=format&fit=crop&w=800' },
-    { name: 'Kitchen', image: 'https://images.pexels.com/photos/1080728/pexels-photo-1080728.jpeg?auto=format&fit=crop&w=800' },
-    { name: 'Decor', image: 'https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg?auto=format&fit=crop&w=800' },
-    { name: 'Lighting', image: 'https://images.pexels.com/photos/242827/pexels-photo-242827.jpeg?auto=format&fit=crop&w=800' },
-    { name: 'Outdoor', image: 'https://images.pexels.com/photos/1080646/pexels-photo-1080646.jpeg?auto=format&fit=crop&w=800' },
+const HOME_QUICK_ACCESS = [
+    { name: 'Kitchen & Dining', image: 'https://images.pexels.com/photos/1080728/pexels-photo-1080728.jpeg?auto=format&fit=crop&w=400', query: 'kitchen dining' },
+    { name: 'Living Room', image: 'https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg?auto=format&fit=crop&w=400', query: 'living room' },
+    { name: 'Bed & Bath', image: 'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=format&fit=crop&w=400', query: 'bed bath' },
+    { name: 'Patio & Garden', image: 'https://images.pexels.com/photos/1080646/pexels-photo-1080646.jpeg?auto=format&fit=crop&w=400', query: 'patio garden' },
+];
+
+const HOME_RECT_CATEGORIES = [
+    { name: 'Furniture', query: 'home furniture' },
+    { name: 'Home Decor', query: 'home decor' },
+    { name: 'Storage & Org', query: 'home storage organization' },
+    { name: 'Lighting', query: 'home lighting' },
+    { name: 'Window Treatments', query: 'home window treatments' },
+    { name: 'Rugs', query: 'home rugs' },
 ];
 
 const HomeLivingLandingPage = () => {
@@ -107,63 +114,80 @@ const HomeLivingLandingPage = () => {
                         </div>
                     </div>
                 </div>
+            </section>
 
-                {/* Performance Stats Overlay */}
-                <div className="absolute bottom-12 left-12 hidden md:block animate-fade-in" style={{ animationDelay: '1s' }}>
-                    <div className="bg-white/10 backdrop-blur-2xl border border-white/20 p-8 rounded-[48px] shadow-2xl">
-                        <div className="flex items-center gap-6">
-                            <div className="text-center group/stat">
-                                <p className="text-2xl font-black text-gray-900 group-hover:text-emerald-600 transition-colors tracking-tighter">1.2k+</p>
-                                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Artisans</p>
-                            </div>
-                            <div className="w-[1px] h-10 bg-gray-200"></div>
-                            <div className="text-center group/stat">
-                                <p className="text-2xl font-black text-gray-900 group-hover:text-emerald-600 transition-colors tracking-tighter">15k+</p>
-                                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Spaces</p>
-                            </div>
-                        </div>
-                    </div>
+            {/* Home One-Stop Shop Banner */}
+            <section className="bg-[#A40047] py-6 text-center overflow-hidden relative">
+                <div className="flex justify-center items-center gap-2 px-4">
+                    <h2 className="text-white text-xl md:text-3xl font-medium tracking-tight">
+                        The Home one-stop shop <span className="font-extrabold">for every sanctuary.</span>
+                    </h2>
                 </div>
             </section>
 
-            {/* Curated Categories */}
-            <section className="py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-end mb-24">
-                    <div className="space-y-4">
-                        <div className="flex items-center gap-2 text-emerald-600">
-                            <Sparkles className="w-4 h-4" />
-                            <span className="text-[10px] font-black uppercase tracking-widest">Design Perspectives</span>
-                        </div>
-                        <h2 className="text-6xl font-black text-gray-900 tracking-tighter uppercase italic">
-                            The <span className="text-emerald-600">Living</span> Lab
-                        </h2>
-                    </div>
-                    <button className="hidden md:flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-gray-900 transition-all group">
-                        VIEW PHILOSOPHY
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
-                    </button>
-                </div>
-
-                <div className="grid grid-cols-2 lg:grid-cols-6 gap-10">
-                    {CATEGORIES.map((cat, idx) => (
-                        <Link href="#" key={idx} className="group flex flex-col animate-fade-in" style={{ animationDelay: `${idx * 100}ms` }}>
-                            <div className="relative w-full aspect-[3/4] rounded-[48px] overflow-hidden bg-[#F5F5F3] border border-transparent group-hover:border-emerald-600/30 transition-all duration-700">
+            {/* Quick Access Grid Style */}
+            <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                    {HOME_QUICK_ACCESS.map((cat, idx) => (
+                        <Link href={`/products?category=${cat.query}`} key={idx} className="group relative space-y-4 text-center">
+                            <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-gray-100 border border-gray-100 shadow-sm">
                                 <Image
                                     src={cat.image}
                                     alt={cat.name}
                                     fill
-                                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                                    className="object-cover group-hover:scale-105 transition-transform duration-700"
                                 />
-                                <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/40 ml-auto">
-                                        <MoveUpRight className="w-4 h-4 text-white" />
-                                    </div>
-                                </div>
                             </div>
-                            <span className="mt-8 text-[10px] font-black text-gray-400 group-hover:text-gray-900 uppercase tracking-[0.4em] transition-colors pl-4">{cat.name}</span>
+                            <span className="block text-sm font-bold border-b border-black pb-0.5 w-max mx-auto hover:text-[#A40047] hover:border-[#A40047] transition-colors">{cat.name}</span>
                         </Link>
                     ))}
                 </div>
+            </section>
+
+            {/* Rectangular Categories */}
+            <section className="py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+                    {HOME_RECT_CATEGORIES.map((cat, idx) => (
+                        <Link
+                            href={`/products?category=${cat.query}`}
+                            key={idx}
+                            className="bg-[#D80056] text-white py-4 px-2 text-center text-[10px] md:text-xs font-black uppercase tracking-widest hover:bg-[#A40047] transition-colors flex items-center justify-center leading-tight min-h-[60px]"
+                        >
+                            {cat.name}
+                        </Link>
+                    ))}
+                </div>
+            </section>
+
+            {/* Discovery Feed Section Header */}
+            <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-50">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 whitespace-normal">
+                    <div className="space-y-6">
+                        <div className="flex items-center gap-3">
+                            <Zap className="w-5 h-5 text-gray-400" />
+                            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">Discovery Mode</span>
+                        </div>
+                        <div className="flex items-baseline gap-4">
+                            <h2 className="text-5xl md:text-6xl font-black text-gray-900 tracking-tighter uppercase italic leading-none">Home <span className="text-emerald-600 not-italic">Interior</span></h2>
+                            <span className="text-xl font-medium text-gray-300 italic">(112,431)</span>
+                        </div>
+                    </div>
+                </div>
+
+                {loading ? (
+                    <div className="py-40 flex flex-col items-center gap-6">
+                        <Loader2 className="h-12 w-12 animate-spin text-emerald-600" />
+                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.4em]">Crafting Ambiance...</p>
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-12 gap-y-20">
+                        {products.map((product, index) => (
+                            <div key={product.id} className="animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
+                                <ProductCard product={product} />
+                            </div>
+                        ))}
+                    </div>
+                )}
             </section>
 
             {/* Architectural Brands */}
@@ -195,70 +219,7 @@ const HomeLivingLandingPage = () => {
                 </div>
             </section>
 
-            {/* Product Feed */}
-            <section className="py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-24 pb-12 border-b border-gray-100">
-                    <div className="space-y-4">
-                        <div className="flex items-center gap-3">
-                            <Zap className="w-5 h-5 text-gray-900" />
-                            <span className="text-[10px] font-black uppercase tracking-[0.5em] text-gray-900">Atmospheric Accents</span>
-                        </div>
-                        <h2 className="text-6xl font-black text-gray-900 tracking-tighter uppercase italic line-clamp-2">Lustre <br /> <span className="text-emerald-600 not-italic">Interior</span></h2>
-                    </div>
-                    <button className="flex items-center gap-6 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-emerald-600 transition-all group">
-                        VIEW ENTIRE TROVE
-                        <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:border-emerald-600 group-hover:bg-emerald-50 transition-all">
-                            <ArrowRight className="w-5 h-5" />
-                        </div>
-                    </button>
-                </div>
 
-                {loading ? (
-                    <div className="py-40 flex flex-col items-center gap-8">
-                        <Loader2 className="h-12 w-12 animate-spin text-emerald-600" />
-                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.4em]">Crafting Ambiance...</p>
-                    </div>
-                ) : (
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-12 gap-y-24">
-                        {products.map((product, index) => (
-                            <div key={product.id} className="animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
-                                <ProductCard product={product} />
-                            </div>
-                        ))}
-                    </div>
-                )}
-            </section>
-
-            {/* Newsletter - Concierge Style */}
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-32">
-                <div className="bg-emerald-950 rounded-[80px] p-20 md:p-32 relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-emerald-500/10 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2"></div>
-
-                    <div className="relative z-10 max-w-2xl space-y-12">
-                        <h2 className="text-6xl md:text-8xl font-black text-white leading-[0.9] italic tracking-tighter uppercase">The <span className="text-emerald-500 not-italic font-serif">Sanctuary</span> Club</h2>
-                        <p className="text-emerald-100/60 text-lg font-medium italic">Join our private circle of interior enthusiasts. Exclusive access to artist collaborations, white-glove delivery, and bespoke furniture consultations.</p>
-                        <div className="flex flex-col sm:flex-row gap-6 max-w-md">
-                            <input
-                                type="email"
-                                placeholder="ENTER RESIDENCE EMAIL"
-                                className="bg-white/5 border border-white/10 rounded-full px-8 py-5 text-white text-[10px] uppercase font-black focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all flex-grow placeholder:text-emerald-800"
-                            />
-                            <button className="bg-white hover:bg-emerald-50 text-emerald-950 px-10 py-5 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-all">
-                                JOIN
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="absolute right-0 bottom-0 w-1/3 h-full hidden lg:block">
-                        <Image
-                            src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=format&fit=crop&w=800"
-                            alt="Interior Design"
-                            fill
-                            className="object-cover opacity-30 mix-blend-overlay group-hover:scale-110 transition-transform duration-1000"
-                        />
-                    </div>
-                </div>
-            </section>
         </div>
     );
 };

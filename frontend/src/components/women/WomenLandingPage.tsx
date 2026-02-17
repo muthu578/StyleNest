@@ -8,6 +8,22 @@ import { getProducts } from '@/services/api';
 import { Product } from '@/types';
 import ProductCard from '@/components/product/ProductCard';
 
+const WOMEN_QUICK_ACCESS = [
+    { name: 'Tops & Tees', image: 'https://images.pexels.com/photos/1036622/pexels-photo-1036622.jpeg?auto=format&fit=crop&w=400', query: 'womens tops t-shirts' },
+    { name: 'Sweaters & Cardigans', image: 'https://images.pexels.com/photos/985635/pexels-photo-985635.jpeg?auto=format&fit=crop&w=400', query: 'womens sweaters cardigans' },
+    { name: 'Dresses', image: 'https://images.pexels.com/photos/2235071/pexels-photo-2235071.jpeg?auto=format&fit=crop&w=400', query: 'womens dresses' },
+    { name: 'Bottoms', image: 'https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg?auto=format&fit=crop&w=400', query: 'womens bottoms' },
+    { name: 'Shirts & Blouses', image: 'https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=format&fit=crop&w=400', query: 'womens shirts blouses' },
+    { name: 'Coats & Jackets', image: 'https://images.pexels.com/photos/985635/pexels-photo-985635.jpeg?auto=format&fit=crop&w=400', query: 'womens coats jackets' },
+];
+
+const WOMEN_RECT_CATEGORIES = [
+    { name: 'WOMEN', query: 'womens clothing' },
+    { name: "WOMEN'S PLUS", query: 'womens plus size' },
+    { name: 'PETITES', query: 'womens petite' },
+    { name: 'JUNIORS', query: 'juniors clothing' },
+];
+
 const BRANDS = [
     {
         id: 1,
@@ -41,15 +57,6 @@ const BRANDS = [
         color: 'text-black',
         href: '/products?category=women'
     },
-];
-
-const CATEGORIES = [
-    { name: 'Kurtas', image: 'https://images.pexels.com/photos/2235071/pexels-photo-2235071.jpeg?auto=format&fit=crop&w=800' },
-    { name: 'Sarees', image: 'https://images.pexels.com/photos/2235071/pexels-photo-2235071.jpeg?auto=format&fit=crop&w=800' },
-    { name: 'Dresses', image: 'https://images.pexels.com/photos/985635/pexels-photo-985635.jpeg?auto=format&fit=crop&w=800' },
-    { name: 'Tops', image: 'https://images.pexels.com/photos/1036622/pexels-photo-1036622.jpeg?auto=format&fit=crop&w=800' },
-    { name: 'Jewelry', image: 'https://images.pexels.com/photos/1458867/pexels-photo-1458867.jpeg?auto=format&fit=crop&w=800' },
-    { name: 'Handbags', image: 'https://images.pexels.com/photos/1353503/pexels-photo-1353503.jpeg?auto=format&fit=crop&w=800' },
 ];
 
 const WomenLandingPage = () => {
@@ -124,39 +131,57 @@ const WomenLandingPage = () => {
                 </div>
             </section>
 
-            {/* Premium Categories Section */}
-            <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
-                    <div className="space-y-4">
-                        <div className="flex items-center gap-2 text-pink-600">
-                            <TrendingUp className="w-4 h-4" />
-                            <span className="text-[10px] font-black uppercase tracking-widest">Aura of Style</span>
-                        </div>
-                        <h2 className="text-5xl font-black text-gray-900 tracking-tighter uppercase italic underline decoration-pink-500/10 underline-offset-8">
-                            Shop by <span className="text-pink-600">Category</span>
-                        </h2>
-                    </div>
-                    <p className="text-gray-400 text-sm font-medium italic max-w-xs text-right">"Fashion is part of the daily air and it changes all the time, with all the events."</p>
+            {/* "Back to the Basics" Banner */}
+            <section className="bg-[#6D002D] py-8 text-center overflow-hidden relative border-b-8 border-[#A40047]">
+                <div className="flex flex-col md:flex-row justify-center items-center gap-2 px-4">
+                    <h2 className="text-white text-2xl md:text-5xl font-extrabold tracking-tight">
+                        Back to the basics. <span className="text-[#D80056]">Because the sequins deserve a break.</span>
+                    </h2>
                 </div>
+            </section>
 
-                <div className="grid grid-cols-2 lg:grid-cols-6 gap-8">
-                    {CATEGORIES.map((cat, idx) => (
-                        <Link href="#" key={idx} className="group flex flex-col items-center animate-fade-in" style={{ animationDelay: `${idx * 100}ms` }}>
-                            <div className="relative w-full aspect-square rounded-[40px] overflow-hidden bg-gray-50 border-4 border-transparent group-hover:border-pink-500/20 transition-all duration-500 shadow-xl shadow-gray-200/50 group-hover:shadow-pink-500/10">
+            {/* Quick Access Grid Style */}
+            <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-2 md:grid-cols-6 gap-4 md:gap-6">
+                    {WOMEN_QUICK_ACCESS.map((cat, idx) => (
+                        <Link href={`/products?category=${cat.query}`} key={idx} className="group relative space-y-4 text-center">
+                            <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-gray-50 border border-gray-100 shadow-sm">
                                 <Image
                                     src={cat.image}
                                     alt={cat.name}
                                     fill
-                                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                                    className="object-cover group-hover:scale-105 transition-transform duration-700"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-60 transition-opacity"></div>
-                                <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                                    <MoveUpRight className="w-4 h-4 text-white" />
-                                </div>
                             </div>
-                            <span className="mt-6 text-[10px] font-black text-gray-400 group-hover:text-black uppercase tracking-[0.3em] transition-colors">{cat.name}</span>
+                            <span className="block text-xs font-black uppercase tracking-widest border-b border-black md:border-transparent group-hover:border-black pb-0.5 w-max mx-auto transition-all">{cat.name}</span>
                         </Link>
                     ))}
+                </div>
+            </section>
+
+            {/* Shop by Size Section */}
+            <section className="py-12 bg-[#FFF9F3] relative overflow-hidden">
+                {/* Decorative Dots */}
+                <div className="absolute left-10 top-1/2 -translate-y-1/2 hidden lg:grid grid-cols-4 gap-2 opacity-20">
+                    {[...Array(24)].map((_, i) => (
+                        <div key={i} className="w-1.5 h-1.5 rounded-full bg-[#6D002D]"></div>
+                    ))}
+                </div>
+
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 className="text-3xl md:text-5xl font-black text-[#6D002D] mb-10 tracking-tighter">Shop by <span className="text-[#D80056]">size.</span></h2>
+
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                        {WOMEN_RECT_CATEGORIES.map((cat, idx) => (
+                            <Link
+                                href={`/products?category=${cat.query}`}
+                                key={idx}
+                                className="bg-[#6D002D] text-white py-4 md:py-6 px-4 text-center text-xs md:text-sm font-black uppercase tracking-[0.2em] hover:bg-[#8A0039] transition-all transform hover:scale-[1.02] shadow-xl shadow-red-900/10"
+                            >
+                                {cat.name}
+                            </Link>
+                        ))}
+                    </div>
                 </div>
             </section>
 
@@ -191,20 +216,19 @@ const WomenLandingPage = () => {
                 </div>
             </section>
 
-            {/* Catalog Grid Section */}
-            <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 pb-8 border-b border-gray-100">
-                    <div className="space-y-4">
+            {/* Curated Feed Section Header */}
+            <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-50">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 whitespace-normal">
+                    <div className="space-y-6">
                         <div className="flex items-center gap-3">
-                            <Sparkles className="w-5 h-5 text-gray-900" />
-                            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-900">Curated For Excellence</span>
+                            <Sparkles className="w-5 h-5 text-gray-400" />
+                            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">Discovery Mode</span>
                         </div>
-                        <h2 className="text-5xl font-black text-gray-900 tracking-tighter uppercase italic">Recommended <br /> <span className="text-pink-600 not-italic">Selection</span></h2>
+                        <div className="flex items-baseline gap-4">
+                            <h2 className="text-5xl md:text-6xl font-black text-gray-900 tracking-tighter uppercase italic leading-none">Women's <span className="text-[#D80056] not-italic">Clothing</span></h2>
+                            <span className="text-xl font-medium text-gray-300 italic">(123,321)</span>
+                        </div>
                     </div>
-                    <button className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-black transition-colors">
-                        Refine Collection
-                        <ArrowRight className="w-4 h-4" />
-                    </button>
                 </div>
 
                 {loading ? (
@@ -223,19 +247,6 @@ const WomenLandingPage = () => {
                 )}
             </section>
 
-            {/* VIP Invitation */}
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-24">
-                <div className="bg-black rounded-[64px] p-16 md:p-24 relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-pink-500/10 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2"></div>
-                    <div className="relative z-10 text-center max-w-3xl mx-auto space-y-10">
-                        <h2 className="text-5xl md:text-7xl font-black text-white leading-[1] italic tracking-tighter uppercase">Join the House <br /> <span className="text-pink-600 not-italic">Elite</span></h2>
-                        <p className="text-gray-400 text-lg font-medium italic">Unlock a world of private collections, early access, and personalized styling services.</p>
-                        <button className="bg-white hover:bg-pink-50 text-black px-12 py-6 rounded-full font-black text-[10px] uppercase tracking-[0.3em] shadow-2xl transition-all active:scale-95">
-                            REQUEST ACCESS
-                        </button>
-                    </div>
-                </div>
-            </section>
         </div>
     );
 };

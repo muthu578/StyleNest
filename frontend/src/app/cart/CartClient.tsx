@@ -61,7 +61,7 @@ const CartPage = () => {
                                     <div className="flex flex-col sm:flex-row gap-8">
                                         <div className="h-48 w-40 flex-shrink-0 overflow-hidden rounded-2xl bg-gray-50 border border-gray-50 relative group-hover:shadow-lg transition-all duration-300">
                                             <Image
-                                                src={item.thumbnail}
+                                                src={item.thumbnail || 'https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=format&fit=crop&w=800'}
                                                 alt={item.title}
                                                 fill
                                                 className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-110"

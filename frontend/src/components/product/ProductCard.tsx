@@ -36,7 +36,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <div className="relative aspect-[3/4] overflow-hidden rounded-[24px] bg-gray-50 border border-gray-100">
                 {/* Image */}
                 <Image
-                    src={product.thumbnail}
+                    src={product.thumbnail || 'https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=format&fit=crop&w=800'}
                     alt={product.title}
                     fill
                     className="object-cover object-center transition-transform duration-[2s] ease-out group-hover:scale-110"

@@ -8,6 +8,22 @@ import { getProducts } from '@/services/api';
 import { Product } from '@/types';
 import ProductCard from '@/components/product/ProductCard';
 
+const MEN_QUICK_ACCESS = [
+    { name: 'Shirts & Tees', image: 'https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=format&fit=crop&w=800', query: 'mens shirts t-shirts' },
+    { name: 'Shorts & Jeans', image: 'https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg?auto=format&fit=crop&w=800', query: 'mens shorts jeans' },
+    { name: 'Swimwear', image: 'https://images.pexels.com/photos/1104007/pexels-photo-1104007.jpeg?auto=format&fit=crop&w=800', query: 'mens swimwear' },
+    { name: 'Activewear', image: 'https://images.pexels.com/photos/1456706/pexels-photo-1456706.jpeg?auto=format&fit=crop&w=800', query: 'mens activewear' },
+];
+
+const MEN_RECT_CATEGORIES = [
+    { name: 'Dress Clothing', query: 'mens dress clothing' },
+    { name: 'Socks & Underwear', query: 'mens socks underwear' },
+    { name: 'Golf Clothing', query: 'mens golf' },
+    { name: 'Pajamas', query: 'mens pajamas' },
+    { name: 'Big & Tall', query: 'mens big tall' },
+    { name: 'Young Men', query: 'young mens clothing' },
+];
+
 const BRANDS = [
     {
         id: 1,
@@ -41,15 +57,6 @@ const BRANDS = [
         color: 'text-green-600',
         href: '/products?category=men'
     },
-];
-
-const CATEGORIES = [
-    { name: 'T-Shirts', image: 'https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=format&fit=crop&w=800' },
-    { name: 'Casual Shirts', image: 'https://images.pexels.com/photos/1040851/pexels-photo-1040851.jpeg?auto=format&fit=crop&w=800' },
-    { name: 'Jeans', image: 'https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg?auto=format&fit=crop&w=800' },
-    { name: 'Trousers', image: 'https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg?auto=format&fit=crop&w=800' },
-    { name: 'Sports Shoes', image: 'https://images.pexels.com/photos/1456706/pexels-photo-1456706.jpeg?auto=format&fit=crop&w=800' },
-    { name: 'Watches', image: 'https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=format&fit=crop&w=800' },
 ];
 
 const MenLandingPage = () => {
@@ -126,38 +133,44 @@ const MenLandingPage = () => {
                 </div>
             </section>
 
-            {/* Core Categories */}
-            <section className="py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-20">
-                    <div className="space-y-4">
-                        <div className="flex items-center gap-2 text-orange-400">
-                            <Sparkles className="w-4 h-4" />
-                            <span className="text-[10px] font-black uppercase tracking-widest">Masterpieces</span>
-                        </div>
-                        <h2 className="text-6xl font-black text-gray-900 tracking-tighter uppercase italic">
-                            The <span className="text-orange-400">Blueprint</span>
-                        </h2>
-                    </div>
-                    <p className="text-gray-400 text-sm font-medium italic max-w-xs text-right">"Style is a way to say who you are without having to speak."</p>
+            {/* One-Stop Shop Banner */}
+            <section className="bg-[#A40047] py-6 text-center overflow-hidden relative">
+                <div className="flex justify-center items-center gap-2">
+                    <h2 className="text-white text-xl md:text-3xl font-medium tracking-tight">
+                        Your one-stop shop <span className="font-extrabold">for ten-out-of-ten looks.</span>
+                    </h2>
                 </div>
+            </section>
 
-                <div className="grid grid-cols-2 lg:grid-cols-6 gap-10">
-                    {CATEGORIES.map((cat, idx) => (
-                        <Link href="#" key={idx} className="group flex flex-col items-center animate-fade-in" style={{ animationDelay: `${idx * 100}ms` }}>
-                            <div className="relative w-full aspect-[4/5] rounded-[48px] overflow-hidden bg-gray-50 border-4 border-transparent group-hover:border-orange-400/20 transition-all duration-700 shadow-2xl shadow-gray-200/50 group-hover:shadow-orange-500/10">
+            {/* Quick Access Carousel Style */}
+            <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                    {MEN_QUICK_ACCESS.map((cat, idx) => (
+                        <Link href={`/products?category=${cat.query}`} key={idx} className="group relative space-y-4 text-center">
+                            <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-gray-100 border border-gray-100 shadow-sm">
                                 <Image
                                     src={cat.image}
                                     alt={cat.name}
                                     fill
-                                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                                    className="object-cover group-hover:scale-105 transition-transform duration-700"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-70 transition-opacity"></div>
-                                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                                    <span className="text-[8px] font-black text-white uppercase tracking-widest">Explore</span>
-                                    <MoveUpRight className="w-3 h-3 text-white" />
-                                </div>
                             </div>
-                            <span className="mt-8 text-[10px] font-black text-gray-400 group-hover:text-black uppercase tracking-[0.4em] transition-colors">{cat.name}</span>
+                            <span className="block text-sm font-bold border-b border-black pb-0.5 w-max mx-auto hover:text-[#A40047] hover:border-[#A40047] transition-colors">{cat.name}</span>
+                        </Link>
+                    ))}
+                </div>
+            </section>
+
+            {/* Rectangular Categories */}
+            <section className="py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+                    {MEN_RECT_CATEGORIES.map((cat, idx) => (
+                        <Link
+                            href={`/products?category=${cat.query}`}
+                            key={idx}
+                            className="bg-[#D80056] text-white py-4 px-2 text-center text-[10px] md:text-xs font-black uppercase tracking-widest hover:bg-[#A40047] transition-colors flex items-center justify-center leading-tight min-h-[60px]"
+                        >
+                            {cat.name}
                         </Link>
                     ))}
                 </div>
@@ -193,24 +206,18 @@ const MenLandingPage = () => {
                 </div>
             </section>
 
-            {/* Curated Feed */}
-            <section className="py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-24">
-                    <div className="space-y-4">
+            {/* Curated Feed Section Header */}
+            <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-50">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 whitespace-normal">
+                    <div className="space-y-6">
                         <div className="flex items-center gap-3">
-                            <Zap className="w-5 h-5 text-orange-400" />
-                            <span className="text-[10px] font-black uppercase tracking-[0.5em] text-gray-400">The Daily Drop</span>
+                            <Zap className="w-5 h-5 text-gray-400" />
+                            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">Discovery Mode</span>
                         </div>
-                        <h2 className="text-6xl font-black text-gray-900 tracking-tighter uppercase italic">Curated <br /> <span className="text-orange-400 not-italic">Intel</span></h2>
-                    </div>
-                    <div className="flex items-center gap-8">
-                        <div className="text-right">
-                            <p className="text-[10px] font-black text-gray-900 uppercase tracking-widest">New Items Weekly</p>
-                            <p className="text-[10px] font-medium text-gray-400 uppercase tracking-widest italic">Always authentic</p>
+                        <div className="flex items-baseline gap-4">
+                            <h2 className="text-5xl md:text-6xl font-black text-gray-900 tracking-tighter uppercase italic leading-none">Men's <span className="text-[#D80056] not-italic">Clothing</span></h2>
+                            <span className="text-xl font-medium text-gray-300 italic">(159,524)</span>
                         </div>
-                        <button className="p-6 rounded-full bg-gray-50 hover:bg-orange-50 transition-colors group">
-                            <ArrowRight className="w-6 h-6 text-gray-400 group-hover:text-orange-400 transition-all" />
-                        </button>
                     </div>
                 </div>
 
@@ -230,24 +237,6 @@ const MenLandingPage = () => {
                 )}
             </section>
 
-            {/* Final CTA */}
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-32">
-                <div className="relative h-[500px] rounded-[80px] overflow-hidden group">
-                    <Image
-                        src="https://images.pexels.com/photos/1040851/pexels-photo-1040851.jpeg?auto=format&fit=crop&w=1920"
-                        alt="Join VIP"
-                        fill
-                        className="object-cover scale-105 group-hover:scale-100 transition-transform duration-[4s]"
-                    />
-                    <div className="absolute inset-0 bg-black/70 backdrop-blur-[2px] flex flex-col items-center justify-center text-center p-12 space-y-10">
-                        <h2 className="text-6xl font-black text-white tracking-tighter uppercase italic leading-[0.9]">Style <br /> <span className="text-orange-400 not-italic">Sovereignty</span></h2>
-                        <p className="text-gray-300 text-lg font-medium italic max-w-xl">Join the inner circle. Be the first to secure limited drops and exclusive collaborations.</p>
-                        <button className="bg-orange-400 hover:bg-orange-500 text-black px-12 py-6 rounded-full font-black text-[10px] uppercase tracking-[0.4em] transition-all active:scale-95 shadow-2xl shadow-orange-500/20">
-                            SECURE ACCESS
-                        </button>
-                    </div>
-                </div>
-            </section>
         </div>
     );
 };

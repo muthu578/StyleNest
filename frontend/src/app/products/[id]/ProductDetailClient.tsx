@@ -10,7 +10,10 @@ import { RootState } from '@/store/store';
 import { addToCart } from '@/store/slices/cartSlice';
 import { toggleWishlist } from '@/store/slices/wishlistSlice';
 import Image from 'next/image';
-import { Loader2, Star, ShoppingBag, Truck, ShieldCheck, Heart, ArrowLeft, Share2, Sparkles, Ruler, ArrowRight } from 'lucide-react';
+import {
+    Loader2, Star, ShoppingBag, Truck, ShieldCheck, Heart,
+    Sparkles, Ruler, ArrowRight, ChevronDown
+} from 'lucide-react';
 import Link from 'next/link';
 
 const ProductDetail = () => {
@@ -21,9 +24,21 @@ const ProductDetail = () => {
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
     const [selectedImage, setSelectedImage] = useState<string>('');
-    const [activeTab, setActiveTab] = useState('description');
+    const [selectedSize, setSelectedSize] = useState<string>('');
+    const [selectedColor, setSelectedColor] = useState<string>('Standard');
+    const [quantity, setQuantity] = useState(1);
+    const [openAccordion, setOpenAccordion] = useState<string | null>('details');
 
     const isWishlisted = product ? wishlistItems.some(item => item.id === product.id) : false;
+
+    // Mock options for UI demonstration
+    const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
+    const colors = [
+        { name: 'Black', hex: '#000000' },
+        { name: 'Navy', hex: '#000080' },
+        { name: 'Heather Gray', hex: '#808080' },
+        { name: 'Burgundy', hex: '#800020' }
+    ];
 
     useEffect(() => {
         if (!id) return;
@@ -48,7 +63,10 @@ const ProductDetail = () => {
 
     const handleAddToCart = () => {
         if (product) {
-            dispatch(addToCart(product));
+            // Add quantity support if possible, or just add multiple times
+            for (let i = 0; i < quantity; i++) {
+                dispatch(addToCart(product));
+            }
         }
     };
 
@@ -61,8 +79,8 @@ const ProductDetail = () => {
     if (loading) {
         return (
             <div className="flex flex-col justify-center items-center min-vh-screen py-40">
-                <Loader2 className="h-12 w-12 animate-spin text-pink-500" />
-                <p className="mt-4 text-[10px] font-black text-gray-400 uppercase tracking-[0.4em]">Revealing Excellence...</p>
+                <Loader2 className="h-12 w-12 animate-spin text-blue-900" />
+                <p className="mt-4 text-xs font-bold text-gray-500 uppercase tracking-widest">Loading Your Style...</p>
             </div>
         );
     }
@@ -70,181 +88,207 @@ const ProductDetail = () => {
     if (!product) {
         return (
             <div className="text-center py-40">
-                <h2 className="text-4xl font-black text-gray-900 uppercase italic mb-4 tracking-tighter">Piece Not Found</h2>
-                <Link href="/products" className="text-pink-600 font-bold uppercase tracking-widest text-xs hover:underline underline-offset-8">Return to Collection</Link>
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">Product Not Found</h2>
+                <Link href="/products" className="text-blue-900 font-bold hover:underline">Back to All Products</Link>
             </div>
         );
     }
 
+    const regPrice = (product.price / (1 - (product.discountPercentage || 0) / 100)).toFixed(2);
+
     return (
-        <div className="bg-white min-h-screen pt-24 pb-32 overflow-hidden">
+        <div className="bg-white min-h-screen pt-28 pb-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Breadcrumbs */}
-                <div className="flex items-center gap-4 mb-12 animate-fade-in">
-                    <Link href="/products" className="p-2 hover:bg-gray-50 rounded-full transition-colors group">
-                        <ArrowLeft className="w-4 h-4 text-gray-400 group-hover:text-black" />
-                    </Link>
-                    <div className="h-[1px] w-8 bg-gray-100"></div>
-                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                        {product.category} / <span className="text-black">{product.title}</span>
-                    </p>
-                </div>
+                <nav className="flex mb-8 text-[11px] uppercase tracking-wider text-gray-500 font-medium">
+                    <Link href="/" className="hover:text-black">Home</Link>
+                    <span className="mx-2">/</span>
+                    <Link href={`/products?category=${product.category}`} className="hover:text-black">{product.category}</Link>
+                    <span className="mx-2">/</span>
+                    <span className="text-black font-bold truncate max-w-[200px]">{product.title}</span>
+                </nav>
 
-                <div className="lg:grid lg:grid-cols-12 lg:gap-16 xl:gap-24">
-                    {/* Left Side: Dynamic Gallery */}
-                    <div className="lg:col-span-7 space-y-8 animate-slide-right">
-                        <div className="relative aspect-[3/4] rounded-[40px] overflow-hidden bg-gray-50 border border-gray-100 shadow-2xl group cursor-zoom-in">
+                <div className="lg:grid lg:grid-cols-12 lg:gap-10">
+                    {/* Left Side: Vertical Gallery */}
+                    <div className="lg:col-span-7 flex flex-col md:flex-row gap-4">
+                        {/* Thumbnails */}
+                        <div className="hidden md:flex flex-col gap-3 w-20 flex-shrink-0">
+                            {product.images?.slice(0, 5).map((img, idx) => (
+                                <button
+                                    key={idx}
+                                    onClick={() => setSelectedImage(img)}
+                                    className={`aspect-square relative border-2 transition-all ${selectedImage === img ? 'border-blue-900' : 'border-gray-100 hover:border-gray-300'}`}
+                                >
+                                    <Image src={img} alt={`${product.title} ${idx}`} fill className="object-cover" />
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Main Image */}
+                        <div className="relative aspect-[4/5] grow bg-gray-50 border border-gray-100 overflow-hidden group">
                             <Image
                                 src={selectedImage || product.thumbnail}
                                 alt={product.title}
                                 fill
-                                className="object-cover object-center transition-transform duration-1000 group-hover:scale-110"
+                                className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
                                 priority
                             />
                             {product.discountPercentage > 0 && (
-                                <div className="absolute top-8 left-8 bg-black text-white text-[10px] font-black px-4 py-2 rounded-full uppercase tracking-[0.2em] shadow-xl">
-                                    -{Math.round(product.discountPercentage)}% Exclusive
+                                <div className="absolute top-4 left-4 bg-red-600 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-tight">
+                                    SAVE {Math.round(product.discountPercentage)}%
                                 </div>
                             )}
-                            <button aria-label="Share product" className="absolute top-8 right-8 p-4 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white hover:text-black transition-all">
-                                <Share2 className="w-4 h-4" />
-                            </button>
-                        </div>
-
-                        <div className="grid grid-cols-4 gap-6">
-                            {product.images?.slice(0, 4).map((img, idx) => (
-                                <button
-                                    key={idx}
-                                    onClick={() => setSelectedImage(img)}
-                                    className={`aspect-[3/4] relative rounded-3xl overflow-hidden bg-gray-50 border-4 transition-all duration-500 transform ${selectedImage === img
-                                        ? 'border-pink-500 scale-95 shadow-lg shadow-pink-500/10'
-                                        : 'border-transparent hover:scale-105'
-                                        }`}
-                                >
-                                    <Image
-                                        src={img}
-                                        alt={`${product.title} ${idx + 1}`}
-                                        fill
-                                        className="object-cover object-center"
-                                    />
-                                </button>
-                            ))}
                         </div>
                     </div>
 
-                    {/* Right Side: Sophisticated Info */}
-                    <div className="lg:col-span-5 mt-16 sm:mt-20 lg:mt-0 animate-slide-left" style={{ animationDelay: '200ms' }}>
-                        <div className="sticky top-24 space-y-12">
-                            <div className="space-y-4">
-                                <div className="flex items-center gap-3">
-                                    <Sparkles className="w-4 h-4 text-pink-500" />
-                                    <span className="text-[10px] font-black uppercase tracking-[0.4em] text-pink-500">Essential Collection</span>
+                    {/* Right Side: Product Details */}
+                    <div className="lg:col-span-5 mt-10 lg:mt-0 space-y-6">
+                        <div className="space-y-2 border-b border-gray-100 pb-6">
+                            <p className="text-sm font-black uppercase text-blue-900 tracking-tighter">{product.brand}</p>
+                            <h1 className="text-2xl md:text-3xl font-medium text-gray-900 leading-tight">
+                                {product.title}
+                            </h1>
+                            <div className="flex items-center gap-4 pt-2">
+                                <div className="flex items-center">
+                                    {[...Array(5)].map((_, i) => (
+                                        <Star key={i} className={`w-3.5 h-3.5 ${i < Math.floor(product.rating) ? 'text-yellow-400 fill-current' : 'text-gray-200'}`} />
+                                    ))}
                                 </div>
-                                <h1 className="text-6xl font-black text-gray-900 leading-[0.9] tracking-tighter uppercase italic">
-                                    {product.title}
-                                </h1>
-                                <div className="flex items-center gap-6 pt-2">
-                                    <p className="text-lg font-bold text-gray-400 uppercase tracking-widest">{product.brand}</p>
-                                    <div className="h-4 w-[1px] bg-gray-200"></div>
-                                    <div className="flex items-center gap-2">
-                                        <div className="flex items-center">
-                                            {[...Array(5)].map((_, i) => (
-                                                <Star key={i} className={`w-3 h-3 ${i < Math.floor(product.rating) ? 'text-pink-500 fill-current' : 'text-gray-200'}`} />
-                                            ))}
-                                        </div>
-                                        <span className="text-[10px] font-black text-gray-900 tracking-widest uppercase">{product.rating}</span>
-                                    </div>
-                                </div>
+                                <span className="text-xs font-bold text-gray-600 underline cursor-pointer hover:text-blue-900">{product.rating} (124 Reviews)</span>
                             </div>
+                        </div>
 
-                            <div className="p-10 rounded-[40px] bg-black text-white relative overflow-hidden shadow-2xl group">
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 blur-3xl rounded-full"></div>
-                                <div className="relative z-10 space-y-8">
-                                    <div className="flex items-end gap-4">
-                                        <span className="text-5xl font-black italic tracking-tighter">${product.price}</span>
-                                        {product.discountPercentage > 0 && (
-                                            <span className="text-xl text-white/30 line-through pb-1.5 font-bold">
-                                                ${(product.price / (1 - product.discountPercentage / 100)).toFixed(2)}
-                                            </span>
-                                        )}
+                        {/* Price Section */}
+                        <div className="py-4 space-y-1">
+                            {product.discountPercentage > 0 ? (
+                                <>
+                                    <div className="flex items-baseline gap-2">
+                                        <span className="text-3xl font-black text-red-600 tracking-tight">${product.price.toFixed(2)}</span>
+                                        <span className="text-xs font-bold text-red-600 uppercase">Sale</span>
                                     </div>
+                                    <p className="text-xs text-gray-500 font-medium italic">
+                                        Regular <span className="line-through">${regPrice}</span>
+                                    </p>
+                                </>
+                            ) : (
+                                <span className="text-3xl font-black text-gray-900 tracking-tight">${product.price.toFixed(2)}</span>
+                            )}
 
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div className="p-4 rounded-2xl bg-white/5 border border-white/5 flex items-center gap-3">
-                                            <Truck className="w-4 h-4 text-pink-500" />
-                                            <span className="text-[10px] font-black uppercase tracking-widest">Global Express</span>
-                                        </div>
-                                        <div className="p-4 rounded-2xl bg-white/5 border border-white/5 flex items-center gap-3">
-                                            <ShieldCheck className="w-4 h-4 text-green-500" />
-                                            <span className="text-[10px] font-black uppercase tracking-widest">Authentic Piece</span>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex gap-4 pt-4">
-                                        <Button
-                                            onClick={handleAddToCart}
-                                            aria-label="Add to Bag"
-                                            className="grow bg-white hover:bg-pink-50 text-black border-none rounded-2xl py-6 font-black tracking-[0.2em] text-[10px] shadow-xl transition-all active:scale-95 flex items-center justify-center gap-4"
-                                        >
-                                            RESERVE FOR SHIPMENT
-                                            <ShoppingBag className="w-4 h-4" />
-                                        </Button>
-                                        <Button
-                                            onClick={handleToggleWishlist}
-                                            aria-label={isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
-                                            className={`w-16 h-16 rounded-2xl border-none transition-all flex items-center justify-center bg-white/5 hover:bg-white/10 ${isWishlisted ? 'text-pink-500' : 'text-white'}`}
-                                        >
-                                            <Heart className={`w-5 h-5 ${isWishlisted ? 'fill-current' : ''}`} />
-                                        </Button>
-                                    </div>
-                                </div>
+                            <div className="mt-4 p-3 bg-blue-50 border border-blue-100 rounded flex items-center justify-between group cursor-pointer">
+                                <span className="text-[10px] font-bold text-blue-900 uppercase">Earn StyleNest Rewards Points</span>
+                                <ArrowRight className="w-3 h-3 text-blue-900 group-hover:translate-x-1 transition-transform" />
                             </div>
+                        </div>
 
-                            <div className="space-y-6">
-                                <div className="flex gap-8 border-b border-gray-100 pb-4">
-                                    {['description', 'details', 'shipping'].map((tab) => (
+                        {/* Options */}
+                        <div className="space-y-8 pt-4">
+                            {/* Color Selection */}
+                            <div className="space-y-3">
+                                <p className="text-xs font-bold uppercase text-gray-900">Color: <span className="font-medium text-gray-600 normal-case">{selectedColor}</span></p>
+                                <div className="flex gap-3">
+                                    {colors.map((color) => (
                                         <button
-                                            key={tab}
-                                            onClick={() => setActiveTab(tab)}
-                                            className={`text-[10px] font-black uppercase tracking-widest pb-1 transition-all relative ${activeTab === tab ? 'text-black' : 'text-gray-400 hover:text-gray-600'}`}
+                                            key={color.name}
+                                            onClick={() => setSelectedColor(color.name)}
+                                            className={`w-8 h-8 rounded-full border-2 p-0.5 transition-all ${selectedColor === color.name ? 'border-blue-900' : 'border-transparent'}`}
+                                            title={color.name}
                                         >
-                                            {tab}
-                                            {activeTab === tab && <div className="absolute -bottom-[17px] left-0 right-0 h-[2px] bg-pink-500"></div>}
+                                            <div className="w-full h-full rounded-full border border-gray-100" style={{ backgroundColor: color.hex }}></div>
                                         </button>
                                     ))}
                                 </div>
-                                <div className="text-sm text-gray-500 font-medium leading-[1.8] min-h-[100px] animate-fade-in">
-                                    {activeTab === 'description' && product.description}
-                                    {activeTab === 'details' && (
-                                        <ul className="space-y-4">
-                                            <li className="flex justify-between border-b border-gray-50 pb-2">
-                                                <span className="text-[10px] font-black uppercase text-gray-400 tracking-widest">Material</span>
-                                                <span className="font-bold text-black">Luxury Blend</span>
-                                            </li>
-                                            <li className="flex justify-between border-b border-gray-50 pb-2">
-                                                <span className="text-[10px] font-black uppercase text-gray-400 tracking-widest">Care</span>
-                                                <span className="font-bold text-black">Dry Clean Only</span>
-                                            </li>
-                                        </ul>
-                                    )}
-                                    {activeTab === 'shipping' && "Complimentary global shipping on all Trendora Signature pieces. Estimated delivery in 3-5 business days."}
+                            </div>
+
+                            {/* Size Selection */}
+                            <div className="space-y-3">
+                                <div className="flex justify-between items-center">
+                                    <p className="text-xs font-bold uppercase text-gray-900">Select Size</p>
+                                    <button className="text-[11px] font-bold text-blue-900 underline flex items-center gap-1">
+                                        <Ruler className="w-3 h-3" /> Size Chart
+                                    </button>
+                                </div>
+                                <div className="grid grid-cols-5 gap-2">
+                                    {sizes.map((size) => (
+                                        <button
+                                            key={size}
+                                            onClick={() => setSelectedSize(size)}
+                                            className={`py-3 text-xs font-bold border transition-all ${selectedSize === size ? 'bg-blue-900 text-white border-blue-900' : 'bg-white text-gray-900 border-gray-200 hover:border-gray-400'}`}
+                                        >
+                                            {size}
+                                        </button>
+                                    ))}
                                 </div>
                             </div>
 
-                            <button className="w-full flex items-center justify-between p-6 rounded-3xl border-2 border-dashed border-gray-100 hover:border-pink-500/20 hover:bg-pink-50/10 transition-all group">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center group-hover:bg-white transition-colors">
-                                        <Ruler className="w-4 h-4 text-gray-400 group-hover:text-pink-500" />
+                            {/* Quantity & Add to Bag */}
+                            <div className="space-y-4 pt-4">
+                                <div className="flex gap-4">
+                                    <div className="flex items-center border border-gray-200 rounded">
+                                        <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-4 py-2 hover:bg-gray-50 text-xl">-</button>
+                                        <span className="w-10 text-center font-bold">{quantity}</span>
+                                        <button onClick={() => setQuantity(quantity + 1)} className="px-4 py-2 hover:bg-gray-50 text-xl">+</button>
                                     </div>
-                                    <div className="text-left">
-                                        <p className="text-[10px] font-black uppercase tracking-widest text-gray-900">Virtual Fitting Room</p>
-                                        <p className="text-[8px] font-medium text-gray-500 uppercase tracking-widest">Find your perfect match</p>
-                                    </div>
+                                    <Button
+                                        onClick={handleAddToCart}
+                                        className="grow bg-blue-900 hover:bg-blue-950 text-white rounded-none font-black text-xs uppercase tracking-widest py-4 transition-all active:scale-[0.98]"
+                                    >
+                                        Add to Bag
+                                    </Button>
                                 </div>
-                                <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-white transition-colors">
-                                    <ArrowRight className="w-3 h-3 text-gray-400 group-hover:text-black" />
+                                <button
+                                    onClick={handleToggleWishlist}
+                                    className="w-full py-3 flex items-center justify-center gap-2 text-xs font-bold text-gray-600 hover:text-red-500 transition-colors"
+                                >
+                                    <Heart className={`w-4 h-4 ${isWishlisted ? 'text-red-500 fill-current' : ''}`} />
+                                    {isWishlisted ? 'Added to Wishlist' : 'Add to Wishlist'}
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Delivering/Pickup Info */}
+                        <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+                            <div className="flex gap-3">
+                                <Truck className="w-5 h-5 text-gray-400" />
+                                <div>
+                                    <p className="text-[11px] font-black uppercase text-gray-900">Ship to Home</p>
+                                    <p className="text-[10px] text-gray-500 font-medium">Free shipping on orders over $49</p>
                                 </div>
-                            </button>
+                            </div>
+                        </div>
+
+                        {/* Accordions */}
+                        <div className="border-t border-gray-100 pt-8 space-y-2">
+                            {[
+                                { id: 'details', title: 'Product Details' },
+                                { id: 'shipping', title: 'Shipping & Returns' }
+                            ].map((section) => (
+                                <div key={section.id} className="border-b border-gray-100">
+                                    <button
+                                        onClick={() => setOpenAccordion(openAccordion === section.id ? null : section.id)}
+                                        className="w-full py-4 flex justify-between items-center text-sm font-bold uppercase tracking-tight text-gray-900"
+                                    >
+                                        {section.title}
+                                        <ChevronDown className={`w-4 h-4 transition-transform ${openAccordion === section.id ? 'rotate-180' : ''}`} />
+                                    </button>
+                                    {openAccordion === section.id && (
+                                        <div className="pb-6 text-sm text-gray-600 leading-relaxed animate-fade-in">
+                                            {section.id === 'details' ? (
+                                                <div className="space-y-4">
+                                                    <p>{product.description}</p>
+                                                    <ul className="list-disc pl-5 space-y-2">
+                                                        <li>Highly durable and comfortable fabric</li>
+                                                        <li>Classic {product.brand} design</li>
+                                                        <li>Versatile for any occasion</li>
+                                                        <li>Category: {product.category}</li>
+                                                    </ul>
+                                                </div>
+                                            ) : (
+                                                <p>Standard delivery within 3-5 business days. Free returns at any StyleNest location within 90 days of purchase.</p>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -254,3 +298,4 @@ const ProductDetail = () => {
 };
 
 export default ProductDetail;
+
