@@ -45,13 +45,31 @@ const Footer = () => {
                         <div className="space-y-8">
                             <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-pink-500">The House</h3>
                             <ul className="space-y-4">
-                                {['About the Brand', 'Our Artisans', 'Sustainability', 'Global Flagships', 'Contact House'].map((link) => (
-                                    <li key={link}>
-                                        <Link href="#" className="text-sm font-bold text-gray-400 hover:text-white hover:translate-x-1 transition-all inline-block">
-                                            {link}
-                                        </Link>
-                                    </li>
-                                ))}
+                                <li>
+                                    <Link href="/about" className="text-sm font-bold text-gray-400 hover:text-white hover:translate-x-1 transition-all inline-block">
+                                        About the Brand
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/artisans" className="text-sm font-bold text-gray-400 hover:text-white hover:translate-x-1 transition-all inline-block">
+                                        Our Artisans
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/sustainability" className="text-sm font-bold text-gray-400 hover:text-white hover:translate-x-1 transition-all inline-block">
+                                        Sustainability
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/flagships" className="text-sm font-bold text-gray-400 hover:text-white hover:translate-x-1 transition-all inline-block">
+                                        Global Flagships
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/contact" className="text-sm font-bold text-gray-400 hover:text-white hover:translate-x-1 transition-all inline-block">
+                                        Contact House
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
                     </div>

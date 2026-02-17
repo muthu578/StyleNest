@@ -33,7 +33,7 @@ describe('ProfilePage', () => {
     const mockUser = {
         firstName: 'Muthukumar',
         lastName: 'M',
-        email: 'muthukumar@pikkol.com',
+        email: 'muthummk@gmail.com',
         image: 'https://robohash.org/muthu.png'
     };
 

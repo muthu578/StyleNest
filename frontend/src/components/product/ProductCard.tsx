@@ -44,26 +44,26 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 />
 
                 {/* Exclusive Glass Overlay on Hover */}
-                <div className="absolute inset-x-0 bottom-0 p-6 flex items-center justify-between translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-10">
+                <div className="absolute inset-x-0 bottom-0 p-5 flex items-center gap-2.5 translate-y-full group-hover:translate-y-0 transition-all duration-500 ease-out z-10">
                     <button
                         aria-label={`Add ${product.title} to bag`}
                         onClick={handleAddToCart}
-                        className="flex-grow mr-2 bg-white/80 backdrop-blur-xl border border-white/40 h-12 rounded-2xl flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-900 hover:bg-black hover:text-white transition-all shadow-xl"
+                        className="flex-grow bg-white/95 backdrop-blur-md border border-white/40 h-12 rounded-2xl flex items-center justify-center gap-3 px-4 shadow-[0_10px_40px_rgba(0,0,0,0.15)] hover:bg-black hover:text-white transition-all group/bag"
                     >
-                        <ShoppingBag className="w-3 h-3" />
-                        ADD TO BAG
+                        <ShoppingBag className="w-5 h-5 transition-transform group-hover/bag:scale-110" />
+                        <span className="text-[10px] font-black uppercase tracking-[0.15em] whitespace-nowrap">Add to Bag</span>
                     </button>
                     <button
                         aria-label={isWishlisted ? `Remove ${product.title} from wishlist` : `Add ${product.title} to wishlist`}
                         onClick={handleToggleWishlist}
                         className={cn(
-                            "w-12 h-12 rounded-2xl flex items-center justify-center backdrop-blur-xl border border-white/40 shadow-xl transition-all",
+                            "w-12 h-12 rounded-2xl flex items-center justify-center backdrop-blur-md border border-white/40 shadow-[0_10px_40px_rgba(0,0,0,0.15)] transition-all flex-shrink-0 group/heart",
                             isWishlisted
-                                ? "bg-pink-500 text-white border-pink-400"
-                                : "bg-white/80 text-gray-900 hover:bg-pink-500 hover:text-white"
+                                ? "bg-rose-500 text-white border-rose-500"
+                                : "bg-white/95 text-gray-900 hover:bg-rose-500 hover:text-white"
                         )}
                     >
-                        <Heart className={cn("w-4 h-4", isWishlisted && "fill-current")} />
+                        <Heart className={cn("w-5 h-5 transition-transform group-hover/heart:scale-110", isWishlisted && "fill-current")} />
                     </button>
                 </div>
 
