@@ -356,4 +356,59 @@ app.get('/api/orders', authenticateToken, (req: any, res) => {
   res.json(userOrders.reverse()); // Latest first
 });
 
+// --- AI Chat Support Helper ---
+
+const getAIResponse = (message: string): string => {
+  const msg = message.toLowerCase();
+
+  if (msg.includes('shipping') || msg.includes('delivery')) {
+    return "We offer free standard shipping on all orders over $99. Standard delivery usually takes 3-5 business days. Express shipping (1-2 days) is available at checkout!";
+  }
+
+  if (msg.includes('return') || msg.includes('refund') || msg.includes('exchange')) {
+    return "StyleNest offers a 30-day hassle-free return policy. Items must be unworn and have original tags. You can initiate a return through your account dashboard under 'My Orders'.";
+  }
+
+  if (msg.includes('hi') || msg.includes('hello') || msg.includes('hey')) {
+    return "Hello! Welcome to StyleNest Customer Support. How can I help you elevate your style today? You can ask me about shipping, returns, or our latest collections!";
+  }
+
+  if (msg.includes('track') || msg.includes('order status')) {
+    return "You can track your order in real-time by visiting the 'Orders' page in your profile. Once an order is shipped, we also send a tracking number to your registered email.";
+  }
+
+  if (msg.includes('size') || msg.includes('fit') || msg.includes('guide')) {
+    return "Our products generally follow standard international sizing. You can find a detailed 'Size Guide' on every product page next to the size selection buttons to ensure a perfect fit.";
+  }
+
+  if (msg.includes('payment') || msg.includes('pay') || msg.includes('card')) {
+    return "We accept all major credit cards (Visa, Mastercard, AMEX), PayPal, and Apple Pay. All transactions are encrypted and secure.";
+  }
+
+  if (msg.includes('men')) {
+    return "Our Men's collection features everything from premium tailored shirts to casual denim and luxury watches. Would you like me to show you the latest arrivals in Men's fashion?";
+  }
+
+  if (msg.includes('women')) {
+    return "The Women's collection at StyleNest curated the finest dresses, designer handbags, and elegant jewelry. Check out our 'Elegant' and 'Chic' categories!";
+  }
+
+  if (msg.includes('kid')) {
+    return "Our Kids' collection focuses on comfort and style! We have graphic tees, floral summer dresses, and durable denim for boys and girls.";
+  }
+
+  return "That's a great question! While I'm still learning, I can help you with shipping, returns, tracking orders, or navigating our collections. If you need immediate human assistance, you can call us at 1-800-STYLE-NEST.";
+};
+
+app.post('/api/support/chat', (req, res) => {
+  const { message } = req.body;
+  if (!message) return res.status(400).json({ message: 'Message is required' });
+
+  // Simulate AI processing time
+  setTimeout(() => {
+    const response = getAIResponse(message);
+    res.json({ response });
+  }, 500);
+});
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

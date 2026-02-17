@@ -78,6 +78,8 @@ export const metadata: Metadata = {
   },
 };
 
+import ChatSupport from "@/components/support/ChatSupport";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -93,6 +95,7 @@ export default function RootLayout({
             <ConditionalLayout>
               {children}
             </ConditionalLayout>
+            <ChatSupport />
           </AuthInit>
         </Providers>
       </body>
