@@ -145,6 +145,14 @@ const authenticateToken = (req: any, res: Response, next: NextFunction) => {
   });
 };
 
+// --- Mock Reviews Helper ---
+const getMockReviews = () => [
+  { id: '1', user: 'Sophia R.', rating: 5, comment: 'Absolutely amazing quality! The fit is perfect and it feels super premium.', date: '2 days ago', avatar: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=150' },
+  { id: '2', user: 'Liam M.', rating: 4, comment: 'Great product, delivery was fast. Slightly different color than the picture but still looks great.', date: '1 week ago', avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150' },
+  { id: '3', user: 'Emma W.', rating: 5, comment: 'Exceeded my expectations! Will definitely buy more from Trendora.', date: '2 weeks ago', avatar: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150' },
+  { id: '4', user: 'Noah K.', rating: 3, comment: 'Decent quality for the price, but the sizing runs slightly small.', date: '1 month ago', avatar: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150' }
+];
+
 // --- Mock Products Data ---
 
 const LOCAL_PRODUCTS = [
@@ -332,7 +340,8 @@ app.get('/api/products', async (req, res) => {
         brand: 'Kohl\'s Luxury',
         category: category || 'General',
         thumbnail: imageUrl,
-        images: allImages
+        images: allImages,
+        reviews: getMockReviews()
       };
     });
   } catch (error: any) {
@@ -390,7 +399,8 @@ app.get('/api/products/:id', async (req, res) => {
       brand: 'Kohl\'s Signature',
       category: p.productGroup || 'Couture',
       thumbnail: imageUrl,
-      images: allImages
+      images: allImages,
+      reviews: getMockReviews()
     };
     // Update Cache
     productCache[cacheKey] = { data: product, timestamp: Date.now() };

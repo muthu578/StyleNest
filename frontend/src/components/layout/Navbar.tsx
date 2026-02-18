@@ -79,7 +79,7 @@ const Navbar = () => {
                     {/* Right Side Icons */}
                     <div className="flex items-center space-x-4 sm:space-x-8">
                         {/* Search icon */}
-                        <button aria-label="Search" className="p-2 text-gray-900/40 hover:text-black transition-colors hidden sm:block">
+                        <button suppressHydrationWarning aria-label="Search" className="p-2 text-gray-900/40 hover:text-black transition-colors hidden sm:block">
                             <Search className="w-5 h-5 stroke-[1.5]" />
                         </button>
 
@@ -119,6 +119,7 @@ const Navbar = () => {
                                         </div>
                                         <div className="mt-4 pt-4 border-t border-gray-50">
                                             <button
+                                                suppressHydrationWarning
                                                 aria-label="Sign Out"
                                                 onClick={() => {
                                                     dispatch(logout());
@@ -151,6 +152,7 @@ const Navbar = () => {
 
                         {/* Mobile Menu button */}
                         <button
+                            suppressHydrationWarning
                             aria-label="Toggle Mobile Menu"
                             onClick={toggleMenu}
                             className="lg:hidden p-2 text-gray-900/60 hover:text-black transition-all"
