@@ -87,7 +87,7 @@ const Login = () => {
                                         type="text"
                                         required
                                         placeholder="Enter username"
-                                        className="block w-full pl-10 pr-4 py-2.5 bg-gray-50/50 border-2 border-gray-100 rounded-xl focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 transition-all outline-none text-sm text-gray-900 placeholder:text-gray-400 font-medium"
+                                        className="block w-full pl-10 pr-4 py-2.5 bg-gray-50/50 border-2 border-gray-100 rounded-xl focus:ring-4 focus:ring-[#818CF8]/10 focus:border-[#818CF8] transition-all outline-none text-sm text-[#0F172A] placeholder:text-gray-400 font-medium"
                                         value={username}
                                         onChange={(e) => setUsername(e.target.value)}
                                     />
@@ -97,7 +97,7 @@ const Login = () => {
                             <div className="space-y-1.5">
                                 <label htmlFor="password" className="text-[10px] font-bold text-gray-700 ml-1 uppercase tracking-[0.2em]">Password</label>
                                 <div className="relative group">
-                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none group-focus-within:text-black text-gray-400 transition-colors">
+                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none group-focus-within:text-[#0F172A] text-gray-400 transition-colors">
                                         <Lock className="h-4 w-4" />
                                     </div>
                                     <input
@@ -105,7 +105,7 @@ const Login = () => {
                                         type="password"
                                         required
                                         placeholder="••••••••"
-                                        className="block w-full pl-10 pr-4 py-2.5 bg-gray-50/50 border-2 border-gray-100 rounded-xl focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 transition-all outline-none text-sm text-gray-900 placeholder:text-gray-400 font-medium"
+                                        className="block w-full pl-10 pr-4 py-2.5 bg-gray-50/50 border-2 border-gray-100 rounded-xl focus:ring-4 focus:ring-[#818CF8]/10 focus:border-[#818CF8] transition-all outline-none text-sm text-[#0F172A] placeholder:text-gray-400 font-medium"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                     />
@@ -123,17 +123,17 @@ const Login = () => {
                                             checked={rememberMe}
                                             onChange={() => setRememberMe(!rememberMe)}
                                         />
-                                        <div className="w-5 h-5 border-2 border-gray-200 rounded-md peer-checked:bg-pink-500 peer-checked:border-pink-500 transition-all duration-300 group-hover:border-pink-300 shadow-sm"></div>
+                                        <div className="w-5 h-5 border-2 border-gray-200 rounded-md peer-checked:bg-[#0F172A] peer-checked:border-[#0F172A] transition-all duration-300 group-hover:border-[#818CF8] shadow-sm"></div>
                                         <Check className="absolute top-0.5 left-0.5 w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-all duration-300 scale-50 peer-checked:scale-100" />
                                     </div>
-                                    <span className="text-xs text-gray-600 group-hover:text-black transition-colors font-semibold">Keep me logged in</span>
+                                    <span className="text-xs text-gray-600 group-hover:text-[#0F172A] transition-colors font-semibold">Keep me logged in</span>
                                 </label>
                             </div>
 
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className={`w-full bg-pink-500 text-white py-3 rounded-xl font-bold text-base hover:bg-pink-600 hover:shadow-xl hover:shadow-pink-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group shadow-lg shadow-pink-500/10 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                                className={`w-full bg-[#0F172A] text-white py-3 rounded-xl font-bold text-base hover:bg-[#1E293B] hover:shadow-xl hover:shadow-[#0F172A]/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group shadow-lg shadow-[#0F172A]/10 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
                             >
                                 {loading ? (
                                     <div className="flex items-center gap-2">
@@ -152,7 +152,7 @@ const Login = () => {
                         <div className="mt-6 text-center">
                             <p className="text-gray-500 text-sm font-medium">
                                 Don't have an account?{' '}
-                                <Link href="/register" className="text-pink-500 font-bold hover:underline underline-offset-4 decoration-2 transition-all">
+                                <Link href="/register" className="text-[#818CF8] font-bold hover:underline underline-offset-4 decoration-2 transition-all">
                                     Register Now
                                 </Link>
                             </p>
@@ -169,39 +169,39 @@ const Login = () => {
                         className="object-cover scale-105 group-hover:scale-100 transition-transform duration-[2s] ease-out"
                         priority
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/90 via-[#0F172A]/20 to-transparent"></div>
 
                     {/* Floating Badge */}
-                    <div className="absolute top-8 right-8 bg-white/10 backdrop-blur-md border border-white/20 p-3 rounded-2xl animate-bounce-slow">
-                        <div className="text-white text-[8px] font-black uppercase tracking-[0.3em] opacity-80 mb-0.5 text-center">Trending</div>
-                        <div className="text-pink-400 text-lg font-black text-center">#STREETSTYLE</div>
+                    <div className="absolute top-8 right-8 bg-white/10 backdrop-blur-md border border-white/10 p-4 rounded-[32px] animate-bounce-slow flex items-center gap-3">
+                        <div className="w-2 h-2 rounded-full bg-[#2DD4BF] animate-pulse"></div>
+                        <div className="text-white text-[9px] font-black uppercase tracking-[0.4em] opacity-90">Archive: 2026</div>
                     </div>
 
                     <div className="absolute bottom-12 left-12 right-12 text-white max-w-md">
                         <div className="flex items-center gap-2 mb-4">
-                            <div className="w-8 h-1 bg-pink-500 rounded-full"></div>
+                            <div className="w-8 h-1 bg-gradient-to-r from-[#818CF8] to-[#2DD4BF] rounded-full"></div>
                             <p className="text-[10px] font-bold tracking-[0.2em] uppercase opacity-90">Spring Summer 2026</p>
                         </div>
                         <h3 className="text-5xl xl:text-6xl font-black leading-[1] tracking-tighter mb-6 italic">
                             STYLE IS <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-orange-300 not-italic">EVERYTHING</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#818CF8] via-[#F472B6] to-[#2DD4BF] not-italic">EVERYTHING</span>
                         </h3>
-                        <p className="text-sm text-gray-200 font-medium leading-relaxed opacity-90 p-3 border-l-3 border-pink-500 bg-white/5 backdrop-blur-sm rounded-r-xl">
-                            Discover the latest streetwear trends and unleash your unique personality with Trendora collections.
+                        <p className="text-sm text-gray-200 font-medium leading-relaxed opacity-90 p-3 border-l-2 border-[#818CF8]/30 bg-[#0F172A]/40 backdrop-blur-sm rounded-r-xl italic">
+                            "Discover the latest streetwear trends and unleash your unique personality with Trendora collections."
                         </p>
                     </div>
                 </div>
             </div>
 
             {/* Bottom Promo Banner */}
-            <div className="w-full bg-pink-500 text-white py-3 px-4 text-center shadow-2xl relative z-10 overflow-hidden shrink-0">
+            <div className="w-full bg-[#0F172A] text-white py-3 px-4 text-center shadow-2xl relative z-10 overflow-hidden shrink-0 border-t border-white/5">
                 <div className="flex items-center justify-center gap-8 animate-marquee whitespace-nowrap">
                     {[1, 2, 3, 4, 5].map((i) => (
                         <div key={i} className="flex items-center gap-8">
                             <span className="text-[10px] font-black tracking-[0.2em] uppercase flex items-center gap-2">
-                                SIGN UP AND GET 20% OFF FOR ALL STYLE-NEST COLLECTIONS <ArrowRight className="w-3 h-3" />
+                                SIGN UP AND GET 20% OFF FOR ALL STYLE-NEST COLLECTIONS <ArrowRight className="w-3 h-3 text-[#818CF8]" />
                             </span>
-                            <span className="text-[10px] font-black tracking-[0.2em] uppercase opacity-50">•</span>
+                            <span className="text-[10px] font-black tracking-[0.2em] uppercase opacity-20">•</span>
                         </div>
                     ))}
                 </div>

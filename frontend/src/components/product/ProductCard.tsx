@@ -48,7 +48,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     <button
                         aria-label={`Add ${product.title} to bag`}
                         onClick={handleAddToCart}
-                        className="flex-grow bg-white/95 backdrop-blur-md border border-white/40 h-12 rounded-2xl flex items-center justify-center gap-3 px-4 shadow-[0_10px_40px_rgba(0,0,0,0.15)] hover:bg-black hover:text-white transition-all group/bag"
+                        className="flex-grow bg-white/95 backdrop-blur-md border border-white/40 h-12 rounded-2xl flex items-center justify-center gap-3 px-4 shadow-[0_10px_40px_rgba(0,0,0,0.15)] hover:bg-[#0F172A] hover:text-white transition-all group/bag"
                     >
                         <ShoppingBag className="w-5 h-5 transition-transform group-hover/bag:scale-110" />
                         <span className="text-[10px] font-black uppercase tracking-[0.15em] whitespace-nowrap">Add to Bag</span>
@@ -59,8 +59,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                         className={cn(
                             "w-12 h-12 rounded-2xl flex items-center justify-center backdrop-blur-md border border-white/40 shadow-[0_10px_40px_rgba(0,0,0,0.15)] transition-all flex-shrink-0 group/heart",
                             isWishlisted
-                                ? "bg-rose-500 text-white border-rose-500"
-                                : "bg-white/95 text-gray-900 hover:bg-rose-500 hover:text-white"
+                                ? "bg-gradient-to-br from-[#818CF8] to-[#2DD4BF] text-white border-transparent"
+                                : "bg-white/95 text-gray-900 hover:bg-[#818CF8] hover:text-white"
                         )}
                     >
                         <Heart className={cn("w-5 h-5 transition-transform group-hover/heart:scale-110", isWishlisted && "fill-current")} />
@@ -70,8 +70,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 {/* Discount Badge */}
                 {product.discountPercentage > 0 && (
                     <div className="absolute top-4 left-4">
-                        <div className="bg-black/90 text-white text-[9px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest flex items-center gap-1.5 shadow-lg border border-white/10">
-                            <span className="text-pink-400">Save</span>
+                        <div className="bg-[#0F172A]/90 text-white text-[9px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest flex items-center gap-1.5 shadow-lg border border-white/10">
+                            <span className="text-[#818CF8]">Save</span>
                             {Math.round(product.discountPercentage)}%
                         </div>
                     </div>
@@ -80,7 +80,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 {/* View Details Icon */}
                 <div className="absolute top-4 right-4 translate-x-2 -translate-y-2 opacity-0 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                     <div className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-lg">
-                        <ArrowUpRight className="w-4 h-4 text-gray-900" />
+                        <ArrowUpRight className="w-4 h-4 text-[#0F172A]" />
                     </div>
                 </div>
             </div>
@@ -89,17 +89,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <div className="mt-8 space-y-4 px-2">
                 <div className="space-y-1">
                     <div className="flex items-start justify-between">
-                        <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                        <p className="text-[10px] font-black uppercase tracking-widest text-[#94A3B8]">
                             {product.brand}
                         </p>
                     </div>
-                    <h3 className="text-lg font-black text-gray-900 leading-tight italic tracking-tighter uppercase group-hover:text-pink-600 transition-colors">
+                    <h3 className="text-lg font-black text-[#0F172A] leading-tight italic tracking-tighter uppercase group-hover:text-[#818CF8] transition-colors">
                         {product.title}
                     </h3>
                 </div>
 
                 <div className="flex items-center gap-3 pt-2">
-                    <p className="text-xl font-black text-gray-900 tracking-tighter italic">${product.price}</p>
+                    <p className="text-xl font-black text-[#0F172A] tracking-tighter italic">${product.price}</p>
                     {product.discountPercentage > 0 && (
                         <p className="text-xs text-gray-400 line-through tracking-tighter">
                             ${(product.price / (1 - product.discountPercentage / 100)).toFixed(2)}

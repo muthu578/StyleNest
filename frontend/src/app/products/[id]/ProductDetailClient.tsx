@@ -82,7 +82,7 @@ const ProductDetail = () => {
     if (loading) {
         return (
             <div className="flex flex-col justify-center items-center min-vh-screen py-40">
-                <Loader2 className="h-12 w-12 animate-spin text-blue-900" />
+                <Loader2 className="h-12 w-12 animate-spin text-[#818CF8]" />
                 <p className="mt-4 text-xs font-bold text-gray-500 uppercase tracking-widest">Loading Your Style...</p>
             </div>
         );
@@ -91,8 +91,8 @@ const ProductDetail = () => {
     if (!product) {
         return (
             <div className="text-center py-40">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">Product Not Found</h2>
-                <Link href="/products" className="text-blue-900 font-bold hover:underline">Back to All Products</Link>
+                <h2 className="text-3xl font-bold text-[#0F172A] mb-4">Product Not Found</h2>
+                <Link href="/products" className="text-[#818CF8] font-bold hover:underline">Back to All Products</Link>
             </div>
         );
     }
@@ -103,12 +103,12 @@ const ProductDetail = () => {
         <div className="bg-white min-h-screen pt-24 pb-20 font-sans">
             <div className="max-w-[1400px] mx-auto px-4 md:px-10">
                 {/* Breadcrumbs */}
-                <nav className="flex mb-6 text-[12px] text-gray-500 font-medium">
-                    <Link href="/" className="hover:text-black">Home</Link>
+                <nav className="flex mb-6 text-[12px] text-gray-400 font-medium">
+                    <Link href="/" className="hover:text-[#0F172A]">Home</Link>
                     <span className="mx-2">/</span>
-                    <Link href={`/products?category=${product.category}`} className="hover:text-black capitalize">{product.category}</Link>
+                    <Link href={`/products?category=${product.category}`} className="hover:text-[#0F172A] capitalize">{product.category}</Link>
                     <span className="mx-2">/</span>
-                    <span className="text-black font-bold truncate max-w-[200px]">{product.title}</span>
+                    <span className="text-[#0F172A] font-bold truncate max-w-[200px]">{product.title}</span>
                 </nav>
 
                 <div className="flex flex-col lg:flex-row gap-12">
@@ -123,6 +123,7 @@ const ProductDetail = () => {
                                         fill
                                         className="object-cover group-hover:scale-105 transition-transform duration-700"
                                     />
+                                    <div className="absolute inset-0 bg-[#0F172A]/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                 </div>
                             )) || (
                                     <div className="col-span-2 relative aspect-[4/5] bg-gray-50">
@@ -135,33 +136,33 @@ const ProductDetail = () => {
                     {/* Right: Sticky Details Section */}
                     <div className="lg:w-[40%] lg:sticky lg:top-24 h-fit space-y-6">
                         <div className="border-b border-gray-100 pb-5">
-                            <h2 className="text-2xl font-black text-gray-900 uppercase tracking-tight mb-1">{product.brand}</h2>
+                            <h2 className="text-2xl font-black text-[#0F172A] uppercase tracking-tight mb-1">{product.brand}</h2>
                             <h1 className="text-xl text-gray-500 font-medium mb-4 capitalize">{product.title}</h1>
 
-                            <div className="inline-flex items-center gap-2 border border-gray-200 px-3 py-1.5 rounded-sm hover:border-gray-900 cursor-pointer transition-colors group">
+                            <div className="inline-flex items-center gap-2 border border-gray-200 px-3 py-1.5 rounded-sm hover:border-[#818CF8] cursor-pointer transition-colors group">
                                 <div className="flex items-center gap-1 font-bold text-sm">
                                     {product.rating} <Star className="w-4 h-4 fill-green-600 text-green-600" />
                                 </div>
                                 <div className="h-4 w-[1px] bg-gray-200"></div>
-                                <div className="text-gray-500 text-sm font-bold group-hover:text-black">1.2k Ratings</div>
+                                <div className="text-gray-500 text-sm font-bold group-hover:text-[#0F172A]">1.2k Ratings</div>
                             </div>
                         </div>
 
                         {/* Price Section */}
                         <div className="space-y-1">
                             <div className="flex items-center gap-3">
-                                <span className="text-2xl font-black text-gray-900">${product.price.toFixed(2)}</span>
+                                <span className="text-2xl font-black text-[#0F172A]">${product.price.toFixed(2)}</span>
                                 <span className="text-xl text-gray-400 font-medium line-through">MRP ${regPrice}</span>
-                                <span className="text-xl font-bold text-orange-500">({Math.round(product.discountPercentage)}% OFF)</span>
+                                <span className="text-xl font-bold text-[#F472B6]">({Math.round(product.discountPercentage)}% OFF)</span>
                             </div>
-                            <p className="text-green-600 text-[13px] font-black uppercase">Inclusive of all taxes</p>
+                            <p className="text-green-600 text-[13px] font-black uppercase tracking-widest">Inclusive of all taxes</p>
                         </div>
 
                         {/* Size Selection */}
                         <div className="space-y-4 pt-4">
                             <div className="flex justify-between items-center">
-                                <p className="text-[14px] font-black uppercase tracking-widest text-gray-900 flex items-center gap-2">
-                                    Select Size <span className="text-pink-600 border-b border-pink-600 cursor-pointer text-xs ml-4">SIZE CHART</span>
+                                <p className="text-[14px] font-black uppercase tracking-widest text-[#0F172A] flex items-center gap-2">
+                                    Select Size <span className="text-[#818CF8] border-b border-[#818CF8]/30 cursor-pointer text-xs ml-4 hover:border-[#818CF8] transition-all">SIZE CHART</span>
                                 </p>
                             </div>
                             <div className="flex flex-wrap gap-4">
@@ -169,7 +170,7 @@ const ProductDetail = () => {
                                     <button
                                         key={size}
                                         onClick={() => setSelectedSize(size)}
-                                        className={`w-14 h-14 rounded-full flex items-center justify-center text-sm font-bold transition-all border-2 ${selectedSize === size ? 'border-pink-600 text-pink-600' : 'border-gray-200 text-gray-900 hover:border-pink-600'}`}
+                                        className={`w-14 h-14 rounded-full flex items-center justify-center text-sm font-bold transition-all border-2 ${selectedSize === size ? 'border-[#0F172A] bg-[#0F172A] text-white' : 'border-gray-100 text-gray-900 hover:border-[#818CF8]'}`}
                                     >
                                         {size}
                                     </button>
@@ -181,14 +182,14 @@ const ProductDetail = () => {
                         <div className="flex gap-4 pt-8">
                             <button
                                 onClick={handleAddToCart}
-                                className="flex-1 bg-pink-600 hover:bg-pink-700 text-white py-5 rounded-md font-black text-sm uppercase flex items-center justify-center gap-3 transition-all active:scale-95 shadow-xl shadow-pink-600/20"
+                                className="flex-1 bg-[#0F172A] hover:bg-[#1E293B] text-white py-5 rounded-xl font-black text-sm uppercase flex items-center justify-center gap-3 transition-all active:scale-95 shadow-2xl shadow-[#0F172A]/20 group/bag"
                             >
-                                <ShoppingBag className="w-5 h-5" />
+                                <ShoppingBag className="w-5 h-5 group-hover/bag:scale-110 transition-transform" />
                                 Add to Bag
                             </button>
                             <button
                                 onClick={handleToggleWishlist}
-                                className={`flex-1 border-2 py-5 rounded-md font-black text-sm uppercase flex items-center justify-center gap-3 transition-all active:scale-95 ${isWishlisted ? 'border-red-600 text-red-600 bg-red-50' : 'border-gray-200 text-gray-900 hover:border-black'}`}
+                                className={`flex-1 border-2 py-5 rounded-xl font-black text-sm uppercase flex items-center justify-center gap-3 transition-all active:scale-95 ${isWishlisted ? 'bg-gradient-to-br from-[#818CF8] to-[#2DD4BF] text-white border-transparent' : 'border-gray-100 text-[#0F172A] hover:border-[#818CF8]'}`}
                             >
                                 <Heart className={`w-5 h-5 ${isWishlisted ? 'fill-current' : ''}`} />
                                 {isWishlisted ? 'Wishlisted' : 'Wishlist'}
@@ -197,69 +198,70 @@ const ProductDetail = () => {
 
                         {/* Delivery Info */}
                         <div className="pt-10 space-y-6">
-                            <h3 className="text-[14px] font-black uppercase tracking-widest flex items-center gap-3">
-                                Delivery Options <Truck className="w-5 h-5" />
+                            <h3 className="text-[14px] font-black uppercase tracking-widest flex items-center gap-3 text-[#0F172A]">
+                                Delivery Options <Truck className="w-5 h-5 text-[#818CF8]" />
                             </h3>
                             <div className="relative max-w-xs">
                                 <input
                                     type="text"
                                     placeholder="Enter pincode"
-                                    className="w-full border border-gray-200 p-4 rounded-md text-[13px] font-bold focus:outline-none focus:border-gray-900"
+                                    className="w-full border-b-2 border-gray-100 py-4 px-0 text-[13px] font-bold focus:outline-none focus:border-[#818CF8] transition-colors"
                                 />
-                                <button className="absolute right-4 top-1/2 -translate-y-1/2 text-pink-600 font-black text-xs uppercase cursor-pointer hover:text-pink-700">Check</button>
+                                <button className="absolute right-0 top-1/2 -translate-y-1/2 text-[#818CF8] font-black text-xs uppercase cursor-pointer hover:text-[#F472B6]">Check</button>
                             </div>
-                            <p className="text-[12px] text-gray-500 font-medium">Please enter PIN code to check delivery time & Pay on Delivery Availability</p>
+                            <p className="text-[12px] text-gray-400 font-medium">Please enter PIN code to check delivery availability</p>
 
                             <div className="space-y-4 pt-2">
                                 <div className="flex items-start gap-4">
-                                    <ShieldCheck className="w-5 h-5 text-gray-400 mt-0.5" />
-                                    <p className="text-[13px] text-gray-900 font-medium leading-relaxed">100% Original Products</p>
+                                    <ShieldCheck className="w-5 h-5 text-[#2DD4BF] mt-0.5" />
+                                    <p className="text-[13px] text-[#0F172A] font-medium leading-relaxed">100% Original Products</p>
                                 </div>
                                 <div className="flex items-start gap-4">
-                                    <RefreshCw className="w-5 h-5 text-gray-400 mt-0.5" />
-                                    <p className="text-[13px] text-gray-900 font-medium leading-relaxed">Easy 14 days returns and exchanges</p>
+                                    <RefreshCw className="w-5 h-5 text-[#818CF8] mt-0.5" />
+                                    <p className="text-[13px] text-[#0F172A] font-medium leading-relaxed">Easy 14 days returns and exchanges</p>
                                 </div>
                             </div>
                         </div>
 
                         {/* Best Offers Section */}
                         <div className="pt-10 space-y-4">
-                            <h3 className="text-[14px] font-black uppercase tracking-widest flex items-center gap-3">
-                                Best Offers <Award className="w-5 h-5" />
+                            <h3 className="text-[14px] font-black uppercase tracking-widest flex items-center gap-3 text-[#0F172A]">
+                                Best Offers <Award className="w-5 h-5 text-[#F472B6]" />
                             </h3>
                             <div className="space-y-4">
-                                <div className="p-4 border border-dashed border-gray-300 rounded-lg bg-gray-50/50">
+                                <div className="p-6 rounded-[32px] bg-[#0F172A]/5 border border-[#0F172A]/5 relative overflow-hidden group">
+                                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#818CF8]/10 to-transparent rounded-bl-full"></div>
                                     <div className="flex items-center gap-2 mb-2">
-                                        <Sparkles className="w-4 h-4 text-orange-500" />
-                                        <span className="text-[13px] font-black text-gray-900">StyleNest First User Offer</span>
+                                        <Sparkles className="w-4 h-4 text-[#818CF8]" />
+                                        <span className="text-[13px] font-black text-[#0F172A]">StyleNest Premiere Offer</span>
                                     </div>
-                                    <p className="text-[12px] text-gray-600 font-medium">Get extra $10 off on orders above $50. Use code: NEST10</p>
+                                    <p className="text-[12px] text-gray-500 font-medium">Get extra $10 off on orders above $50. Use code: NEST26</p>
                                 </div>
                             </div>
                         </div>
 
                         {/* Product Spec Section */}
                         <div className="pt-10 border-t border-gray-100">
-                            <h3 className="text-[14px] font-black uppercase tracking-widest mb-4">Product Details</h3>
-                            <p className="text-[14px] text-gray-600 leading-relaxed font-medium mb-6">
-                                {product.description}
+                            <h3 className="text-[14px] font-black uppercase tracking-widest mb-4 text-[#0F172A]">Product Details</h3>
+                            <p className="text-[14px] text-gray-500 leading-relaxed font-medium mb-6 italic">
+                                "{product.description}"
                             </p>
                             <div className="grid grid-cols-2 gap-y-4 text-[13px]">
                                 <div>
                                     <p className="text-gray-400 uppercase text-[10px] font-black mb-0.5">Brand</p>
-                                    <p className="font-bold text-gray-800">{product.brand}</p>
+                                    <p className="font-bold text-[#0F172A]">{product.brand}</p>
                                 </div>
                                 <div>
                                     <p className="text-gray-400 uppercase text-[10px] font-black mb-0.5">Category</p>
-                                    <p className="font-bold text-gray-800 capitalize">{product.category}</p>
+                                    <p className="font-bold text-[#0F172A] capitalize">{product.category}</p>
                                 </div>
                                 <div>
                                     <p className="text-gray-400 uppercase text-[10px] font-black mb-0.5">Article ID</p>
-                                    <p className="font-bold text-gray-800">{product.id}</p>
+                                    <p className="font-bold text-[#0F172A]">#{product.id}</p>
                                 </div>
                                 <div>
-                                    <p className="text-gray-400 uppercase text-[10px] font-black mb-0.5">Stock</p>
-                                    <p className="font-bold text-gray-800">{product.stock} units available</p>
+                                    <p className="text-gray-400 uppercase text-[10px] font-black mb-0.5">Status</p>
+                                    <p className="font-bold text-[#0F172A]">{product.stock} units in vault</p>
                                 </div>
                             </div>
                         </div>
@@ -270,19 +272,19 @@ const ProductDetail = () => {
                 <section className="mt-32 pt-20 border-t border-gray-100">
                     <div className="flex flex-col md:flex-row gap-20">
                         <div className="md:w-[30%]">
-                            <h2 className="text-2xl font-black uppercase tracking-tighter italic flex items-center gap-3 mb-10">
-                                Customer Reviews <MessageSquare className="w-6 h-6 text-pink-600" />
+                            <h2 className="text-2xl font-black uppercase tracking-tighter italic flex items-center gap-3 mb-10 text-[#0F172A]">
+                                Verified Feedback <MessageSquare className="w-6 h-6 text-[#818CF8]" />
                             </h2>
                             <div className="space-y-8">
                                 <div className="flex items-center gap-6">
-                                    <div className="text-6xl font-black text-gray-900">{product.rating}</div>
+                                    <div className="text-6xl font-black text-[#0F172A]">{product.rating}</div>
                                     <div className="space-y-1">
                                         <div className="flex items-center gap-1">
                                             {[...Array(5)].map((_, i) => (
-                                                <Star key={i} className={`w-5 h-5 ${i < Math.floor(product.rating) ? 'fill-green-600 text-green-600' : 'text-gray-200'}`} />
+                                                <Star key={i} className={`w-5 h-5 ${i < Math.floor(product.rating) ? 'fill-green-600 text-green-600' : 'text-gray-100'}`} />
                                             ))}
                                         </div>
-                                        <p className="text-sm font-bold text-gray-500 italic">Based on 1.2k+ verified reviews</p>
+                                        <p className="text-sm font-bold text-gray-400 italic">Based on 1.2k global clients</p>
                                     </div>
                                 </div>
 
@@ -290,11 +292,11 @@ const ProductDetail = () => {
                                 <div className="space-y-3 pt-4">
                                     {[5, 4, 3, 2, 1].map((star) => (
                                         <div key={star} className="flex items-center gap-4 group">
-                                            <span className="text-xs font-black text-gray-500 w-3">{star}</span>
-                                            <Star className="w-3 h-3 fill-gray-300 text-gray-300 group-hover:fill-pink-500 transition-colors" />
-                                            <div className="h-1.5 grow bg-gray-100 rounded-full overflow-hidden">
+                                            <span className="text-xs font-black text-gray-400 w-3">{star}</span>
+                                            <Star className="w-3 h-3 fill-gray-200 text-gray-200 group-hover:fill-[#818CF8] transition-colors" />
+                                            <div className="h-1.5 grow bg-gray-50 rounded-full overflow-hidden">
                                                 <div
-                                                    className="h-full bg-green-500 rounded-full"
+                                                    className="h-full bg-[#0F172A] rounded-full"
                                                     style={{ width: `${star === 5 ? '85' : star === 4 ? '10' : '5'}%` }}
                                                 ></div>
                                             </div>
@@ -307,33 +309,34 @@ const ProductDetail = () => {
 
                         <div className="md:w-[70%] space-y-10">
                             <div className="flex justify-between items-center mb-6">
-                                <h3 className="text-lg font-black uppercase tracking-widest italic">Most Recent Feedback</h3>
-                                <button className="text-xs font-black text-pink-600 border-b-2 border-pink-600 pb-1">VIEW ALL REVIEWS</button>
+                                <h3 className="text-lg font-black uppercase tracking-widest italic text-[#0F172A]">Gallery Experience</h3>
+                                <button className="text-xs font-black text-[#818CF8] border-b-2 border-[#818CF8]/30 hover:border-[#818CF8] pb-1 transition-all">VIEW ALL REVIEWS</button>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 {product.reviews?.map((review) => (
-                                    <div key={review.id} className="bg-gray-50/50 p-8 rounded-[32px] border border-gray-100 hover:shadow-xl hover:shadow-gray-200/50 transition-all group">
+                                    <div key={review.id} className="bg-white p-10 rounded-[48px] border border-gray-100 hover:shadow-2xl hover:shadow-[#0F172A]/5 transition-all group relative overflow-hidden">
+                                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#818CF8]/5 to-transparent rounded-bl-full"></div>
                                         <div className="flex items-center justify-between mb-6">
                                             <div className="flex items-center gap-4">
-                                                <div className="w-12 h-12 rounded-2xl overflow-hidden border-2 border-white shadow-sm ring-2 ring-gray-100">
-                                                    <Image src={review.avatar || `https://robohash.org/${review.user}.png`} alt={review.user} width={48} height={48} className="object-cover" />
+                                                <div className="w-14 h-14 rounded-2xl overflow-hidden border-2 border-white shadow-xl ring-2 ring-gray-50 translate-y-[-20%]">
+                                                    <Image src={review.avatar || `https://robohash.org/${review.user}.png`} alt={review.user} width={56} height={56} className="object-cover" />
                                                 </div>
                                                 <div>
-                                                    <p className="font-black text-sm text-gray-900">{review.user}</p>
+                                                    <p className="font-black text-sm text-[#0F172A]">{review.user}</p>
                                                     <div className="flex items-center gap-3">
                                                         <div className="flex text-green-600">
                                                             {[...Array(5)].map((_, i) => (
-                                                                <Star key={i} className={`w-2.5 h-2.5 ${i < review.rating ? 'fill-current' : 'text-gray-200'}`} />
+                                                                <Star key={i} className={`w-2.5 h-2.5 ${i < review.rating ? 'fill-current' : 'text-gray-100'}`} />
                                                             ))}
                                                         </div>
                                                         <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{review.date}</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <ThumbsUp className="w-4 h-4 text-gray-300 group-hover:text-pink-500 cursor-pointer transition-colors" />
+                                            <ThumbsUp className="w-4 h-4 text-gray-200 group-hover:text-[#818CF8] cursor-pointer transition-colors" />
                                         </div>
-                                        <p className="text-sm font-medium text-gray-600 leading-relaxed italic">"{review.comment}"</p>
+                                        <p className="text-sm font-medium text-gray-500 leading-relaxed italic">"{review.comment}"</p>
                                     </div>
                                 ))}
                             </div>
@@ -346,14 +349,14 @@ const ProductDetail = () => {
                     <div className="flex justify-between items-end mb-12">
                         <div className="space-y-2">
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-1 bg-pink-600 rounded-full"></div>
-                                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-pink-600">Curated Collection</span>
+                                <div className="w-10 h-1 bg-gradient-to-r from-[#818CF8] to-[#2DD4BF] rounded-full"></div>
+                                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-transparent bg-clip-text bg-gradient-to-r from-[#818CF8] to-[#2DD4BF]">Curated Collection</span>
                             </div>
-                            <h2 className="text-5xl font-black uppercase tracking-tighter italic">
-                                SIMILAR <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-orange-400 not-italic underline decoration-pink-600/30">STYLE</span>
+                            <h2 className="text-5xl font-black uppercase tracking-tighter italic text-[#0F172A]">
+                                SIMILAR <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#818CF8] via-[#F472B6] to-[#2DD4BF] not-italic underline decoration-[#818CF8]/20">STYLE</span>
                             </h2>
                         </div>
-                        <Link href={`/products?category=${product.category}`} className="text-xs font-black uppercase tracking-widest group flex items-center gap-3 hover:text-pink-600 transition-colors">
+                        <Link href={`/products?category=${product.category}`} className="text-xs font-black uppercase tracking-widest group flex items-center gap-3 text-gray-400 hover:text-[#818CF8] transition-colors">
                             Explore All {product.category} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </Link>
                     </div>

@@ -47,7 +47,7 @@ const FeaturedSection: React.FC<FeaturedSectionProps> = ({ title, category, limi
         return (
             <div className="py-24 px-4 max-w-7xl mx-auto flex justify-center items-center h-64">
                 <div className="flex flex-col items-center gap-4">
-                    <Loader2 className="h-10 w-10 animate-spin text-pink-500" />
+                    <Loader2 className="h-10 w-10 animate-spin text-[#818CF8]" />
                     <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Curating Perfection...</p>
                 </div>
             </div>
@@ -71,34 +71,36 @@ const FeaturedSection: React.FC<FeaturedSectionProps> = ({ title, category, limi
                     className="object-cover scale-105 group-hover:scale-100 transition-transform duration-[2s] ease-out"
                     priority={priority}
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-[#0F172A]/70 backdrop-blur-[2px] md:backdrop-blur-0 md:bg-gradient-to-r md:from-[#0F172A] md:via-[#0F172A]/40 md:to-transparent"></div>
 
                 <div className="absolute inset-0 flex items-center">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                         <div className="max-w-xl space-y-6 animate-fade-in">
                             <div className="flex items-center gap-3">
-                                <Sparkles className="w-4 h-4 text-pink-500" />
-                                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-pink-500">
+                                <Sparkles className="w-4 h-4 text-[#818CF8]" />
+                                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-transparent bg-clip-text bg-gradient-to-r from-[#818CF8] to-[#2DD4BF]">
                                     New Drops 2026
                                 </span>
                             </div>
 
                             <h2 className="text-5xl md:text-7xl font-black text-white leading-tight italic tracking-tighter uppercase">
                                 {title} <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-orange-300 not-italic">ESSENTIALS</span>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#818CF8] via-[#F472B6] to-[#2DD4BF] not-italic">ESSENTIALS</span>
                             </h2>
 
-                            <p className="text-gray-300 text-lg font-light max-w-md leading-relaxed border-l-2 border-white/20 pl-6 italic">
+                            <p className="text-gray-300 text-lg font-light max-w-md leading-relaxed border-l-2 border-[#818CF8]/30 pl-6 italic">
                                 Elevate your daily rotation with pieces that blend timeless elegance with contemporary edge.
                             </p>
 
                             <div className="pt-6">
                                 <Link
                                     href={`/products${category ? `?category=${category}` : ''}`}
-                                    className="inline-flex items-center gap-4 bg-white hover:bg-pink-50 text-black px-10 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-all active:scale-95 group/btn"
+                                    className="inline-flex items-center gap-4 bg-white hover:bg-[#F8FAFC] text-black px-10 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-all active:scale-95 group/btn"
                                 >
                                     SURVEY THE COLLECTION
-                                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-2 transition-transform" />
+                                    <div className="w-8 h-8 rounded-full bg-[#0F172A] text-white flex items-center justify-center group-hover/btn:bg-[#818CF8] transition-all">
+                                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1" />
+                                    </div>
                                 </Link>
                             </div>
                         </div>
@@ -111,11 +113,11 @@ const FeaturedSection: React.FC<FeaturedSectionProps> = ({ title, category, limi
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-gray-50 pb-8">
                     <div className="space-y-2">
                         <div className="flex items-center gap-2">
-                            <TrendingUp className="w-4 h-4 text-pink-600" />
-                            <span className="text-[10px] font-black text-pink-600 uppercase tracking-widest">Trending Choice</span>
+                            <TrendingUp className="w-4 h-4 text-[#818CF8]" />
+                            <span className="text-[10px] font-black text-[#818CF8] uppercase tracking-widest">Trending Choice</span>
                         </div>
-                        <h3 className="text-3xl font-black text-gray-900 tracking-tight uppercase italic underline decoration-pink-500/10 underline-offset-8">
-                            Curated <span className="text-pink-600">Masterpieces</span>
+                        <h3 className="text-3xl font-black text-[#0F172A] tracking-tight uppercase italic underline decoration-[#818CF8]/10 underline-offset-8">
+                            Curated <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#818CF8] to-[#2DD4BF]">Masterpieces</span>
                         </h3>
                     </div>
                     <Link
