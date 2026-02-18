@@ -59,14 +59,32 @@ interface User {
   role?: string;
 }
 
+// --- Persistence Fallback (In-Memory) ---
+let memoryUsers: User[] = [];
+let memoryOrders: Order[] = [];
+
 const getUsers = (): User[] => {
-  if (!fs.existsSync(USERS_FILE)) return [];
-  const data = fs.readFileSync(USERS_FILE, 'utf-8');
-  return JSON.parse(data || '[]');
+  try {
+    if (fs.existsSync(USERS_FILE)) {
+      const data = fs.readFileSync(USERS_FILE, 'utf-8');
+      const fileUsers = JSON.parse(data || '[]');
+      // Merge file users into memory if memory is empty
+      if (memoryUsers.length === 0) memoryUsers = fileUsers;
+      return memoryUsers;
+    }
+  } catch (err) {
+    console.error('File read failed, using memory');
+  }
+  return memoryUsers;
 };
 
 const saveUsers = (users: User[]) => {
-  fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
+  memoryUsers = users;
+  try {
+    fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
+  } catch (err) {
+    console.error('File write inhibited (Serverless environment)');
+  }
 };
 
 // --- Order Management Helpers ---
@@ -90,13 +108,26 @@ interface Order {
 }
 
 const getOrders = (): Order[] => {
-  if (!fs.existsSync(ORDERS_FILE)) return [];
-  const data = fs.readFileSync(ORDERS_FILE, 'utf-8');
-  return JSON.parse(data || '[]');
+  try {
+    if (fs.existsSync(ORDERS_FILE)) {
+      const data = fs.readFileSync(ORDERS_FILE, 'utf-8');
+      const fileOrders = JSON.parse(data || '[]');
+      if (memoryOrders.length === 0) memoryOrders = fileOrders;
+      return memoryOrders;
+    }
+  } catch (err) {
+    console.error('Order read failed');
+  }
+  return memoryOrders;
 };
 
 const saveOrders = (orders: Order[]) => {
-  fs.writeFileSync(ORDERS_FILE, JSON.stringify(orders, null, 2));
+  memoryOrders = orders;
+  try {
+    fs.writeFileSync(ORDERS_FILE, JSON.stringify(orders, null, 2));
+  } catch (err) {
+    console.error('Order write inhibited');
+  }
 };
 
 // --- Middleware ---
