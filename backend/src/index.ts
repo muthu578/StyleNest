@@ -28,8 +28,8 @@ const rapidApiConfig = {
 
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || 'access-secret-key-123';
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET || 'refresh-secret-key-456';
-const USERS_FILE = path.join(process.cwd(), 'data/users.json');
-const ORDERS_FILE = path.join(process.cwd(), 'data/orders.json');
+const USERS_FILE = path.join(__dirname, '..', 'data', 'users.json');
+const ORDERS_FILE = path.join(__dirname, '..', 'data', 'orders.json');
 
 app.use(cors());
 app.use(express.json());

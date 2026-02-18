@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginStart, loginSuccess, loginFailure } from '@/store/slices/authSlice';
 import { login } from '@/services/api';
 import Link from 'next/link';
@@ -17,16 +17,37 @@ const Login = () => {
     const router = useRouter();
     const [error, setError] = useState('');
 
+    const { token, loading } = useSelector((state: any) => state.auth);
+
+    useEffect(() => {
+        if (token) {
+            router.push('/');
+        }
+    }, [token, router]);
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         dispatch(loginStart());
         setError('');
 
+        const trimmedUsername = username.trim();
+        const trimmedPassword = password.trim();
+
+        if (!trimmedUsername || !trimmedPassword) {
+            setError('Please enter both username and password.');
+            dispatch(loginFailure('Missing credentials'));
+            return;
+        }
+
         try {
-            const data = await login({ username, password });
+            const data = await login({ username: trimmedUsername, password: trimmedPassword });
             const { accessToken, refreshToken, ...user } = data as any;
             dispatch(loginSuccess({ user, accessToken, refreshToken }));
-            router.push('/');
+
+            // Give a small delay for state/cookies to settle
+            setTimeout(() => {
+                router.push('/');
+            }, 100);
         } catch (err: any) {
             setError(err.response?.data?.message || 'Invalid credentials. Please try again.');
             dispatch(loginFailure(err.response?.data?.message || 'Login failed'));
@@ -111,10 +132,20 @@ const Login = () => {
 
                             <button
                                 type="submit"
-                                className="w-full bg-pink-500 text-white py-3 rounded-xl font-bold text-base hover:bg-pink-600 hover:shadow-xl hover:shadow-pink-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group shadow-lg shadow-pink-500/10"
+                                disabled={loading}
+                                className={`w-full bg-pink-500 text-white py-3 rounded-xl font-bold text-base hover:bg-pink-600 hover:shadow-xl hover:shadow-pink-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group shadow-lg shadow-pink-500/10 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
                             >
-                                LOG IN
-                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                {loading ? (
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                        <span>SIGNING IN...</span>
+                                    </div>
+                                ) : (
+                                    <>
+                                        LOG IN
+                                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                    </>
+                                )}
                             </button>
                         </form>
 
