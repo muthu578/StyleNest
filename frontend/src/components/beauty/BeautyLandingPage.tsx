@@ -13,7 +13,7 @@ const BRANDS = [
         id: 1,
         name: 'MAC',
         discount: 'Flat 20% Off',
-        image: 'https://images.pexels.com/photos/3373746/pexels-photo-3373746.jpeg?auto=format&fit=crop&w=1000',
+        image: 'https://images.pexels.com/photos/3373739/pexels-photo-3373739.jpeg?auto=format&fit=crop&w=1000',
         color: 'text-gray-900',
         href: '/products?category=beauty'
     },
@@ -29,7 +29,7 @@ const BRANDS = [
         id: 3,
         name: 'Lakme',
         discount: 'Up To 40% Off',
-        image: 'https://images.pexels.com/photos/3722814/pexels-photo-3722814.jpeg?auto=format&fit=crop&w=1000',
+        image: 'https://images.pexels.com/photos/3738339/pexels-photo-3738339.jpeg?auto=format&fit=crop&w=1000',
         color: 'text-black',
         href: '/products?category=beauty'
     },
@@ -44,10 +44,10 @@ const BRANDS = [
 ];
 
 const BEAUTY_QUICK_ACCESS = [
-    { name: 'Makeup', image: 'https://images.pexels.com/photos/3373746/pexels-photo-3373746.jpeg?auto=format&fit=crop&w=400', query: 'makeup' },
-    { name: 'Skincare', image: 'https://images.pexels.com/photos/3762466/pexels-photo-3762466.jpeg?auto=format&fit=crop&w=400', query: 'skincare' },
-    { name: 'Haircare', image: 'https://images.pexels.com/photos/3722814/pexels-photo-3722814.jpeg?auto=format&fit=crop&w=400', query: 'haircare' },
-    { name: 'Fragrance', image: 'https://images.pexels.com/photos/1961791/pexels-photo-1961791.jpeg?auto=format&fit=crop&w=400', query: 'fragrance' },
+    { name: 'Makeup', image: 'https://images.pexels.com/photos/2533266/pexels-photo-2533266.jpeg?auto=format&fit=crop&w=800', query: 'makeup' },
+    { name: 'Skincare', image: 'https://images.pexels.com/photos/3762466/pexels-photo-3762466.jpeg?auto=format&fit=crop&w=800', query: 'skincare' },
+    { name: 'Haircare', image: 'https://images.pexels.com/photos/3738339/pexels-photo-3738339.jpeg?auto=format&fit=crop&w=800', query: 'haircare' },
+    { name: 'Fragrance', image: 'https://images.pexels.com/photos/1961795/pexels-photo-1961795.jpeg?auto=format&fit=crop&w=800', query: 'fragrance' },
 ];
 
 const BEAUTY_RECT_CATEGORIES = [
@@ -83,7 +83,7 @@ const BeautyLandingPage = () => {
             {/* Serene Hero Banner */}
             <section className="relative h-[85vh] w-full mt-20 overflow-hidden bg-[#FAF7F5] group">
                 <Image
-                    src="https://images.pexels.com/photos/3373746/pexels-photo-3373746.jpeg?auto=format&fit=crop&w=1920&q=80"
+                    src="https://images.pexels.com/photos/4465124/pexels-photo-4465124.jpeg?auto=format&fit=crop&w=1920&q=80"
                     alt="Beauty Collection"
                     fill
                     className="object-cover scale-105 group-hover:scale-100 transition-transform duration-[3s] ease-out opacity-90"

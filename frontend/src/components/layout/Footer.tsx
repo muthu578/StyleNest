@@ -95,8 +95,8 @@ const Footer = () => {
                 <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
                     <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
                         <p className="text-[10px] font-black text-gray-700 uppercase tracking-widest">&copy; 2026 TRENDORA HOUSE</p>
-                        <Link href="#" className="text-[10px] font-black text-gray-700 hover:text-pink-500 uppercase tracking-widest transition-colors">Privacy Policy</Link>
-                        <Link href="#" className="text-[10px] font-black text-gray-700 hover:text-pink-500 uppercase tracking-widest transition-colors">Terms of Service</Link>
+                        <Link href="/contact" className="text-[10px] font-black text-gray-700 hover:text-pink-500 uppercase tracking-widest transition-colors">Privacy Policy</Link>
+                        <Link href="/contact" className="text-[10px] font-black text-gray-700 hover:text-pink-500 uppercase tracking-widest transition-colors">Terms of Service</Link>
                     </div>
                     <div className="flex items-center gap-4">
                         <div className="h-[1px] w-8 bg-gray-800"></div>

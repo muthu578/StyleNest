@@ -30,5 +30,16 @@
     "passwordHash": "$2b$10$15csnriVxLCFJd9OJFNTmeQhZigBVEr8NN4Sbf1.FnfGN7xfEg0ha",
     "firstName": "prana",
     "image": "https://robohash.org/prana.png"
+  },
+  {
+    "id": 1771396260972,
+    "username": "mmk",
+    "email": "mmk@gmail.com",
+    "passwordHash": "$2b$10$L7FVda61NO10tgsXb2IqZuvRh8VqU8CJlUlPsu/Ti680hx7/BrEvi",
+    "firstName": "Muthu",
+    "image": "https://robohash.org/mmk.png",
+    "lastName": "mk",
+    "mobile": "+91 97159 99305",
+    "gender": "Female"
   }
 ]

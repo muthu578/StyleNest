@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { Product, User } from '@/types';
 
-const API_URL = 'http://127.0.0.1:5000/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:5000/api';
 
 const api = axios.create({
     baseURL: API_URL,
@@ -94,6 +94,15 @@ export const logout = () => {
         Cookies.remove('refreshToken');
         localStorage.removeItem('user');
     }
+};
+
+export const updateProfile = async (userData: Partial<User> & { mobile?: string; gender?: string }) => {
+    const response = await api.put<User>('/auth/profile', userData);
+    const user = response.data;
+    if (typeof window !== 'undefined') {
+        localStorage.setItem('user', JSON.stringify(user));
+    }
+    return user;
 };
 
 export const getCurrentUser = async () => {

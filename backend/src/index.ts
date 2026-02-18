@@ -28,11 +28,19 @@ const rapidApiConfig = {
 
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || 'access-secret-key-123';
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET || 'refresh-secret-key-456';
-const USERS_FILE = path.join(__dirname, '../data/users.json');
-const ORDERS_FILE = path.join(__dirname, '../data/orders.json');
+const USERS_FILE = path.join(process.cwd(), 'data/users.json');
+const ORDERS_FILE = path.join(process.cwd(), 'data/orders.json');
 
 app.use(cors());
 app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.json({ message: 'StyleNest API is running', version: '1.0.0' });
+});
+
+app.get('/api', (req, res) => {
+  res.json({ message: 'StyleNest API Base Endpoint', status: 'healthy' });
+});
 
 // --- In-Memory Cache System ---
 const productCache: { [key: string]: { data: any, timestamp: number } } = {};
@@ -130,6 +138,15 @@ app.post('/api/auth/register', async (req, res) => {
     const { username, email, password } = req.body;
     if (!username || !email || !password) return res.status(400).json({ message: 'All fields are required' });
 
+    // Password Validation
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasSymbol = /[!@#$%^&*(),.?":{}|<>_+-]/.test(password);
+    if (password.length < 6 || !hasUppercase || !hasSymbol) {
+      return res.status(400).json({
+        message: 'Password must be at least 6 characters long and include an uppercase letter and a symbol'
+      });
+    }
+
     const users = getUsers();
     if (users.find(u =>
       u.email.toLowerCase() === email.toLowerCase() ||
@@ -179,6 +196,36 @@ app.post('/api/auth/login', async (req: Request, res: Response) => {
   }
 });
 
+app.put('/api/auth/profile', authenticateToken, async (req: any, res) => {
+  try {
+    const { firstName, lastName, email, mobile, gender } = req.body;
+    const users = getUsers();
+    const userIndex = users.findIndex(u => u.id === req.user.id);
+
+    const user = users[userIndex];
+    if (userIndex === -1 || !user) return res.status(404).json({ message: 'User not found' });
+
+    const updatedUser = {
+      ...user,
+      firstName: firstName || user.firstName,
+      lastName: lastName || user.lastName,
+      email: email || user.email,
+      // @ts-ignore
+      mobile: mobile || user.mobile,
+      // @ts-ignore
+      gender: gender || user.gender
+    };
+
+    users[userIndex] = updatedUser;
+
+    saveUsers(users);
+    const { passwordHash: _, ...userWithoutPassword } = updatedUser;
+    res.json(userWithoutPassword);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 app.post('/api/auth/refresh', (req, res) => {
   const { refreshToken } = req.body;
   if (!refreshToken) return res.status(401).json({ message: 'Refresh token required' });
@@ -218,7 +265,9 @@ app.get('/api/products', async (req, res) => {
     'kids': 'kids outfits toys',
     'beauty': 'beauty cosmetics',
     'home': 'home living decor',
-    'accessories': 'jewelry watches sunglasses'
+    'accessories': 'jewelry watches sunglasses',
+    'new arrivals': 'new arrival fashion 2026',
+    'signature series': 'premium luxury designer edition'
   };
 
   const keyword = category
@@ -369,4 +418,8 @@ app.post('/api/support/chat', (req, res) => {
   }, 500);
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+export default app;

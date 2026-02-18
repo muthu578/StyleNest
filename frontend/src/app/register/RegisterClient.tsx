@@ -19,14 +19,37 @@ const Register = () => {
     const dispatch = useDispatch();
     const router = useRouter();
     const [error, setError] = useState('');
+    const [passwordValidation, setPasswordValidation] = useState({
+        length: false,
+        uppercase: false,
+        symbol: false,
+    });
+
+    const validatePassword = (pass: string) => {
+        const validation = {
+            length: pass.length >= 6,
+            uppercase: /[A-Z]/.test(pass),
+            symbol: /[!@#$%^&*(),.?":{}|<>_+-]/.test(pass),
+        };
+        setPasswordValidation(validation);
+        return validation.length && validation.uppercase && validation.symbol;
+    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+        if (e.target.name === 'password') {
+            validatePassword(e.target.value);
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
+
+        if (!validatePassword(formData.password)) {
+            setError('Password does not meet requirements');
+            return;
+        }
 
         if (formData.password !== formData.confirmPassword) {
             setError('Passwords do not match');
@@ -119,11 +142,27 @@ const Register = () => {
                                         type="password"
                                         required
                                         placeholder="••••••••"
-                                        className="block w-full pl-10 pr-4 py-2 bg-gray-50/50 border-2 border-gray-100 rounded-xl focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 transition-all outline-none text-sm text-gray-900 placeholder:text-gray-400 font-medium"
+                                        className={`block w-full pl-10 pr-4 py-2 bg-gray-50/50 border-2 rounded-xl focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 transition-all outline-none text-sm text-gray-900 placeholder:text-gray-400 font-medium ${formData.password ? (Object.values(passwordValidation).every(v => v) ? 'border-green-100' : 'border-pink-100') : 'border-gray-100'}`}
                                         value={formData.password}
                                         onChange={handleChange}
                                     />
                                 </div>
+                                {formData.password && (
+                                    <div className="mt-2 grid grid-cols-1 gap-1 px-1">
+                                        <div className={`flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider transition-colors ${passwordValidation.length ? 'text-green-500' : 'text-gray-400'}`}>
+                                            <div className={`w-1 h-1 rounded-full ${passwordValidation.length ? 'bg-green-500' : 'bg-gray-300'}`}></div>
+                                            At least 6 characters
+                                        </div>
+                                        <div className={`flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider transition-colors ${passwordValidation.uppercase ? 'text-green-500' : 'text-gray-400'}`}>
+                                            <div className={`w-1 h-1 rounded-full ${passwordValidation.uppercase ? 'bg-green-500' : 'bg-gray-300'}`}></div>
+                                            One uppercase letter
+                                        </div>
+                                        <div className={`flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider transition-colors ${passwordValidation.symbol ? 'text-green-500' : 'text-gray-400'}`}>
+                                            <div className={`w-1 h-1 rounded-full ${passwordValidation.symbol ? 'bg-green-500' : 'bg-gray-300'}`}></div>
+                                            One special symbol
+                                        </div>
+                                    </div>
+                                )}
                             </div>
 
                             <div className="space-y-1">
