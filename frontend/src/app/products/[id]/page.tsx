@@ -12,26 +12,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { id } = await params;
     try {
         const product = await getProductById(Number(id));
-        if (!product) return { title: "Product Not Found" };
+        if (!product) return { title: "Product Not Found | StyleNest" };
 
         return {
-            title: product.title,
+            title: `${product.title} | StyleNest`,
             description: product.description,
             openGraph: {
-                title: `${product.title} | Trendora`,
+                title: `${product.title} | StyleNest`,
                 description: product.description,
                 images: [product.thumbnail],
                 type: 'article',
             },
             twitter: {
                 card: 'summary_large_image',
-                title: product.title,
+                title: `${product.title} | StyleNest`,
                 description: product.description,
                 images: [product.thumbnail],
             }
         };
     } catch (error) {
-        return { title: "Trendora Piece" };
+        return { title: "Archive Piece | StyleNest" };
     }
 }
 

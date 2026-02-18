@@ -3,7 +3,7 @@ import LoginClient from './LoginClient';
 
 export const metadata: Metadata = {
     title: "Sign In",
-    description: "Access your Trendora account. Experience bespoke styling and early access.",
+    description: "Access your StyleNest account. Experience bespoke styling and early access.",
 };
 
 export default function LoginPage() {

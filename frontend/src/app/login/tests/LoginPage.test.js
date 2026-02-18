@@ -4,8 +4,10 @@ import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { login } from '@/services/api';
 
+// Mock react-redux
 jest.mock('react-redux', () => ({
     useDispatch: jest.fn(),
+    useSelector: jest.fn(),
 }));
 
 jest.mock('next/navigation', () => ({
@@ -35,6 +37,8 @@ describe('Login Page', () => {
     const mockRouter = { push: jest.fn() };
 
     beforeEach(() => {
+        const { useSelector } = require('react-redux');
+        useSelector.mockReturnValue({ token: null, loading: false });
         useDispatch.mockReturnValue(mockDispatch);
         useRouter.mockReturnValue(mockRouter);
     });

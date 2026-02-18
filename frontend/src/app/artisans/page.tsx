@@ -12,7 +12,7 @@ export default function ArtisansPage() {
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-500">Artisans</span>
                     </h1>
                     <p className="max-w-2xl text-xl font-medium text-gray-500 italic leading-relaxed">
-                        Behind every Trendora masterpiece is a lineage of skill. Our artisans are the guardians of craftsmanship, blending ancestral wisdom with contemporary design.
+                        Behind every StyleNest masterpiece is a lineage of skill. Our artisans are the guardians of craftsmanship, blending ancestral wisdom with contemporary design.
                     </p>
                 </div>
 

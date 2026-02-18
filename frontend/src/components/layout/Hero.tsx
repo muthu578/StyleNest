@@ -11,7 +11,7 @@ const Hero = () => {
             <div className="absolute inset-0">
                 <Image
                     src="https://images.pexels.com/photos/1036622/pexels-photo-1036622.jpeg?auto=format&fit=crop&w=1920&q=80"
-                    alt="Trendora Haute Couture"
+                    alt="StyleNest Haute Couture"
                     fill
                     className="object-cover object-center scale-105 group-hover:scale-100 transition-transform duration-[4s] ease-out opacity-70"
                     priority

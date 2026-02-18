@@ -26,14 +26,14 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Trendora | Premier Fashion & Lifestyle Destination",
-    template: "%s | Trendora"
+    default: "StyleNest | Premier Fashion & Lifestyle Destination",
+    template: "%s | StyleNest"
   },
-  description: "Experience curated excellence with Trendora. Shop the latest in high-end Men, Women, and Kids' fashion. Beyond trends, timeless style.",
-  keywords: ["fashion", "luxury apparel", "men's style", "women's fashion", "kids clothing", "curated collection", "Trendora"],
-  authors: [{ name: "Trendora Team" }],
-  creator: "Trendora",
-  publisher: "Trendora",
+  description: "Experience curated excellence with StyleNest. Shop the latest in high-end Men, Women, and Kids' fashion. Beyond trends, timeless style.",
+  keywords: ["fashion", "luxury apparel", "men's style", "women's fashion", "kids clothing", "curated collection", "StyleNest"],
+  authors: [{ name: "StyleNest Team" }],
+  creator: "StyleNest",
+  publisher: "StyleNest",
   formatDetection: {
     email: false,
     address: false,
@@ -44,16 +44,16 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "Trendora | Premier Fashion & Lifestyle Destination",
-    description: "Experience curated excellence with Trendora. Shop the latest in high-end Men, Women, and Kids' fashion.",
+    title: "StyleNest | Premier Fashion & Lifestyle Destination",
+    description: "Experience curated excellence with StyleNest. Shop the latest in high-end Men, Women, and Kids' fashion.",
     url: 'https://stylenest-trendora.vercel.app',
-    siteName: 'Trendora',
+    siteName: 'StyleNest',
     images: [
       {
         url: 'https://images.pexels.com/photos/934070/pexels-photo-934070.jpeg?auto=format&fit=crop&w=1200&h=630',
         width: 1200,
         height: 630,
-        alt: 'Trendora Collection',
+        alt: 'StyleNest Collection',
       },
     ],
     locale: 'en_US',
@@ -61,8 +61,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Trendora | Premier Fashion & Lifestyle Destination',
-    description: 'Experience curated excellence with Trendora.',
+    title: 'StyleNest | Premier Fashion & Lifestyle Destination',
+    description: 'Experience curated excellence with StyleNest.',
     images: ['https://images.pexels.com/photos/934070/pexels-photo-934070.jpeg?auto=format&fit=crop&w=1200&h=630'],
   },
   robots: {

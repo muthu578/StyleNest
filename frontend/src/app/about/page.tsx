@@ -12,7 +12,7 @@ export default function AboutPage() {
                     <div className="relative flex flex-col items-center text-center space-y-10 py-24">
                         <div className="flex items-center gap-3">
                             <div className="h-[1px] w-8 bg-pink-500/30" />
-                            <span className="text-sm font-black uppercase tracking-[0.6em] text-pink-500">The Vision of Trendora</span>
+                            <span className="text-sm font-black uppercase tracking-[0.6em] text-pink-500">The Vision of StyleNest</span>
                             <div className="h-[1px] w-8 bg-pink-500/30" />
                         </div>
                         <h1 className="text-6xl md:text-9xl font-black text-gray-900 tracking-tighter italic uppercase leading-[0.85]">
@@ -20,7 +20,7 @@ export default function AboutPage() {
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-600 to-orange-500">Global Luxury</span>
                         </h1>
                         <p className="max-w-3xl text-xl md:text-2xl font-medium text-gray-500 leading-relaxed italic border-l-4 border-pink-500 pl-10 text-left mx-auto">
-                            Trendora is not just an e-commerce platform; it is a digital sanctuary for the modern vanguard.
+                            StyleNest is not just an e-commerce platform; it is a digital sanctuary for the modern vanguard.
                             We merge centuries-old artisanal craftsmanship with the frontier of computational intelligence.
                         </p>
                     </div>
@@ -47,7 +47,7 @@ export default function AboutPage() {
                             <span className="inline-block px-4 py-1.5 rounded-full bg-pink-50 text-pink-600 text-[10px] font-black uppercase tracking-widest border border-pink-100">Executive Leadership</span>
                             <h2 className="text-5xl font-black text-gray-900 tracking-tighter italic uppercase leading-tight">Mastermind of <br /> Digital Couture</h2>
                             <p className="text-xl text-gray-600 leading-relaxed font-normal">
-                                <span className="font-black text-pink-500">Muthukumar</span>, the Founder and Chief Technology Officer of Trendora, bridges the gap between high-fashion heritage and technical supremacy.
+                                <span className="font-black text-pink-500">Muthukumar</span>, the Founder and Chief Technology Officer of StyleNest, bridges the gap between high-fashion heritage and technical supremacy.
                             </p>
                             <p className="text-xl text-gray-600 leading-relaxed italic border-l-2 border-gray-100 pl-8">
                                 "Our mission is to decouple luxury from accessibility boundaries while maintaining the sanctity of artisanal quality. We aren't just building a store; we're building the future of human-AI collaboration in aesthetic expression."
@@ -72,7 +72,7 @@ export default function AboutPage() {
                         <span className="text-[10px] font-black uppercase tracking-[0.5em] text-gray-400">Product Philosophy</span>
                         <h2 className="text-6xl font-black text-gray-900 tracking-tighter italic uppercase leading-none">The Anatomy of <br /> Excellence</h2>
                         <p className="text-xl text-gray-500 font-medium leading-relaxed italic">
-                            Every piece in the Trendora collection undergoes a rigorous 14-point validation process. We source exclusively from gold-certified tanneries and fair-wage silk houses across Lyon and Tuscany.
+                            Every piece in the StyleNest collection undergoes a rigorous 14-point validation process. We source exclusively from gold-certified tanneries and fair-wage silk houses across Lyon and Tuscany.
                         </p>
                     </div>
 
@@ -105,7 +105,7 @@ export default function AboutPage() {
                                 <span className="text-pink-500 text-[10px] font-black uppercase tracking-[0.5em]">The Infrastructure</span>
                                 <h2 className="text-6xl font-black tracking-tighter italic uppercase leading-none">Powered by <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400">The Edge</span></h2>
                                 <p className="text-xl text-gray-400 font-medium leading-relaxed">
-                                    Under the guidance of our CTO, Trendora utilizes a bespoke tech stack designed for sub-100ms response times and predictive commerce.
+                                    Under the guidance of our CTO, StyleNest utilizes a bespoke tech stack designed for sub-100ms response times and predictive commerce.
                                 </p>
                             </div>
                             <div className="grid grid-cols-2 gap-12">
@@ -170,7 +170,7 @@ export default function AboutPage() {
                         <span className="text-transparent bg-clip-text bg-gradient-to-b from-gray-900 to-gray-400">Renaissance</span>
                     </h2>
                     <p className="max-w-3xl mx-auto text-xl text-gray-500 italic font-medium leading-relaxed">
-                        By 2030, Trendora aims to be the first fully circular luxury fashion ecosystem powered by the decentralized web. We are moving beyond e-commerce, into a world where fashion, technology, and sustainability are one singular, beautiful breath.
+                        By 2030, StyleNest aims to be the first fully circular luxury fashion ecosystem powered by the decentralized web. We are moving beyond e-commerce, into a world where fashion, technology, and sustainability are one singular, beautiful breath.
                     </p>
                     <Link href="/" className="inline-block bg-black text-white px-16 py-6 rounded-full font-black uppercase tracking-[0.3em] text-[11px] hover:bg-pink-600 hover:scale-105 transition-all shadow-2xl shadow-pink-500/20 active:scale-95">Explore the Collection</Link>
                 </div>

@@ -21,7 +21,7 @@ export default function SustainabilityPage() {
                             <span className="text-emerald-400">for Good</span>
                         </h1>
                         <p className="text-xl font-medium text-zinc-300 italic leading-relaxed">
-                            Trendora is committed to a circular future. We believe that true luxury should be timeless, not just in style, but in its impact on our world.
+                            StyleNest is committed to a circular future. We believe that true luxury should be timeless, not just in style, but in its impact on our world.
                         </p>
                     </div>
                 </div>

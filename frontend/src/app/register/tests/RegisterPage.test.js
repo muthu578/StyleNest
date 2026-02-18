@@ -4,8 +4,10 @@ import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { register } from '@/services/api';
 
+// Mock react-redux
 jest.mock('react-redux', () => ({
     useDispatch: jest.fn(),
+    useSelector: jest.fn(),
 }));
 
 jest.mock('next/navigation', () => ({
@@ -35,6 +37,8 @@ describe('Register Page', () => {
     const mockRouter = { push: jest.fn() };
 
     beforeEach(() => {
+        const { useSelector } = require('react-redux');
+        useSelector.mockReturnValue({ token: null, loading: false });
         useDispatch.mockReturnValue(mockDispatch);
         useRouter.mockReturnValue(mockRouter);
     });
@@ -56,12 +60,12 @@ describe('Register Page', () => {
 
         fireEvent.change(screen.getByPlaceholderText(/Pick a username/i), { target: { value: 'testuser' } });
         fireEvent.change(screen.getByPlaceholderText(/Enter email/i), { target: { value: 'test@example.com' } });
-        fireEvent.change(screen.getAllByPlaceholderText(/••••••••/i)[0], { target: { value: 'password' } });
-        fireEvent.change(screen.getAllByPlaceholderText(/••••••••/i)[1], { target: { value: 'password' } });
+        fireEvent.change(screen.getAllByPlaceholderText(/••••••••/i)[0], { target: { value: 'Password123!' } });
+        fireEvent.change(screen.getAllByPlaceholderText(/••••••••/i)[1], { target: { value: 'Password123!' } });
         fireEvent.click(screen.getByRole('button', { name: /CREATE ACCOUNT/i }));
 
         await waitFor(() => {
-            expect(register).toHaveBeenCalledWith({ username: 'testuser', email: 'test@example.com', password: 'password' });
+            expect(register).toHaveBeenCalledWith({ username: 'testuser', email: 'test@example.com', password: 'Password123!' });
             expect(mockRouter.push).toHaveBeenCalledWith('/');
         });
     });
@@ -71,8 +75,8 @@ describe('Register Page', () => {
 
         fireEvent.change(screen.getByPlaceholderText(/Pick a username/i), { target: { value: 'testuser' } });
         fireEvent.change(screen.getByPlaceholderText(/Enter email/i), { target: { value: 'test@example.com' } });
-        fireEvent.change(screen.getAllByPlaceholderText(/••••••••/i)[0], { target: { value: 'password123' } });
-        fireEvent.change(screen.getAllByPlaceholderText(/••••••••/i)[1], { target: { value: 'wrongpassword' } });
+        fireEvent.change(screen.getAllByPlaceholderText(/••••••••/i)[0], { target: { value: 'Password123!' } });
+        fireEvent.change(screen.getAllByPlaceholderText(/••••••••/i)[1], { target: { value: 'WrongPassword!' } });
 
         const submitButton = screen.getByRole('button', { name: /CREATE ACCOUNT/i });
         fireEvent.click(submitButton);

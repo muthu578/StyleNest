@@ -11,7 +11,7 @@ const Footer = () => {
                     {/* Brand Section */}
                     <div className="space-y-8 col-span-1 lg:col-span-1">
                         <Link href="/" className="inline-block">
-                            <Image src="/logo.svg" alt="Trendora" width={234} height={78} className="h-[52px] w-auto invert brightness-0 invert" />
+                            <Image src="/logo.svg" alt="StyleNest" width={234} height={78} className="h-[52px] w-auto invert brightness-0 invert" />
                         </Link>
                         <p className="text-gray-500 text-sm font-medium leading-relaxed max-w-xs italic border-l-2 border-[#818CF8]/30 pl-6">
                             Redefining the digital shopping experience through curated masterpieces and timeless fashion.
@@ -78,7 +78,7 @@ const Footer = () => {
                     {/* Newsletter Section */}
                     <div className="space-y-8">
                         <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-transparent bg-clip-text bg-gradient-to-r from-[#818CF8] to-[#2DD4BF]">Newsletter</h3>
-                        <p className="text-sm text-gray-500 font-medium">Join the Trendora inner circle for exclusive access to launches and private sales.</p>
+                        <p className="text-sm text-gray-500 font-medium">Join the StyleNest inner circle for exclusive access to launches and private sales.</p>
                         <div className="relative group">
                             <input
                                 type="email"

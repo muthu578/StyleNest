@@ -53,7 +53,7 @@ describe('ProfilePage', () => {
         render(<ProfilePage />);
         expect(screen.getAllByText('Muthukumar').length).toBeGreaterThan(0);
         expect(screen.getAllByText('M').length).toBeGreaterThan(0);
-        expect(screen.getByText('muthukumar@pikkol.com')).toBeInTheDocument();
+        expect(screen.getAllByDisplayValue('muthummk@gmail.com').length).toBeGreaterThan(0);
     });
 
     it('handles logout', () => {

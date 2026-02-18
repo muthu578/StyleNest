@@ -5,7 +5,7 @@ export default function FlagshipsPage() {
         <main className="min-h-screen pt-32 pb-24 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center space-y-8 mb-32">
-                    <span className="text-sm font-black uppercase tracking-[0.5em] text-pink-500">World of Trendora</span>
+                    <span className="text-sm font-black uppercase tracking-[0.5em] text-pink-500">World of StyleNest</span>
                     <h1 className="text-6xl md:text-8xl font-black text-gray-900 tracking-tighter italic uppercase leading-none">
                         Our <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-400">Flagships</span>

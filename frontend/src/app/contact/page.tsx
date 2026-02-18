@@ -13,13 +13,13 @@ export default function ContactPage() {
                                 Contact <br />
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-rose-600">The House</span>
                             </h1>
-                            <p className="text-xl text-gray-500 font-medium italic max-w-md">Our concierge team is available around the clock to ensure your experience with Trendora is nothing short of exceptional.</p>
+                            <p className="text-xl text-gray-500 font-medium italic max-w-md">Our concierge team is available around the clock to ensure your experience with StyleNest is nothing short of exceptional.</p>
                         </div>
 
                         <div className="space-y-12">
                             {[
-                                { icon: Phone, label: "Client Services", value: "+1 (800) TRENDORA" },
-                                { icon: Mail, label: "Official Inquiry", value: "house@trendora.com" },
+                                { icon: Phone, label: "Client Services", value: "+1 (800) STYLENEST" },
+                                { icon: Mail, label: "Official Inquiry", value: "house@stylenest.com" },
                                 { icon: MessageCircle, label: "WhatsApp Concierge", value: "Live Chat Available" },
                                 { icon: MapPin, label: "Corporate HQ", value: "Flagship HQ, Paris, FR" }
                             ].map((item, idx) => (
@@ -41,17 +41,17 @@ export default function ContactPage() {
                         <form className="space-y-8">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Full Name</label>
-                                    <input type="text" className="w-full bg-white border border-gray-100 rounded-2xl px-6 py-4 focus:outline-none focus:border-pink-500 transition-colors" placeholder="Alexander McQueen" />
+                                    <label htmlFor="full-name" className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Full Name</label>
+                                    <input id="full-name" type="text" className="w-full bg-white border border-gray-100 rounded-2xl px-6 py-4 focus:outline-none focus:border-pink-500 transition-colors" placeholder="Alexander McQueen" />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Email Address</label>
-                                    <input type="email" className="w-full bg-white border border-gray-100 rounded-2xl px-6 py-4 focus:outline-none focus:border-pink-500 transition-colors" placeholder="alex@luxury.com" />
+                                    <label htmlFor="email" className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Email Address</label>
+                                    <input id="email" type="email" className="w-full bg-white border border-gray-100 rounded-2xl px-6 py-4 focus:outline-none focus:border-pink-500 transition-colors" placeholder="alex@luxury.com" />
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Subject</label>
-                                <select className="w-full bg-white border border-gray-100 rounded-2xl px-6 py-4 focus:outline-none focus:border-pink-500 transition-colors appearance-none">
+                                <label htmlFor="subject" className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Subject</label>
+                                <select id="subject" className="w-full bg-white border border-gray-100 rounded-2xl px-6 py-4 focus:outline-none focus:border-pink-500 transition-colors appearance-none">
                                     <option>Bespoke Orders</option>
                                     <option>Wholesale Inquiries</option>
                                     <option>Press & Media</option>
@@ -59,8 +59,8 @@ export default function ContactPage() {
                                 </select>
                             </div>
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Message</label>
-                                <textarea rows={6} className="w-full bg-white border border-gray-100 rounded-2xl px-6 py-4 focus:outline-none focus:border-pink-500 transition-colors resize-none" placeholder="How can the House assist you today?"></textarea>
+                                <label htmlFor="message" className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Message</label>
+                                <textarea id="message" rows={6} className="w-full bg-white border border-gray-100 rounded-2xl px-6 py-4 focus:outline-none focus:border-pink-500 transition-colors resize-none" placeholder="How can the House assist you today?"></textarea>
                             </div>
                             <button type="submit" className="w-full bg-black text-white py-6 rounded-2xl font-black uppercase tracking-[0.4em] text-xs hover:bg-pink-600 transition-all shadow-2xl hover:translate-y-[-2px]">Send Message</button>
                         </form>

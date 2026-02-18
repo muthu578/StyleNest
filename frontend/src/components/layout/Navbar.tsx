@@ -64,7 +64,7 @@ const Navbar = () => {
                             )}>
                                 <Image
                                     src="/logo.svg"
-                                    alt="Trendora"
+                                    alt="StyleNest"
                                     width={234}
                                     height={78}
                                     priority

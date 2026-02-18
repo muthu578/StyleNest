@@ -108,93 +108,95 @@ const ChatSupport = () => {
             </button>
 
             {/* Chat Window */}
-            <div
-                className={clsx(
-                    "absolute bottom-20 right-0 w-[380px] h-[550px] bg-white rounded-[32px] shadow-px overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.19, 1, 0.22, 1)] border border-gray-100 flex flex-col transform origin-bottom-right",
-                    isOpen ? "scale-100 opacity-100 translate-y-0" : "scale-50 opacity-0 translate-y-10 pointer-events-none"
-                )}
-            >
-                {/* Header */}
-                <div className="bg-black p-6 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-md">
-                            <Bot className="text-white" size={24} />
-                        </div>
-                        <div>
-                            <h3 className="text-white font-black text-sm uppercase tracking-widest">StyleNest AI</h3>
-                            <div className="flex items-center gap-1.5">
-                                <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
-                                <span className="text-white/60 text-[10px] uppercase font-bold tracking-tighter">Support Online</span>
+            {isOpen && (
+                <div
+                    className={clsx(
+                        "absolute bottom-20 right-0 w-[380px] h-[550px] bg-white rounded-[32px] shadow-px overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.19, 1, 0.22, 1)] border border-gray-100 flex flex-col transform origin-bottom-right",
+                        isOpen ? "scale-100 opacity-100 translate-y-0" : "scale-50 opacity-0 translate-y-10 pointer-events-none"
+                    )}
+                >
+                    {/* Header */}
+                    <div className="bg-black p-6 flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-md">
+                                <Bot className="text-white" size={24} />
+                            </div>
+                            <div>
+                                <h3 className="text-white font-black text-sm uppercase tracking-widest">StyleNest AI</h3>
+                                <div className="flex items-center gap-1.5">
+                                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
+                                    <span className="text-white/60 text-[10px] uppercase font-bold tracking-tighter">Support Online</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <button
-                        onClick={() => setIsOpen(false)}
-                        className="text-white/60 hover:text-white transition-colors"
-                    >
-                        <X size={20} />
-                    </button>
-                </div>
-
-                {/* Messages Container */}
-                <div className="flex-1 overflow-y-auto p-6 space-y-6 scroll-smooth bg-gray-50/50">
-                    {messages.map((msg) => (
-                        <div
-                            key={msg.id}
-                            className={clsx(
-                                "flex flex-col max-w-[85%] animate-fade-in",
-                                msg.sender === 'user' ? "ml-auto items-end" : "items-start"
-                            )}
+                        <button
+                            onClick={() => setIsOpen(false)}
+                            className="text-white/60 hover:text-white transition-colors"
                         >
+                            <X size={20} />
+                        </button>
+                    </div>
+
+                    {/* Messages Container */}
+                    <div className="flex-1 overflow-y-auto p-6 space-y-6 scroll-smooth bg-gray-50/50">
+                        {messages.map((msg) => (
                             <div
+                                key={msg.id}
                                 className={clsx(
-                                    "p-4 rounded-[22px] text-sm leading-relaxed shadow-sm",
-                                    msg.sender === 'user'
-                                        ? "bg-black text-white rounded-br-none"
-                                        : "bg-white text-gray-800 rounded-bl-none border border-gray-100"
+                                    "flex flex-col max-w-[85%] animate-fade-in",
+                                    msg.sender === 'user' ? "ml-auto items-end" : "items-start"
                                 )}
                             >
-                                {msg.text}
+                                <div
+                                    className={clsx(
+                                        "p-4 rounded-[22px] text-sm leading-relaxed shadow-sm",
+                                        msg.sender === 'user'
+                                            ? "bg-black text-white rounded-br-none"
+                                            : "bg-white text-gray-800 rounded-bl-none border border-gray-100"
+                                    )}
+                                >
+                                    {msg.text}
+                                </div>
+                                <span className="text-[9px] text-gray-400 mt-2 font-bold uppercase tracking-widest px-1">
+                                    {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                </span>
                             </div>
-                            <span className="text-[9px] text-gray-400 mt-2 font-bold uppercase tracking-widest px-1">
-                                {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                            </span>
-                        </div>
-                    ))}
-                    {isLoading && (
-                        <div className="flex items-start gap-2 max-w-[85%] animate-pulse">
-                            <div className="p-4 rounded-[22px] rounded-bl-none bg-white border border-gray-100 shadow-sm flex items-center gap-2">
-                                <Loader2 size={16} className="animate-spin text-gray-400" />
-                                <span className="text-sm text-gray-400 font-medium">Assistant is thinking...</span>
+                        ))}
+                        {isLoading && (
+                            <div className="flex items-start gap-2 max-w-[85%] animate-pulse">
+                                <div className="p-4 rounded-[22px] rounded-bl-none bg-white border border-gray-100 shadow-sm flex items-center gap-2">
+                                    <Loader2 size={16} className="animate-spin text-gray-400" />
+                                    <span className="text-sm text-gray-400 font-medium">Assistant is thinking...</span>
+                                </div>
                             </div>
-                        </div>
-                    )}
-                    <div ref={messagesEndRef} />
-                </div>
+                        )}
+                        <div ref={messagesEndRef} />
+                    </div>
 
-                {/* Input Area */}
-                <div className="p-6 bg-white border-t border-gray-50">
-                    <form onSubmit={handleSend} className="relative flex items-center">
-                        <input
-                            type="text"
-                            value={message}
-                            onChange={(e) => setMessage(e.target.value)}
-                            placeholder="Type a message..."
-                            className="w-full bg-gray-50 border-none rounded-2xl py-4 pl-6 pr-14 text-sm focus:ring-2 focus:ring-black/5 transition-all outline-none text-gray-800 placeholder:text-gray-400 font-medium"
-                        />
-                        <button
-                            type="submit"
-                            disabled={!message.trim() || isLoading}
-                            className="absolute right-2 p-2.5 bg-black text-white rounded-xl hover:scale-105 active:scale-95 transition-all disabled:opacity-50 disabled:hover:scale-100"
-                        >
-                            <Send size={18} />
-                        </button>
-                    </form>
-                    <p className="text-center text-[9px] text-gray-400 mt-4 uppercase font-bold tracking-[0.2em] opacity-50">
-                        AI Assistant Powered by StyleNest
-                    </p>
+                    {/* Input Area */}
+                    <div className="p-6 bg-white border-t border-gray-50">
+                        <form onSubmit={handleSend} className="relative flex items-center">
+                            <input
+                                type="text"
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
+                                placeholder="Type a message..."
+                                className="w-full bg-gray-50 border-none rounded-2xl py-4 pl-6 pr-14 text-sm focus:ring-2 focus:ring-black/5 transition-all outline-none text-gray-800 placeholder:text-gray-400 font-medium"
+                            />
+                            <button
+                                type="submit"
+                                disabled={!message.trim() || isLoading}
+                                className="absolute right-2 p-2.5 bg-black text-white rounded-xl hover:scale-105 active:scale-95 transition-all disabled:opacity-50 disabled:hover:scale-100"
+                            >
+                                <Send size={18} />
+                            </button>
+                        </form>
+                        <p className="text-center text-[9px] text-gray-400 mt-4 uppercase font-bold tracking-[0.2em] opacity-50">
+                            AI Assistant Powered by StyleNest
+                        </p>
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 };

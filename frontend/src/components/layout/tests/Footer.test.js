@@ -19,7 +19,7 @@ describe('Footer Component', () => {
     it('renders footer brand name', () => {
         render(<Footer />);
         // Use a more specific matcher to avoid duplicates
-        expect(screen.getAllByText(/Trendora/i).length).toBeGreaterThan(0);
+        expect(screen.getAllByText(/StyleNest/i).length).toBeGreaterThan(0);
         expect(screen.getByText(/Redefining the digital shopping experience/i)).toBeInTheDocument();
     });
 });
