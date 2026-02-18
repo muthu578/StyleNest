@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { loginSuccess } from '@/store/slices/authSlice';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginSuccess, loginStart, loginFailure } from '@/store/slices/authSlice';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -19,11 +19,18 @@ const Register = () => {
     const dispatch = useDispatch();
     const router = useRouter();
     const [error, setError] = useState('');
+    const { token, loading } = useSelector((state: any) => state.auth);
     const [passwordValidation, setPasswordValidation] = useState({
         length: false,
         uppercase: false,
         symbol: false,
     });
+
+    useEffect(() => {
+        if (token) {
+            router.push('/');
+        }
+    }, [token, router]);
 
     const validatePassword = (pass: string) => {
         const validation = {
@@ -44,29 +51,41 @@ const Register = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        dispatch(loginStart());
         setError('');
 
-        if (!validatePassword(formData.password)) {
+        const trimmedUsername = formData.username.trim();
+        const trimmedEmail = formData.email.trim();
+        const trimmedPassword = formData.password.trim();
+
+        if (!validatePassword(trimmedPassword)) {
             setError('Password does not meet requirements');
+            dispatch(loginFailure('Invalid password'));
             return;
         }
 
-        if (formData.password !== formData.confirmPassword) {
+        if (trimmedPassword !== formData.confirmPassword.trim()) {
             setError('Passwords do not match');
+            dispatch(loginFailure('Passwords mismatch'));
             return;
         }
 
         try {
             const data = await register({
-                username: formData.username,
-                email: formData.email,
-                password: formData.password
+                username: trimmedUsername,
+                email: trimmedEmail,
+                password: trimmedPassword
             });
             const { accessToken, refreshToken, ...user } = data as any;
             dispatch(loginSuccess({ user, accessToken, refreshToken }));
-            router.push('/');
+
+            setTimeout(() => {
+                router.push('/');
+            }, 100);
         } catch (err: any) {
-            setError(err.response?.data?.message || 'Registration failed');
+            const msg = err.response?.data?.message || 'Registration failed';
+            setError(msg);
+            dispatch(loginFailure(msg));
         }
     };
 
@@ -188,10 +207,20 @@ const Register = () => {
 
                             <button
                                 type="submit"
-                                className="w-full bg-black text-white py-3 rounded-xl font-bold text-base hover:bg-gray-800 hover:shadow-xl active:scale-[0.98] transition-all flex items-center justify-center gap-2 group mt-4"
+                                disabled={loading}
+                                className={`w-full bg-black text-white py-3 rounded-xl font-bold text-base hover:bg-gray-800 hover:shadow-xl active:scale-[0.98] transition-all flex items-center justify-center gap-2 group mt-4 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
                             >
-                                CREATE ACCOUNT
-                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                {loading ? (
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                        <span>CREATING ACCOUNT...</span>
+                                    </div>
+                                ) : (
+                                    <>
+                                        CREATE ACCOUNT
+                                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                    </>
+                                )}
                             </button>
                         </form>
 

@@ -5,22 +5,25 @@ export function middleware(request: NextRequest) {
     const token = request.cookies.get('accessToken')?.value;
     const { pathname } = request.nextUrl;
 
-    // Paths that are always accessible
-    const publicPaths = ['/login', '/register', '/api'];
-    const isPublicPath = publicPaths.some(path => pathname.startsWith(path));
+    // Static assets (images, logos, etc.) should always be public
+    const isStaticAsset = pathname.includes('.') || pathname.startsWith('/_next') || pathname === '/favicon.ico' || pathname === '/logo.svg';
+    if (isStaticAsset) return NextResponse.next();
 
-    // Static assets (images, logos, etc.) should be public
-    const isStaticAsset = pathname.includes('.') || pathname.startsWith('/_next');
+    // Paths that are specifically private and require authentication
+    const privatePaths = ['/profile', '/orders', '/checkout', '/wishlist'];
+    const isPrivatePath = privatePaths.some(path => pathname === path || pathname.startsWith(path + '/'));
 
-    if (!token && !isPublicPath && !isStaticAsset) {
-        return NextResponse.redirect(new URL('/login', request.url));
-    }
-
-    // If logged in, don't allow visiting login/register
+    // If logged in, don't allow visiting auth pages (login/register)
     if (token && (pathname === '/login' || pathname === '/register')) {
         return NextResponse.redirect(new URL('/', request.url));
     }
 
+    // Redirect to login if a private path is accessed without a token
+    if (!token && isPrivatePath) {
+        return NextResponse.redirect(new URL('/login', request.url));
+    }
+
+    // All other paths (home, products, about, contact, etc.) are public
     return NextResponse.next();
 }
 
