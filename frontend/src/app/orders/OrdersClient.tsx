@@ -121,7 +121,7 @@ const OrdersPage = () => {
                                             <div className="lg:col-span-8 space-y-8">
                                                 {order.items.map((item: any) => (
                                                     <div key={item.id} className="flex gap-6 items-start group/item">
-                                                        <div className="relative h-32 w-28 flex-shrink-0 bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 group-hover/item:shadow-lg transition-all duration-300">
+                                                        <div className="relative h-24 md:h-32 w-20 md:w-28 flex-shrink-0 bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 group-hover/item:shadow-lg transition-all duration-300">
                                                             <Image src={item.thumbnail} alt={item.title} fill className="object-cover transition-transform group-hover/item:scale-110" />
                                                         </div>
                                                         <div className="flex-grow pt-2">
@@ -182,7 +182,7 @@ const OrdersPage = () => {
 
                 {/* Bottom Branding */}
                 <div className="mt-24 pt-12 border-t border-gray-100 flex flex-col items-center gap-6">
-                    <Image src="/logo.svg" alt="StyleNest" width={234} height={78} className="h-[52px] w-auto opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500 cursor-pointer" />
+                    <Image src="/logo.svg" alt="Trendora" width={234} height={78} className="h-[73px] w-auto opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500 cursor-pointer" />
                     <div className="flex flex-wrap justify-center gap-x-10 gap-y-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">
                         <span className="hover:text-pink-500 cursor-pointer transition-colors">Returns & Refunds</span>
                         <span className="hover:text-pink-500 cursor-pointer transition-colors">Privacy Policy</span>

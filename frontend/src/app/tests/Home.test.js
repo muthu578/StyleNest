@@ -25,7 +25,7 @@ describe('Home Page', () => {
 
     it('renders manifesto section', () => {
         render(<Home />);
-        expect(screen.getByText(/The StyleNest Manifesto/i)).toBeInTheDocument();
+        expect(screen.getByText(/The Trendora Manifesto/i)).toBeInTheDocument();
         expect(screen.getByText(/Beyond/i)).toBeInTheDocument();
     });
 });

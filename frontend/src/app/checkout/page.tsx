@@ -3,7 +3,7 @@ import CheckoutClient from './CheckoutClient';
 
 export const metadata: Metadata = {
     title: "Checkout",
-    description: "Complete your StyleNest acquisition. Secure and seamless checkout experience.",
+    description: "Complete your Trendora acquisition. Secure and seamless checkout experience.",
     robots: { index: false, follow: false },
 };
 

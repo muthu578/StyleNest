@@ -21,14 +21,14 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 
     const title = category ? (titles[category] || `Shop ${category}`) : "All Curated Collections";
     const description = category
-        ? `Explore our exclusive ${category} collection at StyleNest. Curated designer pieces for the modern vanguard.`
-        : "Discover the full StyleNest collection. Premium apparel, beauty, and home essentials curated for quality and style.";
+        ? `Explore our exclusive ${category} collection at Trendora. Curated designer pieces for the modern vanguard.`
+        : "Discover the full Trendora collection. Premium apparel, beauty, and home essentials curated for quality and style.";
 
     return {
         title,
         description,
         openGraph: {
-            title: `${title} | StyleNest`,
+            title: `${title} | Trendora`,
             description,
             images: ['https://images.pexels.com/photos/934070/pexels-photo-934070.jpeg?auto=format&fit=crop&w=1200&h=630'],
         }

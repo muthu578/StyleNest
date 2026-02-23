@@ -31,7 +31,7 @@ const Checkout = () => {
                             <Button className="w-full bg-black hover:bg-gray-800 text-white py-4 rounded-2xl font-black tracking-widest uppercase text-xs">Sign In</Button>
                         </Link>
                         <Link href="/register" className="flex-1">
-                            <Button variant="outline" className="w-full border-2 border-black hover:bg-black hover:text-white py-4 rounded-2xl font-black tracking-widest uppercase text-xs">Join StyleNest</Button>
+                            <Button variant="outline" className="w-full border-2 border-black hover:bg-black hover:text-white py-4 rounded-2xl font-black tracking-widest uppercase text-xs">Join Trendora</Button>
                         </Link>
                     </div>
                 </div>
@@ -155,7 +155,7 @@ const Checkout = () => {
                         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                         Back to Bag
                     </Link>
-                    <Image src="/logo.svg" alt="StyleNest" width={130} height={52} className="h-[42px] w-auto" />
+                    <Image src="/logo.svg" alt="Trendora" width={130} height={52} className="h-[42px] w-auto" />
                     <div className="flex items-center gap-2">
                         <ShieldCheck className="w-4 h-4 text-green-500" />
                         <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Secure Payment</span>

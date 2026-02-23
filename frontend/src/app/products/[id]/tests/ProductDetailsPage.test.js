@@ -39,7 +39,7 @@ const mockProduct = {
     price: 299,
     description: 'Elite quality jacket',
     category: 'men',
-    brand: 'StyleNest Luxury',
+    brand: 'Trendora Luxury',
     thumbnail: '/jacket.jpg',
     images: ['/jacket1.jpg', '/jacket2.jpg'],
     rating: 4.8,
@@ -78,7 +78,7 @@ describe('ProductDetailsPage', () => {
         await waitFor(() => {
             expect(screen.getByRole('heading', { name: 'Premium Jacket', level: 1 })).toBeInTheDocument();
             expect(screen.getByText(/\$299/)).toBeInTheDocument();
-            expect(screen.getAllByText('StyleNest Luxury').length).toBeGreaterThan(0);
+            expect(screen.getAllByText('Trendora Luxury').length).toBeGreaterThan(0);
         });
     });
 
@@ -172,7 +172,7 @@ describe('Product Details Metadata', () => {
         const params = Promise.resolve({ id: '1' });
         const metadata = await generateMetadata({ params });
 
-        expect(metadata.title).toBe('Premium Jacket | StyleNest');
+        expect(metadata.title).toBe('Premium Jacket | Trendora');
     });
 
     it('returns fallback title when product not found', async () => {
@@ -180,7 +180,7 @@ describe('Product Details Metadata', () => {
         const params = Promise.resolve({ id: '999' });
         const metadata = await generateMetadata({ params });
 
-        expect(metadata.title).toBe('Product Not Found | StyleNest');
+        expect(metadata.title).toBe('Product Not Found | Trendora');
     });
 
     it('returns error fallback title on API error', async () => {
@@ -188,6 +188,6 @@ describe('Product Details Metadata', () => {
         const params = Promise.resolve({ id: '1' });
         const metadata = await generateMetadata({ params });
 
-        expect(metadata.title).toBe('Archive Piece | StyleNest');
+        expect(metadata.title).toBe('Archive Piece | Trendora');
     });
 });

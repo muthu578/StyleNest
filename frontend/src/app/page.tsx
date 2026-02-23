@@ -6,8 +6,8 @@ import Image from 'next/image';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "StyleNest | Cyber-Luxe Fashion Archive",
-  description: "Welcome to StyleNest, the apex of curated fashion. Discover our latest collections for Men, Women, and Kids. VER:2026 // TYPE:ARCHIVE.",
+  title: "Trendora | Cyber-Luxe Fashion Archive",
+  description: "Welcome to Trendora, the apex of curated fashion. Discover our latest collections for Men, Women, and Kids. VER:2026 // TYPE:ARCHIVE.",
 };
 
 export default function Home() {
@@ -32,7 +32,7 @@ export default function Home() {
           <div className="max-w-2xl space-y-12">
             <div className="flex items-center gap-3">
               <Sparkles className="w-5 h-5 text-[#818CF8]" />
-              <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#818CF8]">The StyleNest Manifesto</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#818CF8]">The Trendora Manifesto</span>
             </div>
             <h2 className="text-6xl md:text-8xl font-black leading-[0.9] tracking-tighter uppercase italic">
               Beyond <br />
@@ -74,7 +74,7 @@ export default function Home() {
 
           <div className="relative z-10 max-w-3xl mx-auto space-y-12">
             <h2 className="text-6xl md:text-8xl font-black text-white leading-[0.9] italic tracking-tighter uppercase">Join the <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#818CF8] to-[#2DD4BF] not-italic">Vault</span></h2>
-            <p className="text-gray-400 text-lg font-medium italic">Unlock the ultimate StyleNest experience. Early access, bespoke styling, and events reserved for the digital elite.</p>
+            <p className="text-gray-400 text-lg font-medium italic">Unlock the ultimate Trendora experience. Early access, bespoke styling, and events reserved for the digital elite.</p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center max-w-lg mx-auto bg-white/5 p-2 rounded-full backdrop-blur-xl border border-white/10">
               <input
                 type="email"

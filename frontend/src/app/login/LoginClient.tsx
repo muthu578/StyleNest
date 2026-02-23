@@ -59,7 +59,7 @@ const Login = () => {
             {/* Header */}
             <header className="px-6 py-4 border-b border-gray-50 flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-2">
-                    <Image src="/logo.svg" alt="StyleNest" width={304} height={135} priority className="h-[73px] w-auto" />
+                    <Image src="/logo.svg" alt="Trendora" width={304} height={135} priority className="h-[73px] w-auto" />
                 </Link>
                 <Link href="/" className="text-xs font-bold text-gray-500 hover:text-black uppercase tracking-widest transition-colors">
                     Back to Store
@@ -187,7 +187,7 @@ const Login = () => {
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#818CF8] via-[#F472B6] to-[#2DD4BF] not-italic">EVERYTHING</span>
                         </h3>
                         <p className="text-sm text-gray-200 font-medium leading-relaxed opacity-90 p-3 border-l-2 border-[#818CF8]/30 bg-[#0F172A]/40 backdrop-blur-sm rounded-r-xl italic">
-                            "Discover the latest streetwear trends and unleash your unique personality with StyleNest collections."
+                            "Discover the latest streetwear trends and unleash your unique personality with Trendora collections."
                         </p>
                     </div>
                 </div>

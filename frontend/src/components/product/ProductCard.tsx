@@ -32,8 +32,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     };
 
     return (
-        <Link href={`/products/${product.id}`} className="group relative block bg-white rounded-[32px] p-4 transition-all duration-700 hover:shadow-[0_32px_80px_-16px_rgba(0,0,0,0.1)] hover:-translate-y-2">
-            <div className="relative aspect-[3/4] overflow-hidden rounded-[24px] bg-gray-50 border border-gray-100">
+        <Link href={`/products/${product.id}`} className="group relative block bg-white rounded-[24px] md:rounded-[32px] p-2 md:p-4 transition-all duration-700 hover:shadow-[0_32px_80px_-16px_rgba(0,0,0,0.1)] hover:-translate-y-2">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-[20px] md:rounded-[24px] bg-gray-50 border border-gray-100">
                 {/* Image */}
                 <Image
                     src={product.thumbnail || 'https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=format&fit=crop&w=800'}
@@ -44,7 +44,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 />
 
                 {/* Exclusive Glass Overlay on Hover */}
-                <div className="absolute inset-x-0 bottom-0 p-5 flex items-center gap-2.5 translate-y-full group-hover:translate-y-0 transition-all duration-500 ease-out z-10">
+                <div className="absolute inset-x-0 bottom-0 p-3 md:p-5 flex items-center gap-2 md:gap-2.5 translate-y-0 md:translate-y-full md:group-hover:translate-y-0 transition-all duration-500 ease-out z-10 md:opacity-0 md:group-hover:opacity-100">
                     <button
                         aria-label={`Add ${product.title} to bag`}
                         onClick={handleAddToCart}

@@ -7,7 +7,7 @@ describe('ContactPage', () => {
         expect(screen.getByText(/How can we assist you\?/i)).toBeInTheDocument();
         expect(screen.getByText(/Contact/i)).toBeInTheDocument();
         expect(screen.getByText(/The House/i)).toBeInTheDocument();
-        expect(screen.getByText(/house@stylenest.com/i)).toBeInTheDocument();
+        expect(screen.getByText(/house@trendora.com/i)).toBeInTheDocument();
     });
 
     it('displays the contact form', () => {

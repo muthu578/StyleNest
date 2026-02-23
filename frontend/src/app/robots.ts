@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: ['/profile', '/orders', '/cart', '/checkout'],
         },
-        sitemap: 'https://stylenest-trendora.vercel.app/sitemap.xml',
+        sitemap: 'https://trendora-trendora.vercel.app/sitemap.xml',
     };
 }

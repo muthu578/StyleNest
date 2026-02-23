@@ -53,7 +53,7 @@ const Navbar = () => {
             "fixed top-0 left-0 right-0 z-[120] h-20 bg-white md:bg-white/95 md:backdrop-blur-3xl border-b border-gray-100 flex items-center transition-all duration-300",
             scrolled ? "shadow-lg shadow-black/5" : "shadow-none"
         )}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-[130]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full relative z-[130]">
                 <div className="flex justify-between items-center h-full">
                     {/* Logo Area */}
                     <div className="flex-shrink-0 flex items-center">
@@ -64,11 +64,11 @@ const Navbar = () => {
                             )}>
                                 <Image
                                     src="/logo.svg"
-                                    alt="StyleNest"
+                                    alt="Trendora"
                                     width={234}
                                     height={78}
                                     priority
-                                    className="h-[60px] w-auto"
+                                    className="h-[45px] md:h-[84px] w-auto"
                                 />
                             </div>
                         </Link>

@@ -4,7 +4,7 @@ import FlagshipsPage from '../page';
 describe('FlagshipsPage', () => {
     it('renders flagships page content', () => {
         render(<FlagshipsPage />);
-        expect(screen.getByText(/World of StyleNest/i)).toBeInTheDocument();
+        expect(screen.getByText(/World of Trendora/i)).toBeInTheDocument();
         expect(screen.getAllByText(/Paris/i).length).toBeGreaterThan(0);
         expect(screen.getAllByText(/Milan/i).length).toBeGreaterThan(0);
         expect(screen.getAllByText(/London/i).length).toBeGreaterThan(0);

@@ -39,7 +39,7 @@ describe('Navbar Component', () => {
 
     it('renders logo and basic navigation links', () => {
         render(<Navbar />);
-        expect(screen.getByAltText('StyleNest')).toBeInTheDocument();
+        expect(screen.getByAltText('Trendora')).toBeInTheDocument();
         // Since links appear in both desktop and mobile menus, we use getAllByText
         expect(screen.getAllByText('Men').length).toBeGreaterThan(0);
         expect(screen.getAllByText('Women').length).toBeGreaterThan(0);

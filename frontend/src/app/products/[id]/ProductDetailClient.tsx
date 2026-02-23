@@ -233,7 +233,7 @@ const ProductDetail = () => {
                                     <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#818CF8]/10 to-transparent rounded-bl-full"></div>
                                     <div className="flex items-center gap-2 mb-2">
                                         <Sparkles className="w-4 h-4 text-[#818CF8]" />
-                                        <span className="text-[13px] font-black text-[#0F172A]">StyleNest Premiere Offer</span>
+                                        <span className="text-[13px] font-black text-[#0F172A]">Trendora Premiere Offer</span>
                                     </div>
                                     <p className="text-[12px] text-gray-500 font-medium">Get extra $10 off on orders above $50. Use code: NEST26</p>
                                 </div>

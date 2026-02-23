@@ -29,7 +29,7 @@ describe('ChatSupport', () => {
     it('opens chat window when toggle is clicked', () => {
         render(<ChatSupport />);
         fireEvent.click(screen.getByTestId('msg-circle'));
-        expect(screen.getByText(/StyleNest AI/i)).toBeInTheDocument();
+        expect(screen.getByText(/Trendora AI/i)).toBeInTheDocument();
     });
 
     it('handles sending a message and receiving a response', async () => {
@@ -69,11 +69,11 @@ describe('ChatSupport', () => {
     it('can be closed', () => {
         render(<ChatSupport />);
         fireEvent.click(screen.getByTestId('msg-circle'));
-        expect(screen.getByText(/StyleNest AI/i)).toBeInTheDocument();
+        expect(screen.getByText(/Trendora AI/i)).toBeInTheDocument();
 
         // Click the toggle button again (it now shows an x-icon)
         fireEvent.click(screen.getAllByTestId('x-icon')[0].closest('button'));
 
-        expect(screen.queryByText(/StyleNest AI/i)).not.toBeInTheDocument();
+        expect(screen.queryByText(/Trendora AI/i)).not.toBeInTheDocument();
     });
 });

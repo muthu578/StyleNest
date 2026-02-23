@@ -153,16 +153,22 @@ const getMockReviews = () => [
   { id: '4', user: 'Noah K.', rating: 3, comment: 'Decent quality for the price, but the sizing runs slightly small.', date: '1 month ago', avatar: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150' }
 ];
 
-// --- Mock Products Data ---
+// --- Load Mock Products Data ---
+const productsPath = path.join(__dirname, 'products.json');
+let LOCAL_PRODUCTS: any[] = [];
 
-const LOCAL_PRODUCTS = [
-  // Kids
-  { id: 101, title: 'Kids Graphic Print T-Shirt', description: 'Comfortable cotton t-shirt with cool graphic prints for boys.', price: 12.99, discountPercentage: 15.0, rating: 4.5, stock: 50, brand: 'KidzStyle', category: 'kids', thumbnail: 'https://images.pexels.com/photos/1619697/pexels-photo-1619697.jpeg?auto=format&fit=crop&w=500', images: ['https://images.pexels.com/photos/1619697/pexels-photo-1619697.jpeg?auto=format&fit=crop&w=500', 'https://images.pexels.com/photos/1619690/pexels-photo-1619690.jpeg?auto=format&fit=crop&w=500'] },
-  { id: 102, title: 'Girls Floral Summer Dress', description: 'Beautiful floral print dress perfect for summer outings.', price: 24.99, discountPercentage: 10.0, rating: 4.8, stock: 30, brand: 'LittleAngle', category: 'kids', thumbnail: 'https://images.pexels.com/photos/1648387/pexels-photo-1648387.jpeg?auto=format&fit=crop&w=500', images: ['https://images.pexels.com/photos/1648387/pexels-photo-1648387.jpeg?auto=format&fit=crop&w=500', 'https://images.pexels.com/photos/1104007/pexels-photo-1104007.jpeg?auto=format&fit=crop&w=500'] },
-  { id: 201, title: 'Women Ethnic Kurta', description: 'Traditional embroidered kurta for festive occasions.', price: 39.99, discountPercentage: 12.0, rating: 4.7, stock: 60, brand: 'EthnicVibes', category: 'women', thumbnail: 'https://images.pexels.com/photos/2235071/pexels-photo-2235071.jpeg?auto=format&fit=crop&w=500', images: ['https://images.pexels.com/photos/2235071/pexels-photo-2235071.jpeg?auto=format&fit=crop&w=500', 'https://images.pexels.com/photos/1036622/pexels-photo-1036622.jpeg?auto=format&fit=crop&w=500'] },
-  { id: 301, title: 'Men Checkered Shirt', description: 'Classic checkered shirt for casual wear.', price: 29.99, discountPercentage: 20.0, rating: 4.5, stock: 50, brand: 'UrbanMen', category: 'men', thumbnail: 'https://images.pexels.com/photos/1040851/pexels-photo-1040851.jpeg?auto=format&fit=crop&w=500', images: ['https://images.pexels.com/photos/1040851/pexels-photo-1040851.jpeg?auto=format&fit=crop&w=500', 'https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=format&fit=crop&w=500'] },
-  { id: 303, title: 'Men Polo T-Shirt', description: 'Comfortable cotton polo t-shirt.', price: 19.99, discountPercentage: 15.0, rating: 4.4, stock: 60, brand: 'PoloClub', category: 'men', thumbnail: 'https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=format&fit=crop&w=500', images: ['https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=format&fit=crop&w=500', 'https://images.pexels.com/photos/1456706/pexels-photo-1456706.jpeg?auto=format&fit=crop&w=500'] }
-];
+try {
+  if (fs.existsSync(productsPath)) {
+    const productsData = fs.readFileSync(productsPath, 'utf8');
+    LOCAL_PRODUCTS = JSON.parse(productsData);
+    console.log(`Loaded ${LOCAL_PRODUCTS.length} local products from products.json`);
+  } else {
+    console.warn('products.json not found, using empty local products list');
+  }
+} catch (error) {
+  console.error('Error loading products.json:', error);
+}
+
 
 // --- Auth Routes ---
 

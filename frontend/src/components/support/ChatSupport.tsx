@@ -26,7 +26,7 @@ const ChatSupport = () => {
         setMessages([
             {
                 id: '1',
-                text: 'Hello! I am your StyleNest assistant. How can I help you today?',
+                text: 'Hello! I am your Trendora assistant. How can I help you today?',
                 sender: 'ai',
                 timestamp: new Date(),
             },
@@ -122,7 +122,7 @@ const ChatSupport = () => {
                                 <Bot className="text-white" size={24} />
                             </div>
                             <div>
-                                <h3 className="text-white font-black text-sm uppercase tracking-widest">StyleNest AI</h3>
+                                <h3 className="text-white font-black text-sm uppercase tracking-widest">Trendora AI</h3>
                                 <div className="flex items-center gap-1.5">
                                     <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
                                     <span className="text-white/60 text-[10px] uppercase font-bold tracking-tighter">Support Online</span>
@@ -192,7 +192,7 @@ const ChatSupport = () => {
                             </button>
                         </form>
                         <p className="text-center text-[9px] text-gray-400 mt-4 uppercase font-bold tracking-[0.2em] opacity-50">
-                            AI Assistant Powered by StyleNest
+                            AI Assistant Powered by Trendora
                         </p>
                     </div>
                 </div>

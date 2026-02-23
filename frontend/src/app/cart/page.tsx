@@ -3,7 +3,7 @@ import CartClient from './CartClient';
 
 export const metadata: Metadata = {
     title: "Your Bag",
-    description: "Review your selected pieces at StyleNest. Curated fashion awaits.",
+    description: "Review your selected pieces at Trendora. Curated fashion awaits.",
     robots: { index: false, follow: false },
 };
 

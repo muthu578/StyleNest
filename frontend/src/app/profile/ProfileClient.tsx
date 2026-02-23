@@ -385,7 +385,7 @@ const ProfilePage = () => {
                                     {[
                                         { title: "Spring Exclusive Access", time: "2 hours ago", desc: "You've been selected for early access to the Summer '26 Signature Collection.", type: "promo" },
                                         { title: "Security Alert", time: "1 day ago", desc: "Profile information was successfully updated.", type: "alert" },
-                                        { title: "Style Milestone", time: "3 days ago", desc: "Congratulations! You've reached Gold Tier status in the StyleNest Vault.", type: "milestone" }
+                                        { title: "Style Milestone", time: "3 days ago", desc: "Congratulations! You've reached Gold Tier status in the Trendora Vault.", type: "milestone" }
                                     ].map((note, idx) => (
                                         <div key={idx} className="flex gap-6 p-6 rounded-3xl bg-gray-50 border border-gray-50 hover:bg-white hover:border-pink-100 transition-all group">
                                             <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${note.type === 'promo' ? 'bg-pink-100 text-pink-600' : note.type === 'alert' ? 'bg-blue-100 text-blue-600' : 'bg-orange-100 text-orange-600'}`}>
@@ -480,7 +480,7 @@ const ProfilePage = () => {
 
                 {/* Footer Logo Section */}
                 <div className="mt-20 pt-10 border-t border-gray-100 flex flex-col items-center opacity-30">
-                    <Image src="/logo.svg" alt="StyleNest" width={156} height={52} className="h-[52px] w-auto grayscale mb-4" />
+                    <Image src="/logo.svg" alt="Trendora" width={156} height={52} className="h-[52px] w-auto grayscale mb-4" />
                     <p className="text-[10px] font-black text-gray-400 tracking-[0.3em] uppercase">Premium Lifestyle Retail</p>
                 </div>
             </div>

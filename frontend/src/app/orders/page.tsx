@@ -3,7 +3,7 @@ import OrdersClient from './OrdersClient';
 
 export const metadata: Metadata = {
     title: "Order History",
-    description: "Review your StyleNest acquisitions and heritage.",
+    description: "Review your Trendora acquisitions and heritage.",
     robots: { index: false, follow: false },
 };
 

@@ -24,7 +24,7 @@ const CategoryShowcase = () => {
                             <Sparkles className="w-5 h-5 text-[#818CF8]" />
                             <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#94A3B8]">Curated Collections</span>
                         </div>
-                        <h2 className="text-6xl md:text-8xl font-black text-[#0F172A] tracking-tighter italic uppercase">
+                        <h2 className="text-3xl md:text-8xl font-black text-[#0F172A] tracking-tighter italic uppercase">
                             Aura of <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#818CF8] via-[#F472B6] to-[#2DD4BF] not-italic">Style</span>
                         </h2>
                     </div>
@@ -37,7 +37,7 @@ const CategoryShowcase = () => {
                 </div>
 
                 {/* Categories Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-10">
                     {CATEGORIES.map((category, idx) => (
                         <Link
                             key={category.name}

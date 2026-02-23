@@ -83,7 +83,7 @@ const FeaturedSection: React.FC<FeaturedSectionProps> = ({ title, category, limi
                                 </span>
                             </div>
 
-                            <h2 className="text-5xl md:text-7xl font-black text-white leading-tight italic tracking-tighter uppercase">
+                            <h2 className="text-2xl md:text-7xl font-black text-white leading-tight italic tracking-tighter uppercase">
                                 {title} <br />
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#818CF8] via-[#F472B6] to-[#2DD4BF] not-italic">ESSENTIALS</span>
                             </h2>
@@ -129,7 +129,7 @@ const FeaturedSection: React.FC<FeaturedSectionProps> = ({ title, category, limi
                     </Link>
                 </div>
 
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 md:gap-x-8 gap-y-10 md:gap-y-16">
                     {products.map((product, index) => (
                         <div key={product.id} className="animate-fade-in" style={{ animationDelay: `${index * 150}ms` }}>
                             <ProductCard product={product} />

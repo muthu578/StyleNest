@@ -11,7 +11,7 @@ const Hero = () => {
             <div className="absolute inset-0">
                 <Image
                     src="https://images.pexels.com/photos/1036622/pexels-photo-1036622.jpeg?auto=format&fit=crop&w=1920&q=80"
-                    alt="StyleNest Haute Couture"
+                    alt="Trendora Haute Couture"
                     fill
                     className="object-cover object-center scale-105 group-hover:scale-100 transition-transform duration-[4s] ease-out opacity-70"
                     priority
@@ -36,11 +36,11 @@ const Hero = () => {
                     {/* Main Heading with Luxe Overlay */}
                     <div className="space-y-6 animate-slide-up relative" style={{ animationDelay: '200ms' }}>
                         <div className="absolute -inset-x-12 -inset-y-6 bg-[#0F172A]/60 backdrop-blur-2xl rounded-[40px] -z-10 hidden md:block border border-white/5 shadow-[0_0_50px_rgba(129,140,248,0.1)]"></div>
-                        <h1 className="text-8xl md:text-[160px] font-black text-white leading-[0.8] tracking-tighter uppercase italic">
+                        <h1 className="text-4xl md:text-[160px] font-black text-white leading-[0.8] tracking-tighter uppercase italic">
                             Elegance <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#818CF8] via-[#F472B6] to-[#2DD4BF] not-italic">Defined</span>
                         </h1>
-                        <p className="text-gray-400 text-lg md:text-2xl font-medium max-w-xl leading-relaxed pt-6 border-l-2 border-[#818CF8]/30 pl-8 bg-[#0F172A]/40 backdrop-blur-md rounded-r-3xl py-6">
+                        <p className="text-gray-400 text-base md:text-2xl font-medium max-w-xl leading-relaxed pt-6 border-l-2 border-[#818CF8]/30 pl-6 md:pl-8 bg-[#0F172A]/40 backdrop-blur-md rounded-r-3xl py-4 md:py-6">
                             Unveil the new season's most-coveted silhouettes. A selection that honors heritage while embracing the avant-garde future.
                         </p>
                     </div>
@@ -48,10 +48,10 @@ const Hero = () => {
                     {/* CTA Actions */}
                     <div className="flex flex-col sm:flex-row gap-8 pt-8 animate-slide-up" style={{ animationDelay: '400ms' }}>
                         <Link href="/products" aria-label="Explore products collection">
-                            <button aria-label="Discover Pieces" className="group/btn bg-white hover:bg-[#F8FAFC] text-black px-12 py-6 rounded-full font-black text-[11px] uppercase tracking-[0.3em] shadow-2xl transition-all active:scale-95 flex items-center gap-6">
+                            <button aria-label="Discover Pieces" className="group/btn bg-white hover:bg-[#F8FAFC] text-black px-8 md:px-12 py-4 md:py-6 rounded-full font-black text-[10px] md:text-[11px] uppercase tracking-[0.3em] shadow-2xl transition-all active:scale-95 flex items-center gap-4 md:gap-6">
                                 DISCOVER PIECES
-                                <div className="w-8 h-8 rounded-full bg-[#0F172A] text-white flex items-center justify-center group-hover/btn:bg-[#818CF8] transition-all group-hover/btn:translate-x-2">
-                                    <ArrowRight className="w-4 h-4" />
+                                <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-[#0F172A] text-white flex items-center justify-center group-hover/btn:bg-[#818CF8] transition-all group-hover/btn:translate-x-2">
+                                    <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
                                 </div>
                             </button>
                         </Link>

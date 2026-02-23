@@ -3,7 +3,7 @@ import WishlistClient from './WishlistClient';
 
 export const metadata: Metadata = {
     title: "My Wishlist",
-    description: "Your curated list of desired StyleNest pieces.",
+    description: "Your curated list of desired Trendora pieces.",
     robots: { index: false, follow: false },
 };
 
